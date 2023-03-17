@@ -3,7 +3,7 @@ if(is_child_of(get_page_ID_by_slug('platform'))) { // check if it is platform
     get_template_part('platform/template');
 } //if not platform 
 else {
-    get_header();
+    get_header('page');
 ?>
     <div class="page-title tw-w-full tw-block  tw-relative tw--mt-[200px] tw-pt-[200px]" >
         <div class="tw-container tw-mx-auto tw-px-4 tw-h-min-[200px] tw-pb-[80px] tw-pt-12">
