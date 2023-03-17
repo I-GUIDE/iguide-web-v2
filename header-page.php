@@ -41,7 +41,7 @@
                 <img class="logo-white tw-h-[56px] tw-w-[115px] xl:tw-p-0 xl:tw-h-[80px] xl:tw-w-[165px]" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-w.png" alt="">
                 </a>
             </div>
-            <div class="menu-main-navigation-container ">
+            <div class="menu-main-navigation-container tw-text-white">
             <?php 
                     $defaults = array(
                         'menu'  => 'primary-menu',
