@@ -3,10 +3,10 @@
 ?>
 
 <div class="hero-section tw-relative tw-pb-5 md:tw-pb-[130px] tw-pt-[100px] tw--mt-[70px] md:tw--mt-[200px] md:tw-pt-[200px] tw-overflow-hidden">
-        <div class="tw-w-full">
-            <div class="tw-flex tw-flex-col md:tw-px-10 md:tw-flex-row md:tw-gap-5 lg:tw-gap-10 tw-justify-start">
-                <div class="vw-screen tw-px-10 md:tw-w-4/12 lg:tw-w-1/3 md:tw-mt-7 md:tw-pl-5 lg:tw-mt-10 lg:tw-pl-17">
-                    <div id="tabs-nav" class="tw-text-white tw-text-[50px] md:tw-text-[4vw] tw-font-semibold tw-text-shadow tw-inline-block">
+        <div class="tw-container">
+            <div class="tw-flex tw-flex-col md:tw-px-0 md:tw-flex-row md:tw-gap-5 lg:tw-gap-10 tw-justify-start">
+                <div class="vw-screen tw-pr-5 md:tw-w-4/12 lg:tw-w-1/3 md:tw-mt-7 md:tw-pl-5 lg:tw-mt-10 lg:tw-pl-17">
+                    <div id="tabs-nav" class="tw-text-white tw-text-[50px] md:tw-text-[2.5em] lg:tw-text-[4.7em] tw-font-semibold tw-text-shadow tw-inline-block">
                         <h1 class="tw-mb-3 md:tw-mb-3 lg:tw-mb-5">
                             <span id="map" class="sweep-to-right tw-cursor-pointer" link="#map-slide">Map. </span><br>
                             <span id="connect" class="sweep-to-right tw-cursor-pointer" link="#connect-slide">Connect.</span><br>
@@ -22,28 +22,28 @@
                         <div id="map-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
                             <div class="md:tw-grid md:tw-grid-cols-7 md:tw-gap-5 lg:tw-gap-7 tw-grid-rows-[min-content_min-content]">
                                 <div class=" animate tw-col-span-2 tw-row-span-2 tw-self-start animate__delay-3s">
-                                    <div class="tab-card tw-max-h-[170px] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 md:tw-max-h-nonetw-relative md:tw-mt-10 tw-rounded-lg tw-drop-shadow-md  tw-overflow-hidden">
+                                    <div class="tab-card tw-max-h-[15em] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 md:tw-max-h-nonetw-relative md:tw-mt-10 tw-rounded-lg tw-drop-shadow-md  tw-overflow-hidden">
                                         <a class="stretched-link" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020WR029521" target="_blank"></a>
                                         <img class="object-cover tw-h-full tw-w-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/map1-vertical.png" alt="">
                                         <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">Bathymetric Model Development</h1>
                                     </div>
                                 </div>
                                 <div class=" animate tw-col-start-3 tw-col-end-6 tw-self-start tw-relative animate__delay-2s">
-                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[250px] tw-mx-10 tw-mb-5 md:tw-m-0 tw-drop-shadow-md tw-rounded-lg tw-overflow-hidden ">
+                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[15em] tw-mx-10 tw-mb-5 md:tw-m-0 tw-drop-shadow-md tw-rounded-lg tw-overflow-hidden ">
                                         <a class="stretched-link" href="https://gardner.utah.edu/wp-content/uploads/GSL-Assessment-Feb2023.pdf?x71849" target="_blank"></a>
                                         <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/average_annual_elevation_of_great_salt_lake.jpg" alt="">
                                         <h1 class="tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">Average Annual Elevation of Great Salt Lake</h1>
                                     </div>
                                 </div>
                                 <div class=" animate tw-col-start-3 tw-col-end-6 tw-self-start tw-relative animate__delay-3s">
-                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[250px] tw-mx-10 tw-mb-5 md:tw-m-0 animate tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
+                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[15em] tw-mx-10 tw-mb-5 md:tw-m-0 animate tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
                                         <a class="stretched-link" href="https://hess.copernicus.org/articles/25/551/2021/hess-25-551-2021.html" target="_blank"></a>
                                         <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/mean_soil_moisture_content.jpg" alt="">
                                         <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-4">Mean soil moisture content</h1>
                                     </div>
                                 </div>
                                 <div class="tw-hidden animate tw-col-start-6 tw-col-span-2 tw-self-start tw-row-start-1 tw-row-span-2 tw-relative md:tw-mt-20 animate__delay-4s">
-                                    <div class="tab-card tw-max-h-[170px] md:tw-max-h-max tw-mx-10 tw-mb-5 tw-hidden md:tw-flex md:tw-m-0 md:tw-max-h-nonetw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
+                                    <div class="tab-card tw-max-h-[15em] md:tw-max-h-max tw-mx-10 tw-mb-5 tw-hidden md:tw-flex md:tw-m-0 md:tw-max-h-nonetw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
                                         <a class="stretched-link" href="#"></a>
                                         <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/top1.png" alt="">
                                         <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">I-GUIDE Webinar Series

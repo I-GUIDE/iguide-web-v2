@@ -360,6 +360,10 @@
   max-height: 400px !important;
 }
 
+.tw-max-h-\[15em\] {
+  max-height: 15em !important;
+}
+
 .tw-min-h-\[450px\] {
   min-height: 450px !important;
 }
@@ -704,6 +708,10 @@
 
 .tw-pt-\[200px\] {
   padding-top: 200px !important;
+}
+
+.tw-pr-5 {
+  padding-right: 1.25rem !important;
 }
 
 .tw-text-left {
@@ -1683,6 +1691,11 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
     padding-bottom: 1rem !important;
   }
 
+  .md\:tw-px-0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
   .md\:tw-pb-\[130px\] {
     padding-bottom: 130px !important;
   }
@@ -1722,6 +1735,22 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
     font-size: 0.875rem !important;
     line-height: 1.25rem !important;
   }
+
+  .md\:tw-text-\[3em\] {
+    font-size: 3em !important;
+  }
+
+  .md\:tw-text-\[5em\] {
+    font-size: 5em !important;
+  }
+
+  .md\:tw-text-\[2\.5em\] {
+    font-size: 2.5em !important;
+  }
+
+  .md\:tw-text-\[em\] {
+    color: em !important;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1749,6 +1778,14 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
     aspect-ratio: auto !important;
   }
 
+  .lg\:tw-aspect-video {
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  .lg\:tw-aspect-square {
+    aspect-ratio: 1 / 1 !important;
+  }
+
   .lg\:tw-h-\[120px\] {
     height: 120px !important;
   }
@@ -1771,6 +1808,10 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
 
   .lg\:tw-w-\[110\%\] {
     width: 110% !important;
+  }
+
+  .lg\:tw-w-full {
+    width: 100% !important;
   }
 
   .lg\:tw-grid-cols-4 {
@@ -1837,6 +1878,14 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
     font-size: 0.75rem !important;
     line-height: 1rem !important;
   }
+
+  .lg\:tw-text-\[5em\] {
+    font-size: 5em !important;
+  }
+
+  .lg\:tw-text-\[4\.7em\] {
+    font-size: 4.7em !important;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -1846,6 +1895,18 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
 
   .xl\:tw-h-\[80px\] {
     height: 80px !important;
+  }
+
+  .xl\:tw-h-\[3em\] {
+    height: 3em !important;
+  }
+
+  .xl\:tw-h-\[20em\] {
+    height: 20em !important;
+  }
+
+  .xl\:tw-h-\[15em\] {
+    height: 15em !important;
   }
 
   .xl\:tw-w-\[165px\] {
@@ -1886,6 +1947,18 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
 @media (min-width: 1536px) {
   .\32xl\:tw-h-\[100px\] {
     height: 100px !important;
+  }
+
+  .\32xl\:tw-h-3 {
+    height: 0.75rem !important;
+  }
+
+  .\32xl\:tw-h-\[\] {
+    height:  !important;
+  }
+
+  .\32xl\:tw-h-\[30em\] {
+    height: 30em !important;
   }
 
   .\32xl\:tw-px-0 {
