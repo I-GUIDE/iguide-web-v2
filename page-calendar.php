@@ -193,7 +193,8 @@ get_header();
             $html .= '<div class="d-flex justify-content-between p-0 my-4">';
 
             $html .= '<div class="month-year">';
-            $html .= date('F Y', strtotime($this->active_year . '-' . $this->active_month . '-' . $this->active_day));
+            // Remove the date from the strtotime since it cause the month to jump from Aug to October
+            $html .= date('F Y', strtotime($this->active_year . '-' . $this->active_month));
             $html .= '</div>';
 
             $html .= '<div class="d-flex justify-content-end">';
