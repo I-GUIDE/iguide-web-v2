@@ -241,7 +241,7 @@
         <div class="news-grid tw-grid md:tw-grid-cols-3 lg:tw-grid-cols-4 md:tw-grid-rows-[max-content_min-content] md:tw-grid-flow-row tw-gap-3 md:tw-gap-5 lg:tw-gap-7  tw-mt-5">
             <?php
                 $news_args = array(
-                    'posts_per_page' => 6,
+                    'posts_per_page' => 8,
                     'post_type' => 'news_events',
                 );
                 $news = new WP_Query($news_args);
@@ -277,10 +277,10 @@
             endwhile;?>
             <?php endif;?>
             
-            <div id="twt-block" class="tw-border tw-max-w-sm md:tw-row-start-1 md:tw-row-span-2 tw-rounded-xl justify-self-auto tw-shadow-lg tw-overflow-hidden">
+            <!-- <div id="twt-block" class="tw-border tw-max-w-sm md:tw-row-start-1 md:tw-row-span-2 tw-rounded-xl justify-self-auto tw-shadow-lg tw-overflow-hidden">
                 <a class="twitter-timeline tw-h-full" data-height="1000" href="https://twitter.com/NSFiGUIDE?ref_src=twsrc%5Etfw">Tweets by NSFiGUIDE</a> 
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-            </div>
+            </div> -->
         </div>
     </div>
 
