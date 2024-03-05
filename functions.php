@@ -48,6 +48,21 @@ function is_localhost() {
     
 }
 
+add_filter( 'wp_kses_allowed_html', 'acf_add_allowed_iframe_tag', 10, 2 );
+function acf_add_allowed_iframe_tag( $tags, $context ) {
+    if ( $context === 'convergent_curr' ) {
+        $tags['iframe'] = array(
+            'src'          => true,
+            'height'       => true,
+            'width'        => true,
+            'frameborder'  => true,
+            'allowfullscreen' => true,
+        );
+    }
+
+    return $tags;
+}
+
 function get_page_ID_by_slug($slug)
 {
     $page = get_page_by_path($slug);
