@@ -48,20 +48,21 @@ function is_localhost() {
     
 }
 
-add_filter( 'wp_kses_allowed_html', 'acf_add_allowed_iframe_tag', 10, 2 );
 function acf_add_allowed_iframe_tag( $tags, $context ) {
-    if ( $context === 'convergent_curr' ) {
+    if ( $context === 'acf' ) {
         $tags['iframe'] = array(
-            'src'          => true,
-            'height'       => true,
-            'width'        => true,
-            'frameborder'  => true,
+            'src'             => true,
+            'height'          => true,
+            'width'           => true,
+            'frameborder'     => true,
             'allowfullscreen' => true,
         );
     }
 
     return $tags;
 }
+add_filter( 'wp_kses_allowed_html', 'acf_add_allowed_iframe_tag', 10, 2 );
+
 
 function get_page_ID_by_slug($slug)
 {
@@ -86,7 +87,7 @@ function get_page_ID_by_slug($slug)
  */
 function is_child_of( $id ) {
     return ( is_page() && $id === get_post()->post_parent );
-  }
+}
 
 /**
  * Return HTTP URL for current page after adding the given query string
