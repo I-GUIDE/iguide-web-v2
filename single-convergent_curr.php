@@ -34,18 +34,18 @@
                         <h3>3 Sentences</h3>
                         <hr>
                         <?php
-                        the_field('3_sentences');
+                            echo wp_kses_post( get_field('3_sentences') );
                         ?>
                         
                         <h3 class="mt-5">3 slides</h3>
                         <hr>
                         <?php
-                        the_field('google_slide_embed');
+                            echo wp_kses_post( get_field('google_slide_embed') );
                         ?>
                         <h3 class="mt-5">3 hour module</h3>
                         <hr>
                         <?php
-                        the_field('3_hours_module');
+                            echo wp_kses_post( get_field('3_hours_module') );
                     endwhile; // End of the loop.
                     ?>
         </div>
