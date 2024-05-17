@@ -2,7 +2,7 @@
     get_header();
 ?>
 
-<div class="hero-section tw-relative tw-pb-5 md:tw-pb-[130px] tw-pt-[100px] tw--mt-[70px] md:tw--mt-[200px] md:tw-pt-[200px] tw-overflow-hidden">
+    <div class="hero-section tw-relative tw-pb-5 md:tw-pb-[130px] tw-pt-[100px] tw--mt-[70px] md:tw--mt-[200px] md:tw-pt-[200px] tw-overflow-hidden">
         <div class="tw-container">
             <div class="tw-flex tw-flex-col md:tw-px-0 md:tw-flex-row md:tw-gap-5 lg:tw-gap-10 tw-justify-start">
                 <div class="vw-screen tw-pr-5 md:tw-w-4/12 lg:tw-w-1/3 md:tw-mt-7 md:tw-pl-5 lg:tw-mt-10 lg:tw-pl-17">
