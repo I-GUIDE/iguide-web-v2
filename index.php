@@ -17,105 +17,17 @@
                         <strong>I-GUIDE</strong> is empowering diverse communities to produce data-intensive solutions to society’s resilience and sustainability challenges.
                     </p>
                 </div>
+                
                 <div class="tw-w-screen tw-mt-5 md:tw-mt-7 md:tw-w-8/12 lg:tw-w-2/3">
                     <div id="tw-tabs-content" class="md:tw-w-[150%] lg:tw-w-[110%]">
                         <div id="map-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
-                            <div class="md:tw-grid md:tw-grid-cols-7 md:tw-gap-5 lg:tw-gap-7 tw-grid-rows-[min-content_min-content]">
-                                <div class=" animate tw-col-span-2 tw-row-span-2 tw-self-start animate__delay-3s">
-                                    <div class="tab-card tw-max-h-[15em] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 md:tw-max-h-nonetw-relative md:tw-mt-10 tw-rounded-lg tw-drop-shadow-md  tw-overflow-hidden">
-                                        <a class="stretched-link" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020WR029521" target="_blank"></a>
-                                        <img class="object-cover tw-h-full tw-w-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/map1-vertical.png" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">Bathymetric Model Development</h1>
-                                    </div>
-                                </div>
-                                <div class=" animate tw-col-start-3 tw-col-end-6 tw-self-start tw-relative animate__delay-2s">
-                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[15em] tw-mx-10 tw-mb-5 md:tw-m-0 tw-drop-shadow-md tw-rounded-lg tw-overflow-hidden ">
-                                        <a class="stretched-link" href="https://gardner.utah.edu/wp-content/uploads/GSL-Assessment-Feb2023.pdf?x71849" target="_blank"></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/average_annual_elevation_of_great_salt_lake.jpg" alt="">
-                                        <h1 class="tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">Average Annual Elevation of Great Salt Lake</h1>
-                                    </div>
-                                </div>
-                                <div class=" animate tw-col-start-3 tw-col-end-6 tw-self-start tw-relative animate__delay-3s">
-                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[15em] tw-mx-10 tw-mb-5 md:tw-m-0 animate tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
-                                        <a class="stretched-link" href="https://hess.copernicus.org/articles/25/551/2021/hess-25-551-2021.html" target="_blank"></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/mean_soil_moisture_content.jpg" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-4">Mean soil moisture content</h1>
-                                    </div>
-                                </div>
-                                <div class="tw-hidden animate tw-col-start-6 tw-col-span-2 tw-self-start tw-row-start-1 tw-row-span-2 tw-relative md:tw-mt-20 animate__delay-4s">
-                                    <div class="tab-card tw-max-h-[15em] md:tw-max-h-max tw-mx-10 tw-mb-5 tw-hidden md:tw-flex md:tw-m-0 md:tw-max-h-nonetw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
-                                        <a class="stretched-link" href="#"></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/top1.png" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">I-GUIDE Webinar Series
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php echo do_shortcode('[hero_updates section="map"]'); ?>
                         </div>
                         <div id="connect-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
-                            <div class="md:tw-grid md:tw-grid-cols-7 md:tw-gap-5 lg:tw-gap-7">
-                                <div class=" animate tw-col-span-2 tw-row-span-2 tw-self-start animate__delay-1s">
-                                    <div class="tab-card tw-max-h-[170px] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 md:tw-max-h-nonetw-relative md:tw-mt-10 tw-rounded-lg tw-drop-shadow-md  tw-overflow-hidden">
-                                        <a class="stretched-link" href="<?php echo home_url('/aag-2023-symposium-on-harnessing-the-geospatial-data-revolution-for-sustainability-solutions'); ?> "></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/AAG.png" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">AAG 2023 Symposium</h1>
-                                    </div>
-                                </div>
-                                <div class=" animate tw-col-start-3 tw-col-end-6 tw-self-start tw-relative animate__delay-2s">
-                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[250px] tw-mx-10 tw-mb-5 md:tw-m-0 tw-drop-shadow-md  tw-rounded-lg tw-overflow-hidden">
-                                        <a class="stretched-link" href="<?php echo home_url('/summer-school-2023'); ?>"></a>
-                                        <img class="object-cover" src="<?php echo get_template_directory_uri(); ?>/assets/images/summer_school.jpeg" alt="">
-                                        <h1 class="tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">Summer School 2023</h1>
-                                    </div>
-                                </div>
-                                <div class=" animate tw-col-start-3 tw-col-end-6 tw-self-start tw-relative animate__delay-3s">
-                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[250px] tw-mx-10 tw-mb-5 md:tw-m-0 animate tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
-                                        <a class="stretched-link" href="<?php echo home_url('/i-guide-virtual-all-hands-meeting-2023'); ?> "></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/v-ahm-2023.png" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-4">I-GUIDE Virtual AHM 2023</h1>
-                                    </div>
-                                </div>
-                                <div class="animate tw-col-start-6 tw-col-span-2 tw-self-start tw-row-start-1 tw-row-span-2 tw-relative md:tw-mt-20 animate__delay-4s">
-                                    <div class="tab-card tw-max-h-[150px] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
-                                        <a class="stretched-link" href="<?php echo home_url('/i-guide-sessions-agu-2022'); ?>"></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/agu2022.png" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">AGU 2022
-                                        </h1>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php echo do_shortcode('[hero_updates section="connect"]'); ?>
                         </div>
                         <div id="discover-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
-                            <div class="md:tw-grid md:tw-grid-cols-7 md:tw-gap-5 lg:tw-gap-7">
-                                <div class=" animate tw-col-span-2 tw-row-span-2 tw-self-start animate__delay-1s">
-                                    <div class="tab-card tw-max-h-[170px] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 md:tw-max-h-nonetw-relative md:tw-mt-10 tw-rounded-lg tw-drop-shadow-md  tw-overflow-hidden ">
-                                        <a class="stretched-link" href="<?php echo home_url('/convergence-curriculum-for-geospatial-data-science'); ?>"></a>
-                                        <img class="object-cover tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/conv_curr-vertical.png" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">Convergence Curriculum</h1>
-                                    </div>
-                                </div>
-                                <div class=" animate tw-col-start-3 tw-col-end-6 tw-self-start tw-relative animate__delay-2s ">
-                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[250px] tw-mx-10 tw-mb-5 md:tw-m-0 tw-drop-shadow-md tw-rounded-lg tw-overflow-hidden ">
-                                        <a class="stretched-link" href="<?php echo home_url('/geospatial-knowledge-hypercube'); ?>"></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/hypercube.png" alt="">
-                                        <h1 class="tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">Geospatial Knowledge Hypercube</h1>
-                                    </div>
-                                </div>
-                                <div class=" animate tw-col-start-3 tw-col-end-6 tw-self-start tw-relative animate__delay-3s">
-                                    <div class="tab-card tw-h-[170px] lg:tw-h-[200px] xl:tw-h-[250px] tw-mx-10 tw-mb-5 md:tw-m-0 animate tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md ">
-                                        <a class="stretched-link" href="<?php echo home_url('/vulnerability-analysis-for-aging-dam-infrastructure'); ?>"></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/high_hazard_dams.png" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-4">Aging Dams</h1>
-                                    </div>
-                                </div>
-                                <div class=" tw-hidden md:tw-flex animate tw-col-start-6 tw-col-span-2 tw-self-start  tw-row-start-1 tw-row-span-2 tw-relative md:tw-mt-20 animate__delay-5s">
-                                    <div class="tab-card tw-max-h-[170px] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 md:tw-max-h-nonetw-relative md:tw-mt-10 tw-rounded-lg tw-drop-shadow-md  tw-overflow-hidden">
-                                        <a class="stretched-link" href="<?php echo home_url('/geoethics'); ?>"></a>
-                                        <img class="object-cover tw-w-full tw-h-full" src="<?php echo get_template_directory_uri(); ?>/assets/images/geoethics-vertical.png" alt="">
-                                        <h1 class=" tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">GeoEthics</h1>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php echo do_shortcode('[hero_updates section="discover"]'); ?>
                         </div>
                     </div>
                 </div>
