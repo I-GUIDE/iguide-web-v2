@@ -2,7 +2,7 @@
 /*
 Plugin Name: Hero Update Plugin
 Description: A plugin to create a custom post type "hero_update" with image and URL attributes and predefined dropdown options.
-Version: 1.09
+Version: 1.10
 Author: Nattapon Jaroenchai
 */
 
@@ -149,7 +149,7 @@ function display_hero_updates_by_section($atts) {
             
             if ($i == 1) {
                 $output .= '<div class="animate tw-col-span-2 tw-row-span-2 tw-self-start ' . $delay_class . '">
-                                <div class="tab-card tw-max-h-[15em] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 md:tw-max-h-nonetw-relative md:tw-mt-10 tw-rounded-lg tw-drop-shadow-md  tw-overflow-hidden">
+                                <div class="tab-card tw-max-h-[15em] md:tw-max-h-max tw-mx-10 tw-mb-5 md:tw-m-0 md:tw-max-h-none tw-relative md:tw-mt-10 tw-rounded-lg tw-drop-shadow-md  tw-overflow-hidden">
                                     <a class="stretched-link" href="' . esc_url($hero_url) . '" target="_blank"></a>
                                     <img class="object-cover tw-h-full tw-w-full" src="' . esc_url($hero_image) . '" alt="">
                                     <h1 class="tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">' . esc_html($title) . '</h1>
@@ -157,7 +157,7 @@ function display_hero_updates_by_section($atts) {
                             </div>';
             } elseif ($i == 4) {
                 $output .= '<div class="animate tw-col-start-6 tw-col-span-2 tw-self-start tw-row-start-1 tw-row-span-2 tw-relative md:tw-mt-20  ' . $delay_class . '">
-                                <div class="tab-card tw-max-h-[15em] md:tw-max-h-max tw-mx-10 tw-mb-5 tw-hidden md:tw-flex md:tw-m-0 md:tw-max-h-nonetw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
+                                <div class="tab-card tw-max-h-[15em] md:tw-max-h-max tw-mx-10 tw-mb-5 tw-hidden md:tw-flex md:tw-m-0 md:tw-max-h-none tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
                                     <a class="stretched-link" href="' . esc_url($hero_url) . '" target="_blank"></a>
                                     <img class="object-cover tw-h-full tw-w-full" src="' . esc_url($hero_image) . '" alt="">
                                     <h1 class="tw-absolute tw-text-white tw-bottom-0 tw-font-semibold tw-px-3 tw-pb-2">' . esc_html($title) . '</h1>
