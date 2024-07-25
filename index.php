@@ -27,7 +27,7 @@
 .carousel-caption {
     /* background-color: rgba(0, 0, 0, 0.5); */
     padding: 20px;
-    width: 30%;
+    width: 50%;
     border-radius: 10px;
     bottom: 15%;
     right: 10%;
