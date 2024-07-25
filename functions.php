@@ -1,5 +1,43 @@
 <?php
 
+// function redirect_news_events_to_external_url() {
+    
+//     if ( is_singular('news_events') ) {
+        
+//         // Get the external URL from the ACF field 'external_link'
+//         $external_url = get_field("external_link");
+
+//         // Check if the external URL is set and not empty
+//         if ( $external_url ) {
+//             // Debugging: Log that we are about to redirect
+//             error_log('Redirecting to: ' . $external_url);
+
+//             // Redirect to the external URL
+//             wp_redirect( esc_url_raw( $external_url ), 301 );
+//             exit; // Ensure that the script stops after the redirect
+//         }
+//     }
+// }
+// add_action( 'template_redirect', 'redirect_news_events_to_external_url', 0 );
+
+
+function enqueue_slideshow_styles() {
+    if (is_front_page() || is_home()) {
+        wp_enqueue_style('slideshow-css', get_template_directory_uri() . '/assets/css/slideshow.css', array(), '1.0', 'all');
+    }
+}
+add_action('wp_enqueue_scripts', 'enqueue_slideshow_styles',9999);
+
+function enqueue_custom_scripts() {
+    // Check if it's not the homepage or the front page
+    if (!is_front_page() && !is_home()) {
+        // Enqueue the script
+        wp_enqueue_script('navigation-js', get_template_directory_uri() . '/assets/js/navigation.js', array(), null, true);
+    }
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts',9999);
+
 //Hide admin bar from front-end
 
 function admin_bar_check() {
@@ -172,106 +210,3 @@ function get_current_month_events($start_date, $timezone = 'America/Chicago', $m
     return json_decode($response);
 }
 
-//// slides ////
-
-if (function_exists('acf_add_local_field_group')) :
-
-    acf_add_local_field_group(array(
-        'key' => 'group_625742eaec0ae',
-        'title' => 'Slide Fields',
-        'fields' => array(
-            array(
-                'key' => 'field_625742fa8605a',
-                'label' => 'imge-url',
-                'name' => 'imge-url',
-                'type' => 'text',
-                'instructions' => 'Enter the Image URL/Path for the Image to be shown on the slide.',
-                'required' => 1,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-                'prepend' => '',
-                'append' => '',
-                'maxlength' => '',
-            ),
-            array(
-                'key' => 'field_625743398605b',
-                'label' => 'title',
-                'name' => 'title',
-                'type' => 'text',
-                'instructions' => 'The slide heading text',
-                'required' => 1,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-                'prepend' => '',
-                'append' => '',
-                'maxlength' => '',
-            ),
-            array(
-                'key' => 'field_625743608605c',
-                'label' => 'link',
-                'name' => 'link',
-                'type' => 'url',
-                'instructions' => 'The link URL for the button',
-                'required' => 1,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-            ),
-            array(
-                'key' => 'field_625743c38605d',
-                'label' => 'button-text',
-                'name' => 'button-text',
-                'type' => 'text',
-                'instructions' => 'Text to show on the button for the Link',
-                'required' => 1,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'default_value' => '',
-                'placeholder' => '',
-                'prepend' => '',
-                'append' => '',
-                'maxlength' => '',
-            ),
-        ),
-        'location' => array(
-            array(
-                array(
-                    'param' => 'post_type',
-                    'operator' => '==',
-                    'value' => 'post',
-                ),
-            ),
-        ),
-        'menu_order' => 0,
-        'position' => 'normal',
-        'style' => 'default',
-        'label_placement' => 'top',
-        'instruction_placement' => 'label',
-        'hide_on_screen' => '',
-        'active' => true,
-        'description' => '',
-        'show_in_rest' => 0,
-    ));
-
-endif;

@@ -1,38 +1,59 @@
 <?php 
-    get_header();
+    get_header('index');
 ?>
 
-    <div class="hero-section tw-relative tw-pb-5 md:tw-pb-[130px] tw-pt-[100px] tw--mt-[70px] md:tw--mt-[200px] md:tw-pt-[200px] tw-overflow-hidden">
-        <div class="tw-container">
-            <div class="tw-flex tw-flex-col md:tw-px-0 md:tw-flex-row md:tw-gap-5 lg:tw-gap-10 tw-justify-start">
-                <div class="vw-screen tw-pr-5 md:tw-w-4/12 lg:tw-w-1/3 md:tw-mt-7 md:tw-pl-5 lg:tw-mt-10 lg:tw-pl-17">
-                    <div id="tabs-nav" class="tw-text-white tw-text-[50px] md:tw-text-[2.5em] lg:tw-text-[4.7em] tw-font-semibold tw-text-shadow tw-inline-block">
-                        <h1 class="tw-mb-3 md:tw-mb-3 lg:tw-mb-5">
-                            <span id="map" class="sweep-to-right tw-cursor-pointer" link="#map-slide">Map. </span><br>
-                            <span id="connect" class="sweep-to-right tw-cursor-pointer" link="#connect-slide">Connect.</span><br>
-                            <span id="discover" class="sweep-to-right tw-cursor-pointer" link="#discover-slide">Discover.</span>
-                        </h1>
-                    </div> 
-                    <p class="tw-text-white tw-text-sm md:tw-text-base tw-font-light inline-block">
-                        <strong>I-GUIDE</strong> is empowering diverse communities to produce data-intensive solutions to society’s resilience and sustainability challenges.
-                    </p>
-                </div>
-                
-                <div class="tw-w-screen tw-mt-5 md:tw-mt-7 md:tw-w-8/12 lg:tw-w-2/3">
-                    <div id="tw-tabs-content" class="md:tw-w-[150%] lg:tw-w-[110%]">
-                        <div id="map-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
-                            <?php echo do_shortcode('[hero_updates section="map"]'); ?>
-                        </div>
-                        <div id="connect-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
-                            <?php echo do_shortcode('[hero_updates section="connect"]'); ?>
-                        </div>
-                        <div id="discover-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
-                            <?php echo do_shortcode('[hero_updates section="discover"]'); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<style>
+.carousel-item {
+    height: 700px;
+    min-height: 300px;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    color: white;
+}
+
+.carousel-indicators {
+    bottom: 0%;
+    left: 0;
+    justify-content: left;
+    margin-left: 5%;
+    z-index: 1000;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: black;
+}
+
+.carousel-caption {
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    padding: 20px;
+    width: 30%;
+    border-radius: 10px;
+    bottom: 15%;
+    right: 10%;
+    left: unset;
+    transform: translateY(100%);
+    transition: transform 0.6s ease-in-out;
+    text-align: right;
+}
+
+.carousel-item.active .carousel-caption {
+    transform: translateY(0);
+}
+
+.carousel-caption h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.carousel-caption p {
+    font-size: 1rem;
+    color: white;
+}
+</style>
+    <div class="hero-section tw-relative tw-pt-[100px] tw--mt-[70px] md:tw--mt-[200px] md:tw-pt-[200px] tw-overflow-hidden">
+        <?php do_shortcode("[active_slideshows]"); ?>
         <div class="tw-invisible sm:tw-visible custom-shape-divider-bottom-1676052306 z-10">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
