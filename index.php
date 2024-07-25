@@ -35,7 +35,7 @@
     transform: translateY(100%);
     transition: transform 0.6s ease-in-out;
     text-align: right;
-    z-index: 1000;
+    z-index: 999;
 }
 
 .carousel-item.active .carousel-caption {

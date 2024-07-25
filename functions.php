@@ -33,6 +33,9 @@ function enqueue_custom_scripts() {
     if (!is_front_page() && !is_home()) {
         // Enqueue the script
         wp_enqueue_script('navigation-js', get_template_directory_uri() . '/assets/js/navigation.js', array(), null, true);
+    } else {
+        // Enqueue the script
+        wp_enqueue_script('projects-js', get_template_directory_uri() . '/assets/js/projects.js', array(), null, true);
     }
 }
 
