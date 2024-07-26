@@ -1,4 +1,7 @@
 
+.ctct-form-embed.form_3 .ctct-form-defaults {
+    background-color: transparent !important;
+}
 .i-guide-section {
     display: flex;
     flex-wrap: wrap;
