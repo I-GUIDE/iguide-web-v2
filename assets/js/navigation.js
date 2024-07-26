@@ -1,5 +1,3 @@
-var slideNumber=1;
-
 $(function () {
 
 

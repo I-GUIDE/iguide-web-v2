@@ -24,6 +24,7 @@
 function enqueue_slideshow_styles() {
     if (is_front_page() || is_home()) {
         wp_enqueue_style('slideshow-css', get_template_directory_uri() . '/assets/css/slideshow.css', array(), '1.0', 'all');
+        wp_enqueue_style('platform-section-css', get_template_directory_uri() . '/assets/css/platform.css', array(), '1.0', 'all');
     }
 }
 add_action('wp_enqueue_scripts', 'enqueue_slideshow_styles',9999);

@@ -85,26 +85,59 @@
         </div>
     </div>
 
+    
+    <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">
+        <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(2deg); height:1px !important;"></div>
+    </div>
+
+    <div class="tw-container">
+            <div class="tw-flex tw-flex-col md:tw-px-0 md:tw-flex-row md:tw-gap-5 lg:tw-gap-10 tw-justify-start">
+                <div class="vw-screen tw-pr-5 md:tw-w-4/12 lg:tw-w-1/3 md:tw-mt-7 md:tw-pl-5 lg:tw-mt-10 lg:tw-pl-17">
+                    <div id="tabs-nav" class="tw-text-black tw-text-[50px] md:tw-text-[2.5em] lg:tw-text-[4.7em] tw-font-semibold tw-text-shadow tw-inline-block">
+                        <h1 class="tw-mb-3 md:tw-mb-3 lg:tw-mb-5">
+                            <span id="map" class="sweep-to-right tw-cursor-pointer tw-text-black" link="#map-slide">Map. </span><br>
+                            <span id="connect" class="sweep-to-right tw-cursor-pointer tw-text-black" link="#connect-slide">Connect.</span><br>
+                            <span id="discover" class="sweep-to-right tw-cursor-pointer tw-text-black" link="#discover-slide">Discover.</span>
+                        </h1>
+                    </div> 
+                    <p class="tw-text-black tw-text-sm md:tw-text-base tw-font-light inline-block">
+                        <strong>I-GUIDE</strong> is empowering diverse communities to produce data-intensive solutions to society’s resilience and sustainability challenges.
+                    </p>
+                </div>
+                <div class="tw-w-screen tw-mt-5 md:tw-mt-7 md:tw-w-8/12 lg:tw-w-2/3">
+                    <div id="tw-tabs-content" class="md:tw-w-[150%] lg:tw-w-[110%]">
+                        <div id="map-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
+                            <?php echo do_shortcode('[hero_updates section="map"]'); ?>
+                        </div>
+                        <div id="connect-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
+                            <?php echo do_shortcode('[hero_updates section="connect"]'); ?>
+                        </div>
+                        <div id="discover-slide" class="hero-tab-content tw-p-0 lg:tw-p-2 z-20">
+                            <?php echo do_shortcode('[hero_updates section="discover"]'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">
         <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(-2deg); height:1px !important;"></div>
     </div>
 
-    <div class="project-section tw-container tw-px-10">
+    <!-- <div class="project-section tw-container tw-px-10">
         <div class="tw-flex">
             <div class="tw-w-full md:tw-w-3/4">
-                <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">Overcoming Scientific and Societal Challenges</h1>
-                <p class="tw-text-sm lg:tw-text-base tw-font-light tw-my-5 ">Uniting Interdisciplinary Knowledge to Solve Real-World Problems! By
-                    fostering collaboration and providing access to advanced geospatial data capabilities, I-GUIDE is
-                    tackling fundamental scientific and societal challenges with innovative solutions.</p>
+                <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">Map. Connect. Discover.</h1>
+                <p class="tw-text-sm lg:tw-text-base tw-font-light tw-my-5 ">Welcome to I-GUIDE, where we empower geospatial innovation. Our mission revolves around three core principles:</p>
             </div>
         </div>
         <div class="tw-min-h-[450px]">
             <div class="tw-mb-4">
                 <ul id="project-tabs-nav" class="tw-flex tw-flex-wrap tw--mb-px tw-text-sm lg:tw-text-base tw-font-semibold tw-text-center">
-                    <li class="tw-flex-1 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj1">Aging Dam </li>
-                    <li class="tw-flex-1 md:tw-flex-2 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj2">Convergence Curriculum</li>
-                    <li class="tw-flex-1 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj3">Geospatial Knowledge Hypercube</li>
-                    <li class="tw-flex-1 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj4">GeoEthics</li>
+                    <li class="tw-flex-1 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj1">Map</li>
+                    <li class="tw-flex-1 md:tw-flex-2 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj2">Connect</li>
+                    <li class="tw-flex-1 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj3">Discover</li>
                 </ul>
             </div>
             <div class="tw-w-full">
@@ -148,22 +181,41 @@
                         </div>
                     </div>
                 </div>
-                <div id="proj4" class="project-tab-content">
-                    <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-10 tw-p-0 md:tw-p-4">
-                        <div class="projLeft md:tw-basis-7/12 animate__delay-1s">
-                            <h1 class="tw-text-2xl lg:tw-text-3xl tw-mb-5 tw-text-ig-orange tw-font-semibold">GeoEthics</h1>
-                            <p class="tw-text-sm lg:tw-text-base tw-font-light tw-text-black">Geoethics promotes appropriate practices to shape responsible and sustainable relationships between human activities and Earth systems, bringing attention to the implications that researchers’ work may have on society. Promoting geoethics also requires fostering a positive relationship between the scientific community and the public. One critical concern of geoethics regards the use of geospatial data for AI applications. Large volumes of geospatial data are generated in multiple ways, including sensors from satellites, aircraft, and scientific instruments; geolocation-based data services; social media; and government surveys. Access, aggregation, and use of these and other data sources can promise many societal benefits, such as responding to humanitarian disasters response, and predicting and mitigating risks from aging infrastructure such as dams. However, using these data also raises thorny ethical issues, including transparency and accountability, privacy, bias and discrimination, and data and model quality. Even when appropriate safeguards are in place, it is still possible for unintended ethical harms to result. Geospatial data researchers, and those who use these researchers’ outputs, such as policymakers, must strive to mitigate the risk of these harms as they strive to solve major societal issues.  </p>
-                        </div>
-                        <div class="projRight md:tw-basis-5/12 animate__delay-5s">
-                            <div class="tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/geoethics.jpg" alt="">
-                            </div>  
-                            <span class="tw-font-light tw-text-xs">File:Bansky one nation under cctv.jpg - Wikimedia Commons. (2023, February 16). Retrieved from https://acommons.wikimedia.org/wiki/File:Bansky_one_nation_under_cctv.jpg</span>
-                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">
+        <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(2deg); height:1px !important;"></div>
+    </div> -->
+    
+    <div class="tw-container tw-flex tw-flex-col ">
+        <section class="i-guide-section">
+            <div class="images-container">
+                <div class="image-wrap">
+                    <div class="image-box box-1">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Image_5.png" alt="Access to High-Performance Computing system">
+                        <p>Access to High-Performance Computing system</p>
+                    </div>
+                    <div class="image-box box-2">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Image_4.png" alt="Access to Datasets on Cloud">
+                        <p>Access to Datasets on Cloud</p>
+                    </div>
+                    <div class="image-box box-3">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Image_6.png" alt="Simulation with Hydrological Model WRFHydro">
+                        <p>Simulation with Hydrological Model WRFHydro</p>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="text-container">
+                <div class="text-wrap">
+                    <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">I-GUIDE Platform</h1>
+                    <h2>Integrative Discovery Starts Here!</h2>
+                    <p class="tw-text-sm lg:tw-text-base tw-font-light tw-my-5 ">The I-GUIDE platform is designed to harness the vast, diverse, and distributed geospatial data at different spatial and temporal scales and make them broadly accessible and usable to convergence research and education enabled by cutting-edge cyberGIS and cyberinfrastructure.</p>
+                    <a href="#" class="btn btn-warning">Launch I-GUIDE Platform</a>
+                </div>
+            </div>
+        </section>
     </div>
 
     <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">

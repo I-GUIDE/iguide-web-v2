@@ -1,8 +1,9 @@
 $(function () {
+    var slideNumber = 1;
     var mottos = $('#tabs-nav span');
 
     //// Create tab functionality for the Hero section 
-    $('#tabs-nav span:first-child').addClass('active');
+    $('#tabs-nav span:first-child').addClass('active tw-text-white');
     $('.hero-tab-content').hide();
     $('.hero-tab-content:first').show();
 
@@ -10,7 +11,7 @@ $(function () {
         var motto = mottos[slideNumber++];
         $(motto).click();
         if(slideNumber >= mottos.length) i = 0;
-    }, 7000); 
+    }, 5000); 
 
     // Click function
     $('#tabs-nav span').on('click', function(){
@@ -21,8 +22,8 @@ $(function () {
             case "discover" : slideNumber=0 ; break;
         }
 
-        $('#tabs-nav span').removeClass('active');
-        $(this).addClass('active');
+        $('#tabs-nav span').removeClass('active tw-text-white');
+        $(this).addClass('active tw-text-white');
         $('.hero-tab-content').hide();
         
         var activeTab = $(this).attr('link');
