@@ -270,7 +270,7 @@
         </div>
     </div>
 
-    <div class="maillist-section tw-bg-gray-100 tw-w-full tw-pt-16 tw-px-10 tw-pb-5">
+    <div class="maillist-section tw-bg-gray-100 tw-w-full tw-pt-5 tw-px-10 tw-pb-5">
         <div class="tw-container">
             <!-- <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">Join I-GUIDE's Mailing List</h1>
             <p class="tw-font-light tw-text-sm lg:tw-text-base tw-text-black tw-mt-5">Join I-GUIDE's mailing list for updates on geospatial
