@@ -272,12 +272,12 @@
 
     <div class="maillist-section tw-bg-gray-100 tw-w-full tw-pt-16 tw-px-10 tw-pb-5">
         <div class="tw-container">
-            <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">Join I-GUIDE's Mailing List</h1>
+            <!-- <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">Join I-GUIDE's Mailing List</h1>
             <p class="tw-font-light tw-text-sm lg:tw-text-base tw-text-black tw-mt-5">Join I-GUIDE's mailing list for updates on geospatial
                 discovery and
                 innovation. Stay informed on community priorities, cutting-edge data capabilities, and exciting
                 advancements in various disciplines. Don't miss out on opportunities to participate in shaping the
-                future of geospatial data-intensive sciences. Sign up now!</p>
+                future of geospatial data-intensive sciences. Sign up now!</p> -->
             <!-- Begin Constant Contact Inline Form Code -->
             <div class="ctct-inline-form" data-form-id="44d7424d-0385-4ea9-8145-50702484d1f0"></div>
             <!-- End Constant Contact Inline Form Code -->
