@@ -1,59 +1,7 @@
 <?php 
     get_header('index');
 ?>
-
-<style>
-.carousel-item {
-    height: 700px;
-    min-height: 300px;
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-    color: white;
-}
-
-.carousel-indicators {
-    bottom: 0%;
-    left: 0;
-    justify-content: left;
-    margin-left: 5%;
-    z-index: 1000;
-}
-
-.carousel-indicators [data-bs-target] {
-    background-color: black;
-}
-
-.carousel-caption {
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    padding: 20px;
-    width: 50%;
-    border-radius: 10px;
-    bottom: 15%;
-    right: 10%;
-    left: unset;
-    transform: translateY(100%);
-    transition: transform 0.6s ease-in-out;
-    text-align: right;
-    z-index: 999;
-}
-
-.carousel-item.active .carousel-caption {
-    transform: translateY(0);
-}
-
-.carousel-caption h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: white;
-}
-
-.carousel-caption p {
-    font-size: 1rem;
-    color: white;
-}
-</style>
-    <div class="hero-section tw-relative tw-pt-[100px] tw--mt-[70px] md:tw--mt-[200px] md:tw-pt-[200px] tw-overflow-hidden">
+    <div class="hero-section tw-relative tw-overflow-hidden">
         <?php do_shortcode("[active_slideshows]"); ?>
         <div class="tw-invisible sm:tw-visible custom-shape-divider-bottom-1676052306 z-10">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -124,70 +72,6 @@
     <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">
         <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(-2deg); height:1px !important;"></div>
     </div>
-
-    <!-- <div class="project-section tw-container tw-px-10">
-        <div class="tw-flex">
-            <div class="tw-w-full md:tw-w-3/4">
-                <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">Map. Connect. Discover.</h1>
-                <p class="tw-text-sm lg:tw-text-base tw-font-light tw-my-5 ">Welcome to I-GUIDE, where we empower geospatial innovation. Our mission revolves around three core principles:</p>
-            </div>
-        </div>
-        <div class="tw-min-h-[450px]">
-            <div class="tw-mb-4">
-                <ul id="project-tabs-nav" class="tw-flex tw-flex-wrap tw--mb-px tw-text-sm lg:tw-text-base tw-font-semibold tw-text-center">
-                    <li class="tw-flex-1 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj1">Map</li>
-                    <li class="tw-flex-1 md:tw-flex-2 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj2">Connect</li>
-                    <li class="tw-flex-1 tw-text-center tw-border-b-2 tw-p-5 tw-cursor-pointer tw-grid tw-content-center" link="#proj3">Discover</li>
-                </ul>
-            </div>
-            <div class="tw-w-full">
-                <div id="proj1" class="project-tab-content">
-                    <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-10 tw-p-0 md:tw-py-4">
-                        <div class="projLeft md:tw-basis-7/12 animate__delay-1s">
-                            <h1 class="tw-text-2xl lg:tw-text-3xl tw-mb-5 tw-text-ig-orange tw-font-semibold">Vulnerability Analysis for Aging Dam Infrastructure</h1>
-                            <p class="tw-text-sm lg:tw-text-base tw-font-light tw-text-black ">U.S. dams are threatened by age-induced fragility and increased hydrologic stresses due to climate change. In many cases, communities and infrastructure below the dams have also increased dramatically over time, increasing the exposure to dam failure. Given that there are over 90,000 such dams in the United States, a traditional approach to dam risk assessment is challenging to implement. Our I-GUIDE project is taking an integrated approach to the application of “big data” sources so that a national or portfolio risk assessment of these assets can be attempted for the first time. This includes a spatially specific analysis of the climate changes of concern, of what is likely to be impacted if the dams fail, of the cascading effects of those failures on the national economy and other critical infrastructure elements, and the potential resilience of the infrastructure systems given the governance at different levels. The application of machine learning tools, statistical inference, natural language processing and the geo-hypercube together with traditional physics based and economics models are illustrated.</p>
-                        </div>
-                        <div class="projRight md:tw-basis-5/12 animate__delay-5s">
-                            <div class="tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/high_hazard_dams.png" alt="">
-                            </div>
-                            <p class="tw-font-light tw-text-xs">Concha Larrauri, P., Lall, U., & Hariri-Ardebili, M. A. (2023). Needs for Portfolio Risk Assessment of Aging Dams in the United States. Journal of Water Resources Planning and Management, 149(3), 04022083.</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="proj2" class="project-tab-content">
-                    <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-10 tw-p-0 md:tw-p-4">
-                        <div class="projLeft md:tw-basis-7/12 animate__delay-1s">
-                            <h1 class="tw-text-2xl lg:tw-text-3xl tw-mb-5 tw-text-ig-orange tw-font-semibold">Geospatial Data Science Convergence Curriculum</h1>
-                            <p class="tw-text-sm lg:tw-text-base tw-font-light tw-text-black">The Convergence Curriculum for Geospatial Data Science is an integrative framework to prepare next-generation students and current-generation scholars and professionals to tackle complex, convergent problems. This multi-tiered curriculum starts with 5 Foundational Knowledge Threads to establish a common basis for individuals coming from diverse backgrounds. Individual learners begin to integrate skills, knowledge, methods, and technologies as they move up through Knowledge Connections and Knowledge Frames. The pinnacle of the curriculum is Knowledge Convergence, which combines previous competencies with existing domain knowledge. Each component in the curriculum will be available at varying depths: 3 sentences, 3 slides, a 3-hour module, or a 3-week unit. This configuration allows individuals to adapt their experiences to match their learning pathways and needs.</p>
-                        </div>
-                        <div class="projRight md:tw-basis-5/12 animate__delay-5s">
-                            <div class="tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
-                                <img src="https://iguide.illinois.edu/wp-content/uploads/2022/09/Picture1.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="proj3" class="project-tab-content">
-                    <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-10 tw-p-0 md:tw-p-4">
-                        <div class="projLeft md:tw-basis-7/12 animate__delay-1s">
-                            <h1 class="tw-text-2xl lg:tw-text-3xl tw-mb-5 tw-text-ig-orange tw-font-semibold">Geospatial Knowledge Hypercube</h1>
-                            <p class="tw-text-sm lg:tw-text-base tw-font-light tw-text-black ">Today there are massive volumes of text data, including for example news reports, research papers, and social media. Geospatial knowledge hypercube is defined as a multi-scale structure for integrating text data with heterogeneous geospatial data to discover latent connections and relationships through combining a variety of weakly supervised machine learning approaches. The hypercube lays a foundation for many knowledge discovery applications, such as recognizing geospatial entities and inferring geospatial relationships. </p>
-                        </div>
-                        <div class="projRight md:tw-basis-5/12 animate__delay-5s">
-                            <div class="tw-rounded-lg tw-overflow-hidden tw-drop-shadow-md">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hypercube.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">
-        <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(2deg); height:1px !important;"></div>
-    </div> -->
     
     <div class="tw-container tw-flex tw-flex-col ">
         <section class="i-guide-section">

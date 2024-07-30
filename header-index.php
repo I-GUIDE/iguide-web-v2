@@ -30,6 +30,178 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/main.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/navigation.css">
     <?php wp_head(); ?>
+
+    
+<style>
+.carousel-item {
+    height: 700px;
+    min-height: 300px;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    color: white;
+}
+
+.carousel-indicators {
+    bottom: 0%;
+    left: 0;
+    justify-content: left;
+    margin-left: 5%;
+    z-index: 27;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: black;
+}
+
+.carousel-caption {
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    bottom: 15%;
+    right: 10%;
+    left: unset;
+    transform: translateY(100%);
+    transition: transform 0.6s ease-in-out;
+    text-align: right;
+    z-index: 20;
+}
+
+.carousel-item.active .carousel-caption {
+    transform: translateY(0);
+}
+
+.carousel-caption h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.carousel-caption p {
+    font-size: 1rem;
+    color: white;
+    margin: 5px 0 10px;
+}
+.hero-section .custom-shape-divider-bottom-1676052306 {
+    z-index: 26;
+}
+/* // `sm` applies to x-small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .carousel-caption a.btn {
+        font-size: 0.5rem;
+    }
+    .hero-section {
+        padding-top: 0;
+    }
+    .carousel-indicators {
+        display: none;
+    }
+    .carousel-control-next, .carousel-control-prev {
+        width: 10%;
+    }
+    .hero-section .custom-shape-divider-bottom-1676052306 {
+        display: none;
+    }
+    .carousel-item {
+        height: 150px;
+    }
+    .carousel-caption {
+        text-align: center;
+        width: 80%;
+        bottom: 5%;
+        right: 10%;
+        left: 10%;
+    }
+    .carousel-caption h1 {
+        font-size: 1rem;
+    }
+    .carousel-caption p {
+        font-size: 0.6rem;
+        font-weight: lighter;
+    }
+}
+/* // `md` applies to small devices (landscape phones, less than 768px) */
+@media  (min-width: 576px) and (max-width: 767.98px) {
+    .carousel-control-next, .carousel-control-prev {
+        width: 10%;
+    }
+    .hero-section .custom-shape-divider-bottom-1676052306 {
+        display: none;
+    }
+    .carousel-item {
+        height: 450px;
+    }
+    .carousel-caption {
+        bottom: 10%;
+        right: 7%;
+        left: unset;
+    }
+    .carousel-caption h1 {
+        font-size: 1.5rem;
+    }
+    .carousel-caption p {
+        font-size: 0.75rem;
+        font-weight: lighter;
+    }
+}
+
+/* // `lg` applies to medium devices (tablets, less than 992px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .hero-section {
+        padding-top: 0;
+    }
+    .carousel-control-next, .carousel-control-prev {
+        width: 10%;
+    }
+    .hero-section .custom-shape-divider-bottom-1676052306 {
+        display: none;
+    }
+    .carousel-item {
+        height: 450px;
+    }
+    .carousel-caption {
+        bottom: 10%;
+        right: 7%;
+        left: unset;
+    }
+    .carousel-caption h1 {
+        font-size: 1.5rem;
+    }
+    .carousel-caption p {
+        font-size: 0.75rem;
+        font-weight: lighter;
+    }
+
+}
+
+/* // `xl` applies to large devices (desktops, less than 1200px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .hero-section .custom-shape-divider-bottom-1676052306 {
+        bottom: -20px;
+        z-index: 26;
+    }
+    .carousel-item {
+        height: 500px;
+    }
+    .carousel-caption {
+        bottom: 10%;
+        right: 10%;
+        left: unset;
+    }
+    .carousel-caption h1 {
+        font-size: 1.7rem;
+    }
+    .carousel-caption p {
+        font-size: 0.75rem;
+        font-weight: lighter;
+    }
+
+}
+
+
+
+</style>
 </head>
 
 <body>

@@ -54,8 +54,8 @@
 
                 $('.slicknav_menu').addClass('close');
                 $('.slicknav_menu').css('background-color','transparent');
-                $('.logo-c').css('display','none');
-                $('.logo-w').css('display','block');
+                $('.logo-c').css('display','block');
+                $('.logo-w').css('display','none');
                 $('.slicknav_menu .slicknav_icon-bar').css('background-color', 'white');
             },
             beforeOpen: function(trigger){
@@ -71,8 +71,8 @@
                 if($(trigger).hasClass('slicknav_btn')){ 
                     $('.slicknav_menu').addClass('close');
                     $('.slicknav_menu').css('background-color','transparent');
-                    $('.logo-c').css('display','none');
-                    $('.logo-w').css('display','block');
+                    $('.logo-c').css('display','block');
+                    $('.logo-w').css('display','none');
                     $('.slicknav_menu .slicknav_icon-bar').css('background-color', 'white');
                 }
             }
