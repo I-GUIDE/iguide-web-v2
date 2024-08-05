@@ -96,7 +96,7 @@
                     <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">I-GUIDE Platform</h1>
                     <h2>Integrative Discovery Starts Here!</h2>
                     <p class="tw-text-sm lg:tw-text-base tw-font-light tw-my-5 ">The I-GUIDE platform is designed to harness the vast, diverse, and distributed geospatial data at different spatial and temporal scales and make them broadly accessible and usable to convergence research and education enabled by cutting-edge cyberGIS and cyberinfrastructure.</p>
-                    <a href="https://i-guide.io/platform/" class="btn btn-warning">Launch I-GUIDE Platform</a>
+                    <a href="https://platform.i-guide.io/" class="btn btn-warning">Launch I-GUIDE Platform</a>
                 </div>
             </div>
         </section>
