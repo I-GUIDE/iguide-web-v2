@@ -20,6 +20,15 @@
 // }
 // add_action( 'template_redirect', 'redirect_news_events_to_external_url', 0 );
 
+function redirect_platform_page() {
+    // Check if the current page slug is 'platform'
+    if (is_page('platform')) {
+        // Perform the redirect to the desired URL
+        wp_redirect('https://platform.i-guide.io', 301); 
+        exit;
+    }
+}
+add_action('template_redirect', 'redirect_platform_page');
 
 function enqueue_slideshow_styles() {
     if (is_front_page() || is_home()) {
