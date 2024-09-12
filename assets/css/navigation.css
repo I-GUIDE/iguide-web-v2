@@ -94,7 +94,9 @@
 .scrolledUp #desktop-menu .logo-white {
   display: none !important;
 }
-
+.nav li {
+  list-style: none;
+}
 .nav a {
   display: inline-block;
   width: 100%;
