@@ -1435,6 +1435,24 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
   transform: translateY(0);
 }
 
+ul, ol {
+  padding-left: 32px;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  counter-reset: cupcake;
+}
+ol li {
+  counter-increment: cupcake;
+}
+ol li:before {
+  content: counters(cupcake, '.') ' ';
+}
+
 @media (min-width: 1536px) {
   .\32xl\:tw-container {
     width: 100%;
@@ -1954,7 +1972,7 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
   }
 
   .\32xl\:tw-h-\[\] {
-    height:  !important;
+    height: auto !important;
   }
 
   .\32xl\:tw-h-\[30em\] {
