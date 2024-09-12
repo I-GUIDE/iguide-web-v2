@@ -1436,21 +1436,21 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
 }
 
 ul, ol {
-  padding-left: 32px;
+  padding-left: 25px;
 }
 
 ul {
-  list-style-type: disc;
+  list-style: disc;
 }
 
 ol {
-  counter-reset: cupcake;
+  counter-reset: index;
+  list-style-type: none;
 }
-ol li {
-  counter-increment: cupcake;
-}
-ol li:before {
-  content: counters(cupcake, '.') ' ';
+
+ol li::before {
+  counter-increment: index;
+  content: counters(index, '.', decimal) ' ';
 }
 
 @media (min-width: 1536px) {
