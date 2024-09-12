@@ -106,6 +106,7 @@
 }
 
 .nav .menu-item-has-children ul.sub-menu li {
+  list-style: none;
   width: 100%;
   border-bottom-width: 1px;
   --tw-border-opacity: 1;
