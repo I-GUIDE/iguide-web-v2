@@ -223,3 +223,32 @@ function get_current_month_events($start_date, $timezone = 'America/Chicago', $m
     return json_decode($response);
 }
 
+// redirect all old VCO to the VCO archive page 
+function vco_redirect_to_archive() {
+    // Check if we're not in the admin area
+    if ( ! is_admin() ) {
+        global $wp;
+
+        // Get the current URL path
+        $current_path = trim( parse_url( home_url( $wp->request ), PHP_URL_PATH ), '/' );
+
+        // Split the path into segments
+        $path_segments = explode( '/', $current_path );
+
+        // Check if 'i-guide-vco' is in the URL
+        if ( in_array( 'i-guide-vco', $path_segments ) ) {
+
+            // Check if we're not on the VCO archive or a single VCO post
+            if ( ! is_post_type_archive( 'vco' ) && ! is_singular( 'vco' ) ) {
+
+                // Get the VCO archive URL
+                $vco_archive_url = get_post_type_archive_link( 'vco' );
+
+                // Perform the redirect
+                wp_redirect( $vco_archive_url, 301 );
+                exit;
+            }
+        }
+    }
+}
+add_action( 'template_redirect', 'vco_redirect_to_archive' );
