@@ -65,7 +65,15 @@ else {
                                 echo '<div class="row d-flex">';
                                 while ( $posts->have_posts() ) {
                                     $posts->the_post();
-
+                                    $platform_url = get_post_meta(get_the_ID(), 'platform_url', true);
+                                    if (!empty($platform_url)) {
+                                        // Use the platform URL if it's not empty
+                                        $url = $platform_url;
+                                    } else {
+                                        // Fallback to the permalink if the platform URL is empty
+                                        $url = get_permalink($post->ID);
+                                    }
+                                    
                                     $attachment_id = get_post_meta(get_the_ID(), 'curr_image', true);
                                     $attachment_src = wp_get_attachment_image_src($attachment_id, 'full');
                                     $curr_title = esc_html( get_the_title() );
@@ -74,7 +82,7 @@ else {
                                         <div class="card curr-card my-2 rounded-3" style="height:200px; background-image: url(<?php echo ($attachment_src) ? $attachment_src[0] : $default_img; ?>);">
                                             <div class="card-img-overlay d-flex align-items-end">
                                                 <h4 style="font-size:15px;" class="card-title text-white text-left"><?php echo $curr_title; ?></h4>
-                                                <a href="<?php echo esc_url(get_permalink($post->ID)); ?>" class="stretched-link"></a>
+                                                <a href="<?php echo esc_url($url); ?>" class="stretched-link"></a>
                                             </div>
                                         </div>
                                     </div>
