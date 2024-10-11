@@ -140,7 +140,7 @@ function sp_display_active_slideshows() {
             $url = $external_url ? $external_url : ($internal_post ? get_permalink($internal_post) : '#');
 
             echo '<div class="carousel-item ' . ($slide_count === 0 ? 'active' : '') . '" style="background-image: url(' . esc_url($image) . '); background-size: cover; background-position: center;">';
-            echo '<div class="carousel-caption d-none d-md-block">';
+            echo '<div class="carousel-caption d-block">';
             echo '<h1>' . esc_html(get_the_title()) . '</h1>';
             echo '<p>' . esc_html($description) . '</p>';
             echo '<a href="' . esc_url($url) . '" class="btn btn-primary">Learn More</a>';
@@ -185,13 +185,11 @@ add_action('manage_slideshow_posts_custom_column', 'sp_custom_columns_content', 
 function sp_enqueue_admin_scripts() {
     wp_enqueue_script('jquery-ui-sortable');
     wp_enqueue_script('sp-admin-script', plugin_dir_url(__FILE__) . 'admin-script.js', array('jquery'), null, true);
+    
     wp_localize_script('sp-admin-script', 'spAjax', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('slideshow-ordering-nonce'),
-    ));
-    wp_localize_script('sp-admin-script', 'spAjax', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('slideshow-active-status-nonce'),
+        'ordering_nonce' => wp_create_nonce('slideshow-ordering-nonce'),
+        'status_nonce' => wp_create_nonce('slideshow-active-status-nonce'),
     ));
 }
 add_action('admin_enqueue_scripts', 'sp_enqueue_admin_scripts', 9999);
