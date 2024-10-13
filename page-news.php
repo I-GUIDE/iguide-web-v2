@@ -48,7 +48,7 @@
                             <div class="card <?php echo $news_or_event[0]->slug;?> h-100">
                                 <!-- Centering the Card Image -->
                                 <div class="d-flex justify-content-center align-items-center" style="height: 200px; overflow: hidden;">
-                                    <img src="<?php echo ($attachment_src)? $attachment_src[0]: $default_img; ?>" class="card-img-top tw-object-cover rounded-0" style="object-fit: cover; object-position: center; width: 100%; height: 100%;" alt="<?php echo get_the_title();?>">
+                                    <img src="<?php echo ($attachment_src)? $attachment_src[0]: $default_img; ?>" class="card-img-top tw-object-cover rounded-top" style="object-fit: cover; object-position: center; width: 100%; height: 100%;" alt="<?php echo get_the_title();?>">
                                 </div>
 
                                 <!-- Card Body -->
