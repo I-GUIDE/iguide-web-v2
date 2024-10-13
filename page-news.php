@@ -15,7 +15,7 @@
         </div>
     </div>
 
-<div class="page-content tw-w-full tw-flex tw-relative tw-bg-white tw-mt-5 tw-mb-16">
+    <div class="page-content tw-w-full tw-flex tw-relative tw-bg-white tw-mt-5 tw-mb-16">
     <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
         <div class="row content">
             <div class="col-12"> 
@@ -45,32 +45,35 @@
 
                         <!-- Bootstrap column layout for responsiveness -->
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="card <?php echo $news_or_event[0]->slug;?> border-0 h-100">
-                                <div class="row g-3">
-                                    <div class="col-sm-12">
-                                        <img src="<?php echo ($attachment_src)? $attachment_src[0]: $default_img; ?>" class="card-img-top tw-object-cover tw-max-h-[200px]" alt="<?php echo get_the_title();?>">
-                                        <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>" class="stretched-link"></a>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="card-body p-0">
-                                            <h3 class="card-title"><?php the_title();?></h3>
-                                            <p class="text-muted">
-                                                <?php my_post_time_ago(); ?>
-                                                <!-- If statement to determine the content and color of badge -->
-                                                <?php 
-                                                if ($news_or_event[0]->name == "News") {
-                                                    echo "<span class='badge badge-primary'>".$news_or_event[0]->name."</span>";
-                                                } else if ($news_or_event[0]->name == "Event") {
-                                                    echo "<span class='badge badge-warning'>".$news_or_event[0]->name."</span>";
-                                                } else if ($news_or_event[0]->name == "Newsletter") {
-                                                    echo "<span class='badge badge-info'>".$news_or_event[0]->name."</span>";
-                                                } 
-                                                ?> 
-                                            </p>
-                                            <p class="card-text"><?php echo $description; ?></p>
-                                            <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>" class="stretched-link"></a>
-                                        </div>
-                                    </div>
+                            <div class="card <?php echo $news_or_event[0]->slug;?> h-100">
+                                <!-- Card Image -->
+                                <img src="<?php echo ($attachment_src)? $attachment_src[0]: $default_img; ?>" class="card-img-top tw-object-cover tw-max-h-[200px]" alt="<?php echo get_the_title();?>">
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h3 class="card-title"><?php the_title();?></h3>
+
+                                    <!-- Post Time and Category Badge -->
+                                    <p class="text-muted mb-2">
+                                        <?php my_post_time_ago(); ?>
+                                        <!-- Displaying Badge Based on Category -->
+                                        <?php 
+                                        if ($news_or_event[0]->name == "News") {
+                                            echo "<span class='badge bg-primary'>".$news_or_event[0]->name."</span>";
+                                        } else if ($news_or_event[0]->name == "Event") {
+                                            echo "<span class='badge bg-warning'>".$news_or_event[0]->name."</span>";
+                                        } else if ($news_or_event[0]->name == "Newsletter") {
+                                            echo "<span class='badge bg-info'>".$news_or_event[0]->name."</span>";
+                                        } 
+                                        ?> 
+                                    </p>
+
+                                    <!-- Short Description -->
+                                    <p class="card-text"><?php echo $description; ?></p>
+
+                                    <!-- Link -->
+                                    <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>" class="btn btn-primary stretched-link">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -82,6 +85,7 @@
         </div>
     </div>
 </div>
+
 
 
 <?php
