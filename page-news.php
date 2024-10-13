@@ -47,7 +47,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                             <div class="card <?php echo $news_or_event[0]->slug;?> h-100">
                                 <!-- Card Image -->
-                                <img src="<?php echo ($attachment_src)? $attachment_src[0]: $default_img; ?>" class="card-img-top tw-object-cover tw-max-h-[200px]" alt="<?php echo get_the_title();?>">
+                                <img src="<?php echo ($attachment_src)? $attachment_src[0]: $default_img; ?>" class="card-img-top tw-object-cover tw-max-h-[200px] rounded-0" alt="<?php echo get_the_title();?>">
 
                                 <!-- Card Body -->
                                 <div class="card-body">
