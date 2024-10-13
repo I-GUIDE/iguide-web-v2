@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Calendar Events Plugin
-Description: Display events on a calendar using shortcode [events_calendar].
-Version: 1.6
+Plugin Name: Responsive Calendar Events Plugin
+Description: Display events on a responsive calendar using shortcode [events_calendar].
+Version: 1.63
 Author: Nattapon Jaroenchai
 */
 
@@ -25,22 +25,38 @@ function events_calendar_shortcode() {
         .calendar-toggle {
             margin-bottom: 10px;
         }
+        @media (max-width: 768px) {
+            #events-calendar {
+                font-size: 12px;  /* Adjust font size for mobile */
+            }
+            .fc-toolbar.fc-header-toolbar {
+                display: flex;
+                flex-direction: row;  /* Stack buttons vertically on small screens */
+                align-items: flex-start;
+            }
+            .fc .fc-toolbar-title {
+                font-size: 16px;  /* Reduce title size */
+            }
+            .fc-prev-button, .fc-next-button, .fc-today-button {
+                font-size: 12px;  /* Adjust button size */
+            }
+        }
     </style>
     <div id="events-calendar"></div>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('events-calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            aspectRatio: 2,
-            initialView: 'dayGridMonth',
+            aspectRatio: window.innerWidth > 768 ? 2 : 1.5, // Adjust aspect ratio for responsiveness
+            initialView: window.innerWidth > 768 ? 'dayGridMonth' : 'listWeek',  // Use different view on mobile
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek'
+                right: 'dayGridMonth,listWeek'
             },
             buttonText: {
-                dayGridMonth: 'Monthly View',  // Custom label for the month view
-                timeGridWeek: 'Weekly Schedule', // Custom label for the time grid week view
+                dayGridMonth: 'Month',  // Custom label for the month view
+                listWeek: 'Week'  // Custom label for the list week view
             },
             events: function(fetchInfo, successCallback, failureCallback) {
                 // Fetch events from the backend
@@ -63,22 +79,28 @@ function events_calendar_shortcode() {
             eventDidMount: function(info) {
                 // Set the tooltip content
                 info.el.setAttribute('title', info.event.title);
+            },
+            windowResize: function(view) {
+                // Adjust the view and aspect ratio dynamically when resizing
+                if (window.innerWidth < 768) {
+                    calendar.changeView('listWeek'); // Use list view for mobile
+                    calendar.setOption('aspectRatio', 1.5);  // Adjust aspect ratio for mobile
+                } else {
+                    calendar.changeView('dayGridMonth'); // Use grid month for larger screens
+                    calendar.setOption('aspectRatio', 2);
+                }
             }
         });
 
         // Render the calendar
         calendar.render();
-
-        // Function to change the calendar view
-        window.changeView = function(view) {
-            calendar.changeView(view);
-        };
     });
     </script>
     <?php
     return ob_get_clean();
 }
 add_shortcode('events_calendar', 'events_calendar_shortcode');
+
 
 // Fetch events for the calendar
 function get_calendar_events() {
