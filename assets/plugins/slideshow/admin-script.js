@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
             var data = {
                 action: 'slideshow_update_reorder',
                 order: order,
-                nonce: spAjax.nonce
+                nonce: spAjax.ordering_nonce
             };
 
             $.post(spAjax.ajaxurl, data, function(response) {
@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
                 action: 'slideshow_toggle_active',
                 post_id: postId,
                 active: active,
-                nonce: spAjax.nonce
+                nonce: spAjax.status_nonce
             },
             success: function(response) {
                 if (response.success) {

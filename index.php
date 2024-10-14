@@ -113,6 +113,13 @@
                 $news_args = array(
                     'posts_per_page' => 8,
                     'post_type' => 'news_events',
+                    'tax_query' => array(
+                                        array(
+                                            'taxonomy' => 'news_cat',
+                                            'field'    => 'slug',
+                                            'terms'    => array('news','newsletter'),
+                                        ),
+                                    )
                 );
                 $news = new WP_Query($news_args);
                 $news_count = 1;

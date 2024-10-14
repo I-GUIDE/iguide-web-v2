@@ -2,7 +2,7 @@
 /*
 Plugin Name: Hero Update Plugin
 Description: A plugin to create a custom post type "hero_update" with image and URL attributes and predefined dropdown options.
-Version: 1.10
+Version: 1.11
 Author: Nattapon Jaroenchai
 */
 
@@ -112,6 +112,19 @@ function display_hero_update_columns($column, $post_id) {
 }
 add_action('manage_hero_update_posts_custom_column', 'display_hero_update_columns', 10, 2);
 
+function modify_hero_update_admin_order($query) {
+    if (!is_admin() || !$query->is_main_query() || $query->get('post_type') != 'hero_update') {
+        return;
+    }
+
+    if ($query->get('orderby') == '') {
+        $query->set('orderby', 'menu_order');
+        $query->set('order', 'ASC');
+    }
+}
+add_action('pre_get_posts', 'modify_hero_update_admin_order');
+
+
 // Shortcode to display Hero Updates by section
 function display_hero_updates_by_section($atts) {
     $atts = shortcode_atts(
@@ -132,8 +145,8 @@ function display_hero_updates_by_section($atts) {
                 'compare' => 'LIKE',
             ),
         ),
-        'orderby' => 'date',
-        'order' => 'DESC',
+        'orderby' => 'menu_order',
+        'order' => 'ASC',
     );
     $query = new WP_Query($args);
     

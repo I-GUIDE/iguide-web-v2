@@ -16,77 +16,80 @@
     </div>
 
     <div class="page-content tw-w-full tw-flex tw-relative tw-bg-white tw-mt-5 tw-mb-16">
-        <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
-        <div class="row content ">
-            <div class="col-12 "> 
+    <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
+        <div class="row content">
+            <div class="col-12"> 
                 <div class="row">
-                    <div class="col-12">
-                        <div class="row">
-                            <?php 
-                                $news_args = array(
-                                    'posts_per_page'=> -1,
-                                    'post_type'		=> 'news_events',
-                                    'tax_query' => array(
-                                        array(
-                                            'taxonomy' => 'news_cat',
-                                            'field'    => 'slug',
-                                            'terms'    => array('news','newsletter'),
-                                        ),
-                                    )
-                                ); 
-                                $news = new WP_Query($news_args);
-                            ?>
-                            <?php if ( $news->have_posts() ) :?>
-                            <?php  while ( $news->have_posts() ) : $news->the_post(); 
-                                    $news_or_event = get_the_terms( get_the_ID(), 'news_cat' );
-                                    $description = get_field('short_description');
-                                    $attachment_id = get_post_meta(get_the_ID(), 'image', true);
-                                    $attachment_src = wp_get_attachment_image_src($attachment_id, 'full');
-                                    $default_img = get_template_directory_uri()."/img/area_6.png";
-                            ?>
+                    <?php 
+                        $news_args = array(
+                            'posts_per_page'=> -1,
+                            'post_type'     => 'news_events',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'news_cat',
+                                    'field'    => 'slug',
+                                    'terms'    => array('news','newsletter'),
+                                ),
+                            )
+                        ); 
+                        $news = new WP_Query($news_args);
+                    ?>
+                    <?php if ( $news->have_posts() ) :?>
+                        <?php while ( $news->have_posts() ) : $news->the_post(); 
+                            $news_or_event = get_the_terms( get_the_ID(), 'news_cat' );
+                            $description = get_field('short_description');
+                            $attachment_id = get_post_meta(get_the_ID(), 'image', true);
+                            $attachment_src = wp_get_attachment_image_src($attachment_id, 'full');
+                            $default_img = get_template_directory_uri()."/img/area_6.png";
+                        ?>
 
-                            <div class="col-12 mb-5">
-                                <div class="card <?php echo $news_or_event[0]->slug;?> border-0">
-                                    <div class="row g-3">
-                                        <div class="col-sm-3">
-                                            <img src="<?php echo ($attachment_src)? $attachment_src[0]: $default_img; ?>" class="card-img-top tw-object-cover tw-max-h-[200px]" alt="<?php echo get_the_title();?>">
-                                            <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>" class="stretched-link"></a>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <div class="card-body p-0">
-                                                <h3 class="card-title"><?php the_title();?></h3>
-                                                <p class="text-muted"><?php my_post_time_ago(); ?>
-                                            <!-- If statement to determine the content and color of badge -->
-                                            <?php 
-                                            if ($news_or_event[0]->name == "News") {
-                                                echo "<span class='badge badge-primary'>".$news_or_event[0]->name."</span>";
-                                            } else if ($news_or_event[0]->name == "Event") {
-                                                echo "<span class='badge badge-warning'>".$news_or_event[0]->name."</span>";
-                                            } else if ($news_or_event[0]->name == "Newsletter") {
-                                                echo "<span class='badge badge-info'>".$news_or_event[0]->name."</span>";
-                                            } 
-                                            ?> </p>
-                                            <!-- function ends here -->
-                                                <p class="card-text"><?php echo $description; ?></p>
-                                                <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>" class="stretched-link"></a>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <!-- Bootstrap column layout for responsiveness -->
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                            <div class="card <?php echo $news_or_event[0]->slug;?> h-100">
+                                <!-- Centering the Card Image -->
+                                <div class="d-flex justify-content-center align-items-center" style="height: 200px; overflow: hidden;">
+                                    <img src="<?php echo ($attachment_src)? $attachment_src[0]: $default_img; ?>" class="card-img-top tw-object-cover rounded-0 rounded-top" style="object-fit: cover; object-position: center; width: 100%; height: 100%;" alt="<?php echo get_the_title();?>">
+                                </div>
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <!-- Title -->
+                                    <h3 class="card-title"><?php the_title();?></h3>
+
+                                    <!-- Post Time and Category Badge -->
+                                    <p class="text-muted mb-2">
+                                        <?php my_post_time_ago(); ?>
+                                        <!-- Displaying Badge Based on Category -->
+                                        <?php 
+                                        if ($news_or_event[0]->name == "News") {
+                                            echo "<span class='badge bg-primary'>".$news_or_event[0]->name."</span>";
+                                        } else if ($news_or_event[0]->name == "Event") {
+                                            echo "<span class='badge bg-warning'>".$news_or_event[0]->name."</span>";
+                                        } else if ($news_or_event[0]->name == "Newsletter") {
+                                            echo "<span class='badge bg-info'>".$news_or_event[0]->name."</span>";
+                                        } 
+                                        ?> 
+                                    </p>
+
+                                    <!-- Short Description -->
+                                    <p class="card-text"><?php echo $description; ?></p>
+
+                                    <!-- Link -->
+                                    <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>" class="btn btn-primary stretched-link">Read More</a>
                                 </div>
                             </div>
-                                
-                            <?php  endwhile;  ?>
-                            <?php endif; ?>
-
                         </div>
-                    </div>
+                        
+                        <?php endwhile; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-
-
-        </div>
     </div>
+</div>
+
+
+
 
 <?php
     get_footer();
