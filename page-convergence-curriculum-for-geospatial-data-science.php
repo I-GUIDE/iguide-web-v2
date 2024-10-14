@@ -72,7 +72,7 @@
             <div class="row">
                 <!-- First column with the image -->
                 <div class="col-5 p-3 align-self-center">
-                    <img src="https://i-guide.io/wp-content/uploads/2024/10/Convergent-Curriculum-Design.jpg" alt="Convergence Curriculum Design" class="shadow-none">
+                    <img src="https://i-guide.io/wp-content/uploads/2024/10/Convergent-Curriculum-Design.png" alt="Convergence Curriculum Design" class="shadow-none">
 
                     <p class="mt-4">The Convergence Curriculum for Geospatial Data Science is an integrative framework designed to equip students, scholars, and professionals with the skills to address complex, real-world problems by building foundational literacy across multiple disciplines. It offers a flexible, multi-tiered structure with five Foundational Knowledge Threads, leading to Knowledge Connections and Knowledge Convergence, enabling learners to blend diverse skills, methods, and technologies. Content is available in varying depths (from brief overviews to in-depth modules), allowing for adaptable learning paths. The curriculum is continuously refined based on community feedback, with ongoing development and content releases.</p>
                 </div>
