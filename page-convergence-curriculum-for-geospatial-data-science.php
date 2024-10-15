@@ -125,7 +125,7 @@
                                     $attachment_src = wp_get_attachment_image_src($attachment_id, 'full');
                                     $curr_title = esc_html(get_the_title());
                                     ?>
-                                    <div class="col" style="max-width:20%;">
+                                    <div class="col-6 col-md-4 col-lg-3 my-2">
                                         <div class="card curr-card my-1 rounded-3 p-0 shadow-none <?php echo esc_attr($border_class); ?>" style="height:100px; background-image: url(<?php echo ($attachment_src) ? $attachment_src[0] : $default_img; ?>);">
                                             <div class="card-img-overlay d-flex align-items-end p-2">
                                                 <h4 style="font-size:15px;" class="card-title text-white text-left m-0 p-0"><?php echo $curr_title; ?></h4>
