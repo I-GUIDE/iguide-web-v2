@@ -26,7 +26,7 @@
         $executive_committee_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
-            'post__in' => array(80, 113 )
+            'post__in' => array(80)
         );
 
         $executive_committees = new WP_Query($executive_committee_args);
