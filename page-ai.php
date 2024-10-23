@@ -58,7 +58,7 @@
         $advisory_board_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
-            'post__not_in' => array(80, 113 ),
+            'post__not_in' => array(80),
             'tax_query' => array(
                 array(
                     'taxonomy' => 'focus_area',
