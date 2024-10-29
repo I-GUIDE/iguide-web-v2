@@ -2,7 +2,7 @@
 /*
 Plugin Name: Responsive Calendar Events Plugin
 Description: Display events on a responsive calendar using shortcode [events_calendar].
-Version: 1.63
+Version: 1.70
 Author: Nattapon Jaroenchai
 */
 
@@ -25,13 +25,29 @@ function events_calendar_shortcode() {
         .calendar-toggle {
             margin-bottom: 10px;
         }
+        .fc-toolbar-title-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .fc-toolbar-title {
+            text-align: center;
+        }
+        .calendar-subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 2px;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
         @media (max-width: 768px) {
             #events-calendar {
                 font-size: 12px;  /* Adjust font size for mobile */
             }
             .fc-toolbar.fc-header-toolbar {
                 display: flex;
-                flex-direction: row;  /* Stack buttons vertically on small screens */
+                flex-direction: column;  /* Stack buttons vertically on small screens */
                 align-items: flex-start;
             }
             .fc .fc-toolbar-title {
@@ -55,8 +71,9 @@ function events_calendar_shortcode() {
                 right: 'dayGridMonth,listWeek'
             },
             buttonText: {
-                dayGridMonth: 'Month',  // Custom label for the month view
-                listWeek: 'Week'  // Custom label for the list week view
+                today: 'Today',
+                dayGridMonth: 'Monthly',  // Custom label for the month view
+                listWeek: 'List'  // Custom label for the list week view
             },
             events: function(fetchInfo, successCallback, failureCallback) {
                 // Fetch events from the backend
@@ -94,13 +111,21 @@ function events_calendar_shortcode() {
 
         // Render the calendar
         calendar.render();
+
+        // Insert subtitle () below title
+        const toolbarTitleEl = document.querySelector('.fc-toolbar-title');
+        if (toolbarTitleEl) {
+            const subtitleEl = document.createElement('p');
+            subtitleEl.className = 'calendar-subtitle';
+            subtitleEl.textContent = '(All times indicated are Central time)';
+            toolbarTitleEl.parentNode.insertBefore(subtitleEl, toolbarTitleEl.nextSibling);
+        }
     });
     </script>
     <?php
     return ob_get_clean();
 }
 add_shortcode('events_calendar', 'events_calendar_shortcode');
-
 
 // Fetch events for the calendar
 function get_calendar_events() {
@@ -141,15 +166,19 @@ function get_calendar_events() {
             $external_link = get_field('external_link');
             $permalink = $external_link ? esc_url($external_link) : get_permalink();
 
-            // Decode the title to convert HTML entities back to their original characters
+            // Decode the title and convert to FullCalendar-compatible date format
             $title = html_entity_decode(get_the_title());
             $start_date_formatted = (new DateTime($start_date))->format('Y-m-d\TH:i:s');
             $end_date_formatted = (new DateTime($end_date))->format('Y-m-d\TH:i:s');
+
+            // Determine if the event is an all-day event
+            $all_day = ($start_date === $end_date);
 
             $events[] = [
                 'title' => $title,
                 'start' => $start_date_formatted,
                 'end' => $end_date_formatted,
+                'allDay' => $all_day,  // Set allDay to true if start and end are the same
                 'url' => $permalink,
                 'description' => $short_description,
                 'backgroundColor' => '#38BFA9', // Set color for VCO
@@ -182,15 +211,19 @@ function get_calendar_events() {
             $external_link = get_post_meta(get_the_ID(), 'external_link', true);
             $permalink = get_permalink();
 
-            // Decode the title to convert HTML entities back to their original characters
+            // Decode the title and format dates
             $title = html_entity_decode(get_the_title());
             $start_date_formatted = (new DateTime())->setTimestamp($vco_date_time)->format('Y-m-d\TH:i:s');
             $end_date_formatted = (new DateTime())->setTimestamp($vco_date_time + 3600)->format('Y-m-d\TH:i:s');
+
+            // Set allDay to true if start and end date/times match
+            $all_day = ($start_date_formatted === $end_date_formatted);
 
             $events[] = [
                 'title' => "VCO: " . $title,
                 'start' => $start_date_formatted,
                 'end' => $end_date_formatted,
+                'allDay' => $all_day,  // Set to true if it's an all-day event
                 'url' => $permalink,
                 'description' => $short_description,
                 'backgroundColor' => '#F28D35', // Set color for events
@@ -203,5 +236,6 @@ function get_calendar_events() {
     // Return the combined events
     wp_send_json($events);
 }
+
 add_action('wp_ajax_get_calendar_events', 'get_calendar_events');
 add_action('wp_ajax_nopriv_get_calendar_events', 'get_calendar_events');
