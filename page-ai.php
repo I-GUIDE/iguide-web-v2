@@ -26,7 +26,7 @@
         $executive_committee_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
-            'post__in' => array(80)
+            'post__in' => array(80,103)
         );
 
         $executive_committees = new WP_Query($executive_committee_args);
@@ -58,7 +58,7 @@
         $advisory_board_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
-            'post__not_in' => array(80),
+            'post__not_in' => array(80,103),
             'tax_query' => array(
                 array(
                     'taxonomy' => 'focus_area',
