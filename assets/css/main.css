@@ -1049,12 +1049,12 @@ body {
   margin-bottom: 0.75rem;
 }
 
-.page-content ul {
+.page-content>ul {
   list-style-position: outside;
   list-style-type: disc;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
-  padding-left: 1.25rem;
+  padding-left: 60px;
 }
 
 .page-content {
@@ -1106,6 +1106,8 @@ body {
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+
+
 
 .dataResources ul {
   list-style-type: none;
