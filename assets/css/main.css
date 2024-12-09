@@ -1437,7 +1437,26 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
   transform: translateY(0);
 }
 
-ul, ol {
+ul { 
+  list-style-type: disc; 
+  list-style-position: inside; 
+}
+ol { 
+  list-style-type: decimal; 
+  list-style-position: inside; 
+}
+ul ul, ol ul { 
+  list-style-type: circle; 
+  list-style-position: inside; 
+  margin-left: 15px; 
+}
+ol ol, ul ol { 
+  list-style-type: lower-latin; 
+  list-style-position: inside; 
+  margin-left: 15px; 
+}
+
+/* ul, ol {
   padding-left: 2rem;
 }
 
@@ -1458,7 +1477,7 @@ ol li::before {
   counter-increment: index;
   content: counters(index, '.', decimal) ' ';
   margin-left: -1rem;
-}
+} */
 
 @media (min-width: 1536px) {
   .\32xl\:tw-container {
