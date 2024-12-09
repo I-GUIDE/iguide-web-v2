@@ -1437,24 +1437,47 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
   transform: translateY(0);
 }
 
-ul { 
-  list-style-type: disc; 
-  list-style-position: inside; 
+/* General styles for unordered lists (ul) */
+ul {
+  list-style-type: disc; /* Default bullet style */
+  list-style-position: inside; /* Markers inside the list item */
+  margin: 1rem 0; /* Space above and below */
+  padding-left: 0; /* Aligns markers with text */
 }
-ol { 
-  list-style-type: decimal; 
-  list-style-position: inside; 
+
+/* General styles for ordered lists (ol) */
+ol {
+  list-style-type: decimal; /* Default numbering style */
+  list-style-position: inside; /* Markers inside the list item */
+  margin: 1rem 0; /* Space above and below */
+  padding-left: 0; /* Aligns markers with text */
 }
-ul ul, ol ul { 
-  list-style-type: circle; 
-  list-style-position: inside; 
-  margin-left: 15px; 
+
+/* Nested unordered lists inside unordered or ordered lists */
+ul ul, ol ul {
+  list-style-type: circle; /* Circle bullet style for nested ul */
+  list-style-position: inside; /* Keep markers inside */
+  margin-left: 15px; /* Indent nested lists */
+  margin-top: 0.5rem; /* Add space above nested lists */
+  margin-bottom: 0.5rem; /* Add space below nested lists */
 }
-ol ol, ul ol { 
-  list-style-type: lower-latin; 
-  list-style-position: inside; 
-  margin-left: 15px; 
+
+/* Nested ordered lists inside ordered or unordered lists */
+ol ol, ul ol {
+  list-style-type: lower-latin; /* Lowercase alphabetic markers */
+  list-style-position: inside; /* Keep markers inside */
+  margin-left: 15px; /* Indent nested lists */
+  margin-top: 0.5rem; /* Add space above nested lists */
+  margin-bottom: 0.5rem; /* Add space below nested lists */
 }
+
+/* Additional nested levels for deeply nested lists */
+ul ul ul, ol ul ul,
+ul ol ul, ol ol ul {
+  list-style-type: square; /* Square bullets for deeper nested levels */
+  margin-left: 20px; /* Additional indentation for deeper levels */
+}
+
 
 /* ul, ol {
   padding-left: 2rem;
