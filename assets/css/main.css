@@ -1435,7 +1435,7 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
   transform: translateY(0);
 }
 
-ul, ol {
+/* ul, ol {
   padding-left: 2rem;
 }
 
@@ -1450,7 +1450,7 @@ ul {
 ol {
   counter-reset: index;
   list-style-type: none;
-}
+} */
 
 /* General styles for unordered lists (ul) */
 .page-content ul {
