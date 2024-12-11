@@ -1427,23 +1427,6 @@ div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
   transform: translateY(0);
 }
 
-/* ul, ol {
-  padding-left: 2rem;
-}
-
-li {
-  padding-bottom: 1rem;
-}
-
-ul {
-  list-style: disc;
-}
-
-ol {
-  counter-reset: index;
-  list-style-type: none;
-} */
-
 /* General styles for unordered lists (ul) */
 .page-content ul {
   list-style-type: disc; /* Default bullet style */
@@ -1485,11 +1468,9 @@ ol {
   margin-left: 20px; /* Additional indentation for deeper levels */
 }
 
-/* ol li::before {
-  counter-increment: index;
-  content: counters(index, '.', decimal) ' ';
-  margin-left: -1rem;
-} */
+.single-news_events .page-content img {
+  box-shadow: none;
+}
 
 @media (min-width: 1536px) {
   .\32xl\:tw-container {
