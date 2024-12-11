@@ -1453,7 +1453,7 @@ ol {
 }
 
 /* General styles for unordered lists (ul) */
-.page-conent ul {
+.page-content ul {
   list-style-type: disc; /* Default bullet style */
   list-style-position: inside; /* Markers inside the list item */
   margin: 1rem 0; /* Space above and below */
@@ -1461,7 +1461,7 @@ ol {
 }
 
 /* General styles for ordered lists (ol) */
-.page-conent ol {
+.page-content ol {
   list-style-type: decimal; /* Default numbering style */
   list-style-position: inside; /* Markers inside the list item */
   margin: 1rem 0; /* Space above and below */
@@ -1469,7 +1469,7 @@ ol {
 }
 
 /* Nested unordered lists inside unordered or ordered lists */
-.page-conent ul ul, .page-conent ol ul {
+.page-content ul ul, .page-content ol ul {
   list-style-type: circle; /* Circle bullet style for nested ul */
   list-style-position: inside; /* Keep markers inside */
   margin-left: 15px; /* Indent nested lists */
@@ -1478,7 +1478,7 @@ ol {
 }
 
 /* Nested ordered lists inside ordered or unordered lists */
-.page-conent ol ol, .page-conent ul ol {
+.page-content ol ol, .page-content ul ol {
   list-style-type: lower-latin; /* Lowercase alphabetic markers */
   list-style-position: inside; /* Keep markers inside */
   margin-left: 15px; /* Indent nested lists */
@@ -1487,8 +1487,8 @@ ol {
 }
 
 /* Additional nested levels for deeply nested lists */
-.page-conent ul ul ul, .page-conent ol ul ul,
-.page-conent ul ol ul, .page-conent ol ol ul {
+.page-content ul ul ul, .page-content ol ul ul,
+.page-content ul ol ul, .page-content ol ol ul {
   list-style-type: square; /* Square bullets for deeper nested levels */
   margin-left: 20px; /* Additional indentation for deeper levels */
 }
