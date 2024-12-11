@@ -1485,11 +1485,11 @@ ol {
   margin-left: 20px; /* Additional indentation for deeper levels */
 }
 
-ol li::before {
+/* ol li::before {
   counter-increment: index;
   content: counters(index, '.', decimal) ' ';
   margin-left: -1rem;
-}
+} */
 
 @media (min-width: 1536px) {
   .\32xl\:tw-container {
