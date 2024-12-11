@@ -32,7 +32,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body>
+<body <?php body_class()?> >
     <nav id="navigation" class="tw-sticky tw-top-0 tw-z-50 tw-p-0 scrolledDown">
         <div id="desktop-menu" class="tw-hidden 2xl:tw-container md:tw-flex tw-items-center tw-justify-between tw-flex-wrap tw-bg-transparent md:tw-h-[100px] lg:tw-h-[120px] md:tw-px-5 lg:tw-px-20 xl:tw-px-10 2xl:tw-px-0">
             <div class="tw-flex tw-items-center tw-flex-shrink-0 tw-ml-3 md:tw-ml-4 tw-mr-6">
