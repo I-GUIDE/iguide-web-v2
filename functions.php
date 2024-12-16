@@ -1,5 +1,8 @@
 <?php
 
+// Include the WPForms Expiration Settings functionality.
+include_once get_template_directory() . '/includes/wpform-expiration-settings.php';
+
 // function redirect_news_events_to_external_url() {
     
 //     if ( is_singular('news_events') ) {
@@ -252,3 +255,5 @@ function vco_redirect_to_archive() {
     }
 }
 add_action( 'template_redirect', 'vco_redirect_to_archive' );
+
+
