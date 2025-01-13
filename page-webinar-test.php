@@ -51,7 +51,7 @@ get_header();
                 ?>
                 
                 <!-- Webinar Entry Card (Bootstrap CSS) -->
-                <div class="card shadow mb-5">
+                <div class="card mb-5">
                     <div class="card-body">
                         <!-- Date -->
                         <p class="text-muted small">
