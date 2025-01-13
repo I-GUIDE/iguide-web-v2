@@ -219,8 +219,19 @@ function get_calendar_events() {
             // Set allDay to true if start and end date/times match
             $all_day = ($start_date_formatted === $end_date_formatted);
 
+            // Get VCO Category and modify the title accordingly
+            $vco_categories = wp_get_post_terms(get_the_ID(), 'vco_category', array('fields' => 'slugs'));
+
+            if (in_array('vco', $vco_categories)) {
+                $title_prefix = "VCO: ";
+            } elseif (in_array('webinar', $vco_categories)) {
+                $title_prefix = "Webinar: ";
+            } else {
+                $title_prefix = "Event: "; // Fallback title for other categories
+            }
+
             $events[] = [
-                'title' => "VCO: " . $title,
+                'title' => $title_prefix . $title,
                 'start' => $start_date_formatted,
                 'end' => $end_date_formatted,
                 'allDay' => $all_day,  // Set to true if it's an all-day event
