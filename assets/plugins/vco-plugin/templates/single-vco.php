@@ -60,7 +60,19 @@ get_header();
                         </p>
                     <?php elseif ( $registration_link && empty( $embedded_video ) ) : ?>
                         <p class="mb-4 mt-3 text-center">
-                            <a href="<?php echo esc_url( $registration_link ); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Register to attend the VCO!</a>
+                            <?php 
+                            // Determine the correct label based on the category
+                            if ( has_term( 'vco', 'vco_category' ) ) {
+                                $button_text = 'Register to attend the VCO!';
+                            } elseif ( has_term( 'webinar', 'vco_category' ) ) {
+                                $button_text = 'Register to attend the Webinar!';
+                            } else {
+                                $button_text = 'Register to attend the Event!';
+                            }
+                            ?>
+                            <a href="<?php echo esc_url( $registration_link ); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+                                <?php echo esc_html( $button_text ); ?>
+                            </a>
                         </p>
                     <?php endif;
                 endif;
