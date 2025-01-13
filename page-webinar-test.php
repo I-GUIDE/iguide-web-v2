@@ -57,9 +57,9 @@ get_header();
                 <!-- Webinar Entry Card (Bootstrap CSS) -->
                 <div class="card mb-5 border-0">
                     <div class="card-body">
-                        <!-- Date -->
+                        <!-- Date and Time (Formatted as: Wednesday, January 22, 2025 | 12:00 (Central Time)) -->
                         <p class="text-muted small">
-                            <?php echo date_i18n( 'l, F j, Y', $date_time ); ?>
+                            <?php echo date_i18n( 'l, F j, Y | g:i A (T)', $date_time ); ?>
                         </p>
 
                         <!-- Title -->
