@@ -65,8 +65,7 @@ get_header();
 
                         <!-- Registration Button (Bootstrap) -->
                         <?php if ( $registration_link && $current_time <= $webinar_end_time ) : ?>
-                            <a href="<?php echo esc_url( $registration_link ); ?>" target="_blank" 
-                               class="btn btn-warning btn-lg my-3">
+                            <a href="<?php echo esc_url( $registration_link ); ?>" target="_blank" class="btn btn-warning btn-lg my-3">
                                 Register Now
                             </a>
                         <?php endif; ?>
@@ -100,6 +99,8 @@ get_header();
                         <?php endif; ?>
                     </div>
                 </div>
+
+                <hr/>
 
             <?php endwhile;
             wp_reset_postdata();
