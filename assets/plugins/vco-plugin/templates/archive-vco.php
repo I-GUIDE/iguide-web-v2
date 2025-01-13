@@ -22,7 +22,12 @@ get_header();
 
     <div class="page-content tw-w-full tw-flex tw-relative tw-bg-white tw-mt-5 tw-mb-16">
         <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
-
+            <div class="row justify-content-md-center">
+                <div class="col-md-8">
+                    <h1 class="mb-2 text-center">Upcoming Sessions</h1>
+                    <h4 class="mb-4 text-center">I-GUIDE's virtual consulting office (VCO) showcases innovative research and education. The VCO addresses the ongoing needs of pertinent communities and partners. Click the cards for additional information and registration.</h4>
+                </div>
+            </div>
             <?php
             // Get current timestamp
             $current_time = current_time( 'timestamp' );
@@ -40,6 +45,13 @@ get_header();
                         'value'   => $current_time,
                         'compare' => '>=',
                         'type'    => 'NUMERIC',
+                    ),
+                ),
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'vco_category',
+                        'field'    => 'slug',
+                        'terms'    => 'vco',
                     ),
                 ),
             );
@@ -60,6 +72,13 @@ get_header();
                         'type'    => 'NUMERIC',
                     ),
                 ),
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'vco_category',
+                        'field'    => 'slug',
+                        'terms'    => 'vco',
+                    ),
+                ),
             );
             $past_vcos = new WP_Query( $past_args );
             ?>
@@ -67,63 +86,58 @@ get_header();
             <!-- Upcoming VCOs Section -->
             <?php if ( $upcoming_vcos->have_posts() ) : ?>
                 
-                <div class="row justify-content-md-center">
-                    <div class="col-md-8">
-                        <h1 class="mb-2 text-center">Upcoming Sessions</h1>
-                        <h4 class="mb-4 text-center">I-GUIDE's virtual consulting office (VCO) showcases innovative research and education. The VCO addresses the ongoing needs of pertinent communities and partners. Click the cards for additional information and registration.</h4>
-                    </div>
-                </div>
-                <div class="row justify-content-md-center">
-                    <?php
-                    $count = 0;
-                    while ( $upcoming_vcos->have_posts() ) : $upcoming_vcos->the_post();
-                        $date_time = get_post_meta( get_the_ID(), 'vco_date_time', true );
-                        $speakers  = get_post_meta( get_the_ID(), 'vco_speakers', true );
-                        ?>
-                        <div class="col-md-6 mb-4">
-                            <div class="card h-100 shadow">
-                                <div class="card-body">
-                                    <?php if ( $date_time ) : ?>
-                                        <h3 class="card-title" style="color: #e7b633;">
-                                            <?php echo date_i18n( 'F j, Y g:i a', $date_time ); ?>
-                                        </h3>
-                                    <?php endif; ?>
-                                    <h1 class="card-title">
-                                        <a href="<?php the_permalink(); ?>" class="link-dark text-decoration-none stretched-link" style="font-weight: 700;"><?php the_title(); ?></a>
-                                    </h1>
-                                    <?php if ( ! empty( $speakers ) ) : ?>
-                                        <div class="mt-3">
-                                            <?php foreach ( $speakers as $speaker ) :
-                                                $name = isset( $speaker['name'] ) ? $speaker['name'] : '';
-                                                $affiliation = isset( $speaker['affiliation'] ) ? $speaker['affiliation'] : '';
-                                                if ( $name || $affiliation ) :
-                                                    ?>
-                                                    <p class="p-0" style="font-size: 0.9em;">
-                                                        <?php if ( $name ) : ?>
-                                                            <span style="color: #f18149; font-weight: bold;"><?php echo esc_html( $name ); ?> &middot; </span>
-                                                        <?php endif; ?>
-                                                        <?php if ( $affiliation ) : ?>
-                                                            <span style="color: #38c9c2;"><?php echo esc_html( $affiliation ); ?></span>
-                                                        <?php endif; ?>
-                                                    </p>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
+                
+            <div class="row justify-content-md-center">
+                <?php
+                $count = 0;
+                while ( $upcoming_vcos->have_posts() ) : $upcoming_vcos->the_post();
+                    $date_time = get_post_meta( get_the_ID(), 'vco_date_time', true );
+                    $speakers  = get_post_meta( get_the_ID(), 'vco_speakers', true );
+                    ?>
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <?php if ( $date_time ) : ?>
+                                    <h3 class="card-title" style="color: #e7b633;">
+                                        <?php echo date_i18n( 'F j, Y g:i a', $date_time ); ?>
+                                    </h3>
+                                <?php endif; ?>
+                                <h1 class="card-title">
+                                    <a href="<?php the_permalink(); ?>" class="link-dark text-decoration-none stretched-link" style="font-weight: 700;"><?php the_title(); ?></a>
+                                </h1>
+                                <?php if ( ! empty( $speakers ) ) : ?>
+                                    <div class="mt-3">
+                                        <?php foreach ( $speakers as $speaker ) :
+                                            $name = isset( $speaker['name'] ) ? $speaker['name'] : '';
+                                            $affiliation = isset( $speaker['affiliation'] ) ? $speaker['affiliation'] : '';
+                                            if ( $name || $affiliation ) :
+                                                ?>
+                                                <p class="p-0" style="font-size: 0.9em;">
+                                                    <?php if ( $name ) : ?>
+                                                        <span style="color: #f18149; font-weight: bold;"><?php echo esc_html( $name ); ?> &middot; </span>
+                                                    <?php endif; ?>
+                                                    <?php if ( $affiliation ) : ?>
+                                                        <span style="color: #38c9c2;"><?php echo esc_html( $affiliation ); ?></span>
+                                                    <?php endif; ?>
+                                                </p>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
-                        <?php
-                        $count++;
-                        if ( $count % 2 == 0 ) {
-                            echo '<div class="w-100"></div>'; // Clear after every 2 items
-                        }
-                    endwhile;
-                    wp_reset_postdata();
-                    ?>
-                </div>
+                    </div>
+                    <?php
+                    $count++;
+                    if ( $count % 2 == 0 ) {
+                        echo '<div class="w-100"></div>'; // Clear after every 2 items
+                    }
+                endwhile;
+                wp_reset_postdata();
+                ?>
+            </div>
             <?php else : ?>
-                <p><?php _e( 'No upcoming VCOs found.', 'vco-plugin' ); ?></p>
+            <p class="text-center py-5"><?php _e( 'No upcoming VCOs found.', 'vco-plugin' ); ?></p>
             <?php endif; ?>
 
             <hr>

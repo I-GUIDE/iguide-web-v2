@@ -4,7 +4,16 @@ get_header();
     <div class="page-title tw-w-full tw-block tw-relative tw--mt-[200px] tw-pt-[200px]">
         <div class="tw-container tw-mx-auto tw-px-4 tw-h-min-[200px] tw-pb-[80px] tw-pt-12">
             <div class="tw-border-l-8 tw-pl-3 tw-border-ig-orange tw-text-white tw-font-semibold tw-text-2xl">
-                <h1 class="mt-3 mb-5">I-GUIDE VCO: <?php the_title(); ?></h1>
+                <?php
+                // Check the category and display the appropriate title prefix
+                if ( has_term( 'vco', 'vco_category' ) ) {
+                    echo '<h1 class="mt-3 mb-5">I-GUIDE VCO: ' . get_the_title() . '</h1>';
+                } elseif ( has_term( 'webinar', 'vco_category' ) ) {
+                    echo '<h1 class="mt-3 mb-5">I-GUIDE Webinar: ' . get_the_title() . '</h1>';
+                } else {
+                    echo '<h1 class="mt-3 mb-5">' . get_the_title() . '</h1>'; // Default title if neither category matches
+                }
+                ?>
             </div>
             <!-- <p class="tw-text-light tw-text-sm tw-text-white tw-pt-2 tw-pl-5"><?php my_post_time_ago(); ?></p> -->
         </div>
@@ -39,9 +48,12 @@ get_header();
             <?php
                 // Get the current timestamp
                 $current_time = current_time( 'timestamp' );
+                
+                // Calculate the timestamp for 2 hours after the event
+                $event_end_time = $date_time + 2 * HOUR_IN_SECONDS;
 
-                // Check if the VCO date is in the future
-                if ( $date_time > $current_time ) :
+                // Check if the current time is before 2 hours after the event
+                if ( $current_time < $event_end_time ) :
                     if ( empty( $registration_link ) ) : ?>
                         <p class="mb-4 mt-3 text-center">
                             <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Register coming soon!</a>

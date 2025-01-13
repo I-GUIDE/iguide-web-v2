@@ -2,7 +2,7 @@
 /**
  * Plugin Name: VCO Plugin
  * Description: A plugin to manage VCO events with multiple speakers.
- * Version: 1.6
+ * Version: 1.7
  * Author: Nattapon Jaroenchai
  * Text Domain: vco-plugin
  */
@@ -11,6 +11,35 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+// Register Custom Taxonomy for VCO Category
+function vco_register_taxonomy() {
+    $labels = array(
+        'name'              => _x( 'VCO Categories', 'taxonomy general name', 'vco-plugin' ),
+        'singular_name'     => _x( 'VCO Category', 'taxonomy singular name', 'vco-plugin' ),
+        'search_items'      => __( 'Search VCO Categories', 'vco-plugin' ),
+        'all_items'         => __( 'All VCO Categories', 'vco-plugin' ),
+        'parent_item'       => __( 'Parent VCO Category', 'vco-plugin' ),
+        'parent_item_colon' => __( 'Parent VCO Category:', 'vco-plugin' ),
+        'edit_item'         => __( 'Edit VCO Category', 'vco-plugin' ),
+        'update_item'       => __( 'Update VCO Category', 'vco-plugin' ),
+        'add_new_item'      => __( 'Add New VCO Category', 'vco-plugin' ),
+        'new_item_name'     => __( 'New VCO Category Name', 'vco-plugin' ),
+        'menu_name'         => __( 'VCO Categories', 'vco-plugin' ),
+    );
+
+    $args = array(
+        'hierarchical'      => true, // Make it behave like categories
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'vco-category' ),
+    );
+
+    register_taxonomy( 'vco_category', array( 'vco' ), $args );
+}
+add_action( 'init', 'vco_register_taxonomy' );
 
 /**
  * Register Custom Post Type: VCO
@@ -51,7 +80,7 @@ function vco_register_custom_post_type() {
         'description'           => __( 'Virtual Conference Organizer', 'vco-plugin' ),
         'labels'                => $labels,
         'supports'              => array( 'title', 'thumbnail' ),
-        'taxonomies'            => array(),
+        'taxonomies'            => array( 'vco_category' ), // Add category taxonomy
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
@@ -64,14 +93,23 @@ function vco_register_custom_post_type() {
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
         'capability_type'       => 'post',
-        // 'has_archive'           => true,
-        // 'rewrite'               => array( 'slug' => 'vco' ),
         'has_archive'        => 'i-guide-vco', // Updated archive slug
         'rewrite'            => array( 'slug' => 'i-guide-vco' ), // Updated post type slug
     );
     register_post_type( 'vco', $args );
 }
 add_action( 'init', 'vco_register_custom_post_type' );
+
+// Add categories 'vco' and 'webinar' to the 'category' taxonomy
+function vco_create_categories() {
+    if ( ! term_exists( 'vco', 'vco_category' ) ) {
+        wp_insert_term( 'vco', 'vco_category' );
+    }
+    if ( ! term_exists( 'webinar', 'vco_category' ) ) {
+        wp_insert_term( 'webinar', 'vco_category' );
+    }
+}
+add_action( 'init', 'vco_create_categories' );
 
 /**
  * Flush rewrite rules on activation.
@@ -129,6 +167,16 @@ function vco_register_metaboxes() {
         'type' => 'textarea_code',
         'description' => __( 'Paste the embedded video code here (e.g., YouTube embed code).', 'vco-plugin' ),
         'sanitization_cb' => false, // We'll handle sanitization during output
+    ) );
+
+    // Add metabox for VCO Category
+    $cmb->add_field( array(
+        'name'             => __( 'VCO Category', 'vco-plugin' ),
+        'id'               => 'vco_category',
+        'type'             => 'taxonomy_select',
+        'taxonomy'         => 'vco_category', // Taxonomy Slug
+        'remove_default'   => 'true', // Removes the default metabox
+        'show_option_none' => true,
     ) );
 
     // Speakers (repeatable group)
