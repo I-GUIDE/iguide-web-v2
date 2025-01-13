@@ -18,6 +18,10 @@ get_header();
 <div class="page-content tw-w-full tw-flex tw-relative tw-bg-white tw-mt-5 tw-mb-16">
     <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
 
+    <p>The Institute for Geospatial Understanding through an Integrative Discovery Environment (<a href="https://i-guide.io/">I-GUIDE</a>) aims to transform geospatial data-intensive sciences through the integration of AI and cyberGIS, reproducible data-intensive analytics and modeling, FAIR (Findable, Accessible, Interoperable, and Reusable) data principles, and innovative education and workforce development programs. I-GUIDE’s webinar series showcases innovative research and education advanced by I-GUIDE collaborators and partners.</p>
+
+        <hr/>
+
         <?php
         // Query only 'webinar' category posts from 'vco' post type
         $webinar_args = array(
@@ -60,7 +64,9 @@ get_header();
 
                         <!-- Title -->
                         <h2 class="card-title">
-                            <?php the_title(); ?>
+                            <a href="<?php the_permalink(); ?>" class="text-decoration-none text-primary">
+                                <?php the_title(); ?>
+                            </a>
                         </h2>
 
                         <!-- Registration Button (Bootstrap) -->
