@@ -59,7 +59,7 @@ get_header();
                     <div class="card-body">
                         <!-- Date and Time (Formatted as: Wednesday, January 22, 2025 | 12:00 (Central Time)) -->
                         <p class="text-muted small">
-                            <?php echo date_i18n( 'l, F j, Y | g:i A (T)', $date_time ); ?>
+                            <?php echo date_i18n( 'l, F j, Y | g:i A', $date_time ); ?> (Central Tim)
                         </p>
 
                         <!-- Title -->
