@@ -74,12 +74,12 @@ get_header();
                         <!-- Speaker List (Bootstrap List Group) -->
                         <?php if ( !empty( $speakers ) ) : ?>
                             <h5 class="mt-4">Speakers:</h5>
-                            <ul class="list-group list-group-flush mb-3">
+                            <ul">
                                 <?php foreach ( $speakers as $speaker ) :
                                     $name = isset( $speaker['name'] ) ? $speaker['name'] : '';
                                     $affiliation = isset( $speaker['affiliation'] ) ? $speaker['affiliation'] : '';
                                     ?>
-                                    <li class="list-group-item"><?php echo esc_html( $name . ( $affiliation ? ', ' . $affiliation : '' ) ); ?></li>
+                                    <li><?php echo esc_html( $name . ( $affiliation ? ', ' . $affiliation : '' ) ); ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
