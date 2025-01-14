@@ -130,7 +130,7 @@
         display: none;
     }
     .carousel-item {
-        height: 450px;
+        height: auto;
     }
     .carousel-caption {
         bottom: 10%;
@@ -158,7 +158,7 @@
         display: none;
     }
     .carousel-item {
-        height: 450px;
+        height: auto;
     }
     .carousel-caption {
         bottom: 10%;
@@ -182,7 +182,7 @@
         z-index: 26;
     }
     .carousel-item {
-        height: 500px;
+        height: auto;
     }
     .carousel-caption {
         bottom: 10%;
