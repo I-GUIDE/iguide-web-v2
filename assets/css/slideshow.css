@@ -32,7 +32,9 @@
 }
 
 .carousel-caption p {
+    padding:0 3px;
     font-size: 1rem;
+    display: inline;
     color: white;
     background-color: rgba(0, 0, 0, 0.3); 
 } 
