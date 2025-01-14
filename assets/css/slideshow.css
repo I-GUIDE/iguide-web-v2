@@ -28,13 +28,13 @@
     display: inline;
     font-size: 2.5rem;
     font-weight: normal;
-    color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.3); 
 }
 
 .carousel-caption p {
     font-size: 1rem;
     color: white;
+    background-color: rgba(0, 0, 0, 0.3); 
 } 
 
 .hero-section {
