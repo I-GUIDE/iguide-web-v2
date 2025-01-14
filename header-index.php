@@ -182,7 +182,7 @@
         z-index: 26;
     }
     .carousel-item {
-        height: auto;
+        height: 450px;
     }
     .carousel-caption {
         bottom: 10%;
