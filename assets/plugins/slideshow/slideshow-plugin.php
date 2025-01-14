@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Slideshow Plugin
  * Description: A plugin to create a slideshow post type with ACF fields.
- * Version: 1.04
+ * Version: 1.5
  * Author: Nattapon Jaroenchai
  */
 
@@ -141,9 +141,13 @@ function sp_display_active_slideshows() {
 
             echo '<div class="carousel-item ' . ($slide_count === 0 ? 'active' : '') . '" style="background-image: url(' . esc_url($image) . '); background-size: cover; background-position: center;">';
             echo '<div class="carousel-caption d-block">';
-            echo '<h1>' . esc_html(get_the_title()) . '</h1>';
-            echo '<p>' . esc_html($description) . '</p>';
-            echo '<a href="' . esc_url($url) . '" class="btn btn-primary">Learn More</a>';
+            echo '<h1><span>' . esc_html(get_the_title()) . '</span></h1>';
+            if($description) {
+                echo '<p><span>' . esc_html($description) . '</span></p>';
+            }
+            if($url) {
+                echo '<a href="' . esc_url($url) . '" class="btn btn-primary">Learn More</a>';
+            }
             echo '</div></div>';
 
             $slide_count++;
