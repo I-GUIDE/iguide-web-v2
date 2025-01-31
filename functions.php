@@ -256,4 +256,15 @@ function vco_redirect_to_archive() {
 }
 add_action( 'template_redirect', 'vco_redirect_to_archive' );
 
+function wp_api_get_server_time() {
+    // Get current server time using WordPress current_time() function.
+    // Using 'mysql' returns the date in "Y-m-d H:i:s" format.
+    return new WP_REST_Response( array( 'server_time' => current_time( 'mysql' ) ), 200 );
+}
 
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'custom/v1', '/time', array(
+        'methods'  => 'GET',
+        'callback' => 'wp_api_get_server_time',
+    ) );
+} );
