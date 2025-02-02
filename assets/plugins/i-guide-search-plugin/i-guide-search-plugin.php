@@ -2,7 +2,7 @@
 /*
 Plugin Name: i-guide-search-plugin
 Description: This plugin was created for the I-GUIDE website by Nattapon Jaroenchai. It adds a search icon to the navigation bar that triggers a popup search form, supports configurable search settings for post types, and displays a custom search results page with contextual snippets and keyword highlighting.
-Version: 1.0
+Version: 1.02
 Author: Nattapon Jaroenchai
 */
 

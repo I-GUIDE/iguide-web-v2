@@ -94,7 +94,7 @@ function igsp_highlight_keyword_plain( $text, $query ) {
 }
 ?>
 
-<!-- Optional inline CSS for highlighting and search form styling.
+<!-- Optional inline CSS for highlighting, search form styling, and pagination.
      You can also move these styles to your plugin's CSS file. -->
 <style>
     .highlight {
@@ -123,6 +123,28 @@ function igsp_highlight_keyword_plain( $text, $query ) {
         border: none;
         border-radius: 0.375rem;
         cursor: pointer;
+    }
+    /* Pagination Styling */
+    .navigation.pagination {
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .navigation.pagination .nav-links .page-numbers {
+        display: inline-block;
+        margin: 0 0.25rem;
+        padding: 0.5rem 1rem;
+        background-color: #f7fafc;
+        color: #333;
+        border: 1px solid #ddd;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .navigation.pagination .nav-links .page-numbers:hover,
+    .navigation.pagination .nav-links .page-numbers.current {
+        background-color: #3182ce;
+        color: #fff;
+        border-color: #3182ce;
     }
 </style>
 
@@ -179,8 +201,22 @@ function igsp_highlight_keyword_plain( $text, $query ) {
                 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                     <header class="entry-header">
                         <?php 
-                        // Display the title with a link to the full post.
-                        the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); 
+                        // Determine the URL for the title link.
+                        $url = get_permalink();
+                        if ( get_post_type() == 'news_events' ) {
+                            $external_link = get_field('external_link');
+                            if ( !empty( $external_link ) ) {
+                                $url = $external_link;
+                            }
+                        }
+                        if ( get_post_type() == 'convergent_curr' ) {
+                            $platform_url = get_field('platform_url');
+                            if ( !empty( $platform_url ) ) {
+                                $url = $platform_url;
+                            }
+                        }
+                        // Display the title with a link to the post or external URL.
+                        the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( $url ) ), '</a></h2>' );
                         ?>
                     </header><!-- .entry-header -->
                     
