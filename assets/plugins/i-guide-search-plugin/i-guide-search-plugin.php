@@ -2,7 +2,7 @@
 /*
 Plugin Name: i-guide-search-plugin
 Description: This plugin was created for the I-GUIDE website by Nattapon Jaroenchai. It adds a search icon to the navigation bar that triggers a popup search form, supports configurable search settings for post types, and displays a custom search results page with contextual snippets and keyword highlighting.
-Version: 1.02
+Version: 1.03
 Author: Nattapon Jaroenchai
 */
 
@@ -45,13 +45,14 @@ add_filter( 'template_include', 'igsp_template_include' );
    -------------------------------------------------------------------------- */
 // This filter appends a search icon to the menu assigned to the "primary" location.
 function igsp_add_search_icon_to_nav( $items, $args ) {
-    // Check if either the theme_location is 'primary' or the menu slug/name is 'primary-menu'
     if ( ( isset( $args->theme_location ) && $args->theme_location === 'primary' )
          || ( isset( $args->menu ) && $args->menu === 'primary-menu' ) ) {
-        // Append the search icon list item.
+        // Append the search icon list item with SVG.
         $items .= '<li class="igsp-search-icon">
-                    <a href="#" id="csp-search-toggle">
-                        <i class="dashicons dashicons-search"></i>
+                    <a href="#" id="csp-search-toggle" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor">
+                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                        </svg>
                     </a>
                    </li>';
     }
