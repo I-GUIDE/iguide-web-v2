@@ -73,7 +73,7 @@ register_nav_menus(
 );
 
 function iguide_custom_styles() {
-    $custom_page_array = array('council-of-geospatial-leaders','leadership', 'team-members', 'convergence', 'ai', 'coreci', 'education', 'engagement', 'evaluation','iguide-data-and-computation-resources');
+    $custom_page_array = array('council-of-geospatial-leaders','leadership', 'team-members', 'convergence', 'ai', 'coreci', 'education', 'engagement', 'evaluation','iguide-data-and-computation-resources', 'alumni');
     if (is_page($custom_page_array) ) { // Replace 'your-page-slug' with the slug of the page you want to add the CSS to
         wp_enqueue_style('iguide-custom-style', get_stylesheet_directory_uri() . '/assets/css/page.css');
     }
