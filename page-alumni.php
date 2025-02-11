@@ -47,9 +47,15 @@
                 <?php while ($alumni_query->have_posts()) : $alumni_query->the_post(); ?>
                     <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                         <div class="card people-card">
+                        <?php if (the_field("profile_url")): ?>
                             <a href="<?php the_field("profile_url"); ?>" class="stretched-link" target="_new">
                                 <div class="card-img-top box-shadow" style="background-image: url('<?php the_field('photo'); ?>');"></div>
                             </a>
+                        <?php else: ?>
+                            <a href="<?php the_field("profile_url"); ?>" class="stretched-link" target="_new">
+                                <div class="card-img-top box-shadow" style="background-image: url('<?php the_field('photo'); ?>');"></div>
+                            </a>
+                        <?php endif; ?> 
                             <div class="card-body">
                                 <h5 class="card-title name"><?php the_title(); ?></h5>
                                 <p class="card-text affiliation"><?php the_field('affiliation'); ?></p>
