@@ -52,9 +52,7 @@
                                 <div class="card-img-top box-shadow" style="background-image: url('<?php the_field('photo'); ?>');"></div>
                             </a>
                         <?php else: ?>
-                            <a href="<?php the_field("profile_url"); ?>" class="stretched-link" target="_new">
-                                <div class="card-img-top box-shadow" style="background-image: url('<?php the_field('photo'); ?>');"></div>
-                            </a>
+                            <div class="card-img-top box-shadow" style="background-image: url('<?php the_field('photo'); ?>');"></div>
                         <?php endif; ?> 
                             <div class="card-body">
                                 <h5 class="card-title name"><?php the_title(); ?></h5>
