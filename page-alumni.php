@@ -19,9 +19,9 @@
 
     <div class="page-content tw-w-full tw-flex tw-relative tw-bg-white tw-mt-5 tw-mb-16">
         <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
-            <div class="row">
+            <!-- <div class="row">
                 <h2 class="section-header">Our Alumni</h2>
-            </div>
+            </div> -->
 
             <?php 
             // Query all alumni (where is_alumni is true)
