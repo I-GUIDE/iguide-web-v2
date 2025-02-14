@@ -23,19 +23,34 @@
         </div>
 
         <?php 
-        $executive_committee_args = array(
+        $engage_leader_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
-            'post__in' => array(89)
+            'post__in' => array(89),
+            'meta_query'     => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'is_alumni',
+                    'value'   => '0',  // Explicitly include non-alumni
+                    'compare' => '=',  // Must be exactly 0 (false)
+                ),
+                array(
+                    'key'     => 'is_alumni',
+                    'compare' => 'NOT EXISTS', // Include people where 'is_alumni' is missing (NULL)
+                ),
+            ),
+            'meta_key'       => 'last_name', // Order by last name
+            'orderby'        => 'meta_value',
+            'order'          => 'ASC',
         );
 
-        $executive_committees = new WP_Query($executive_committee_args);
+        $engage_leader_query = new WP_Query($engage_leader_args);
         ?>
 
         <div class="row justify-content-center">
 
-            <?php if ( $executive_committees->have_posts() ) :?>
-                <?php  while ( $executive_committees->have_posts() ) : $executive_committees->the_post(); ?>
+            <?php if ( $engage_leader_query->have_posts() ) :?>
+                <?php  while ( $engage_leader_query->have_posts() ) : $engage_leader_query->the_post(); ?>
                 <div class="col-6 col-sm-4 col-md-3 col-lg-3">
                     <div class="card people-card ">
                     <a href="<?php the_field("profile_url"); ?>" class="stretched-link" target="_new"><div class="card-img-top box-shadow" style="background-image: url('<?php the_field('photo'); ?>');"></div></a>
@@ -55,7 +70,7 @@
         </div>
 
         <?php 
-        $advisory_board_args = array(
+        $engage_member_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
             'post__not_in' => array(89),
@@ -65,15 +80,30 @@
                     'field'    => 'slug',
                     'terms'    => 'engagement',
                 ),
-            )
+            ),
+            'meta_query'     => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'is_alumni',
+                    'value'   => '0',  // Explicitly include non-alumni
+                    'compare' => '=',  // Must be exactly 0 (false)
+                ),
+                array(
+                    'key'     => 'is_alumni',
+                    'compare' => 'NOT EXISTS', // Include people where 'is_alumni' is missing (NULL)
+                ),
+            ),
+            'meta_key'       => 'last_name', // Order by last name
+            'orderby'        => 'meta_value',
+            'order'          => 'ASC',
         );
 
-        $advisory_boards = new WP_Query($advisory_board_args);
+        $engage_member_query = new WP_Query($engage_member_args);
         ?>
         <div class="row  justify-content-center">
 
-        <?php if ( $advisory_boards->have_posts() ) :?>
-        <?php  while ( $advisory_boards->have_posts() ) : $advisory_boards->the_post(); ?>
+        <?php if ( $engage_member_query->have_posts() ) :?>
+        <?php  while ( $engage_member_query->have_posts() ) : $engage_member_query->the_post(); ?>
 
             <div class="col-6 col-sm-4 col-md-2 col-lg-2">
                 <div class="card people-card ">
