@@ -24,6 +24,13 @@
         $advisory_board_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
+            'meta_query'     => array(
+                array(
+                    'key'     => 'is_alumni', // Exclude alumni
+                    'value'   => '1', 
+                    'compare' => '!=', // Exclude where is_alumni is true
+                ),
+            ),
             'tax_query' => array(
                 array(
                     'taxonomy' => 'position',
@@ -31,13 +38,6 @@
                     'terms'    => array( 'advisory', 'council-of-geospatial-leaders'),
                     'operator' => 'NOT IN',
                 )
-            ),
-            'meta_query'     => array(
-                array(
-                    'key'     => 'is_alumni', // Exclude alumni
-                    'value'   => '1', 
-                    'compare' => '!=', // Exclude where is_alumni is true
-                ),
             ),
             'meta_key'       => 'last_name', // Order by last name
             'orderby'        => 'meta_value',
