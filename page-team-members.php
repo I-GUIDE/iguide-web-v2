@@ -32,6 +32,13 @@
                     'operator' => 'NOT IN',
                 )
             ),
+            'meta_query'     => array(
+                array(
+                    'key'     => 'is_alumni', // Exclude alumni
+                    'value'   => '1', 
+                    'compare' => '!=', // Exclude where is_alumni is true
+                ),
+            ),
             'meta_key'       => 'last_name', // Order by last name
             'orderby'        => 'meta_value',
             'order'          => 'ASC',
