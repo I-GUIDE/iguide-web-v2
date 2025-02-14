@@ -28,10 +28,15 @@
             'post_type'		=> 'people',
             'post__in' => array(80,103),
             'meta_query'     => array(
+                'relation' => 'OR',
                 array(
-                    'key'     => 'is_alumni', // Exclude alumni
-                    'value'   => '1', 
-                    'compare' => '!=', // Exclude where is_alumni is true
+                    'key'     => 'is_alumni',
+                    'value'   => '0',  // Explicitly include non-alumni
+                    'compare' => '=',  // Must be exactly 0 (false)
+                ),
+                array(
+                    'key'     => 'is_alumni',
+                    'compare' => 'NOT EXISTS', // Include people where 'is_alumni' is missing (NULL)
                 ),
             ),
             'meta_key'       => 'last_name', // Order by last name
@@ -69,18 +74,23 @@
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
             'post__not_in' => array(80,103),
-            'meta_query'     => array(
-                array(
-                    'key'     => 'is_alumni', // Exclude alumni
-                    'value'   => '1', 
-                    'compare' => '!=', // Exclude where is_alumni is true
-                ),
-            ),
             'tax_query' => array(
                 array(
                     'taxonomy' => 'focus_area',
                     'field'    => 'slug',
                     'terms'    => 'ai',
+                ),
+            ),
+            'meta_query'     => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'is_alumni',
+                    'value'   => '0',  // Explicitly include non-alumni
+                    'compare' => '=',  // Must be exactly 0 (false)
+                ),
+                array(
+                    'key'     => 'is_alumni',
+                    'compare' => 'NOT EXISTS', // Include people where 'is_alumni' is missing (NULL)
                 ),
             ),
             'meta_key'       => 'last_name', // Order by last name
