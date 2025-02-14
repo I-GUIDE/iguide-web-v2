@@ -31,7 +31,10 @@
                     'terms'    => array( 'advisory', 'council-of-geospatial-leaders'),
                     'operator' => 'NOT IN',
                 )
-            )
+            ),
+            'meta_key'       => 'last_name', // Order by last name
+            'orderby'        => 'meta_value',
+            'order'          => 'ASC',
         );
 
         $advisory_boards = new WP_Query($advisory_board_args);
