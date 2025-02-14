@@ -24,6 +24,18 @@
         $advisory_board_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
+            'meta_query'     => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'is_alumni',
+                    'value'   => '0',  // Explicitly include non-alumni
+                    'compare' => '=',  // Must be exactly 0 (false)
+                ),
+                array(
+                    'key'     => 'is_alumni',
+                    'compare' => 'NOT EXISTS', // Include people where 'is_alumni' is missing (NULL)
+                ),
+            ),
             'tax_query' => array(
                 array(
                     'taxonomy' => 'position',
