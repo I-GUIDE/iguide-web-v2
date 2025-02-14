@@ -77,15 +77,15 @@ function iguide10_register_options_page() {
  */
 function iguide10_get_boxes() {
     return array(
-        array( 'title' => 'Aging Dams Infrastructure', 'field_id' => 'aging_dams_infrastructure' ),
+        array( 'title' => 'Aging Dam Infrastructure', 'field_id' => 'aging_dam_infrastructure' ),
         array( 'title' => 'Convergence Curriculum', 'field_id' => 'convergence_curriculum' ),
         array( 'title' => 'Extreme Events & Disaster Resilience', 'field_id' => 'extreme_events_resilience' ),
-        array( 'title' => 'Robust Data Science Research', 'field_id' => 'robust_data_science' ),
+        array( 'title' => 'Robust Geospatial Data Science', 'field_id' => 'robust_geospatial_data_science' ),
         array( 'title' => 'Geospatial Knowledge Hypercube', 'field_id' => 'geospatial_knowledge_hypercube' ),
         array( 'title' => 'I-GUIDE Platform', 'field_id' => 'iguide_platform' ),
         array( 'title' => 'Spatial AI Challenge', 'field_id' => 'spatial_ai_challenge' ),
-        array( 'title' => 'Summer Schools', 'field_id' => 'summer_schools' ),
-        array( 'title' => 'Telecoupling & Sustainability', 'field_id' => 'telecoupling_sustainability' ),
+        array( 'title' => 'I-GUIDE Summer Schools', 'field_id' => 'iguide_summer_schools' ),
+        array( 'title' => 'Telecoupling and Cross-scale Understanding of Sustainability', 'field_id' => 'telecoupling_cross_scale_sustainability' ),
         array( 'title' => 'Virtual Consulting Offices (VCOs)', 'field_id' => 'virtual_consulting_offices' ),
     );
 }
@@ -100,17 +100,18 @@ function iguide10_display_carousel() {
 
     // Define items with Font Awesome icons
     $items = array(
-        'aging_dams_infrastructure'       => array( 'title' => 'Aging Dams Infrastructure', 'icon' => 'fa-solid fa-industry' ),
+        'aging_dam_infrastructure'       => array( 'title' => 'Aging Dam Infrastructure', 'icon' => 'fa-solid fa-industry' ),
         'convergence_curriculum'          => array( 'title' => 'Convergence Curriculum', 'icon' => 'fa-solid fa-graduation-cap' ),
         'extreme_events_resilience'       => array( 'title' => 'Extreme Events & Disaster Resilience', 'icon' => 'fa-solid fa-exclamation-triangle' ),
-        'robust_data_science'             => array( 'title' => 'Robust Data Science Research', 'icon' => 'fa-solid fa-flask' ),
+        'robust_geospatial_data_science'  => array( 'title' => 'Robust Geospatial Data Science', 'icon' => 'fa-solid fa-flask' ),
         'geospatial_knowledge_hypercube'  => array( 'title' => 'Geospatial Knowledge Hypercube', 'icon' => 'fa-solid fa-globe' ),
         'iguide_platform'                 => array( 'title' => 'I-GUIDE Platform', 'icon' => 'fa-solid fa-laptop-code' ),
         'spatial_ai_challenge'            => array( 'title' => 'Spatial AI Challenge', 'icon' => 'fa-solid fa-brain' ),
-        'summer_schools'                  => array( 'title' => 'Summer Schools', 'icon' => 'fa-solid fa-school' ),
-        'telecoupling_sustainability'     => array( 'title' => 'Telecoupling & Sustainability', 'icon' => 'fa-solid fa-leaf' ),
+        'iguide_summer_schools'           => array( 'title' => 'I-GUIDE Summer Schools', 'icon' => 'fa-solid fa-school' ),
+        'telecoupling_cross_scale_sustainability' => array( 'title' => 'Telecoupling and Cross-scale Understanding of Sustainability', 'icon' => 'fa-solid fa-leaf' ),
         'virtual_consulting_offices'      => array( 'title' => 'Virtual Consulting Offices (VCOs)', 'icon' => 'fa-solid fa-headset' ),
     );
+
 
     ob_start();
     ?>
@@ -197,7 +198,7 @@ function iguide10_display_carousel() {
         });
     </script>
 
-<style>
+    <style>
         #iguide-carousel {
             display: flex;
             background: #fff;
