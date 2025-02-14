@@ -105,3 +105,21 @@ function update_people_name_fields($post_id, $post, $update) {
 
 // Hook into WordPress to execute the function when a 'people' post is saved.
 add_action('save_post', 'update_people_name_fields', 10, 3);
+
+
+/**
+ * Automatically order 'people' post type by last name unless a different order is specified.
+ */
+function order_people_by_last_name($query) {
+    // Ensure we are in the main query and not in the admin panel
+    if (!is_admin() && $query->is_main_query() && $query->get('post_type') === 'people') {
+        
+        // Only apply ordering if no custom order is set in the query
+        if (!$query->get('orderby')) {
+            $query->set('meta_key', 'last_name');  // Use the 'last_name' meta field for ordering
+            $query->set('orderby', 'meta_value');  // Order by the meta field value
+            $query->set('order', 'ASC');           // Default order is ascending
+        }
+    }
+}
+add_action('pre_get_posts', 'order_people_by_last_name');
