@@ -24,13 +24,6 @@
         $advisory_board_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
-            'meta_query'     => array(
-                array(
-                    'key'     => 'is_alumni', // Exclude alumni
-                    'value'   => '1', 
-                    'compare' => '!=', // Exclude where is_alumni is true
-                ),
-            ),
             'tax_query' => array(
                 array(
                     'taxonomy' => 'position',
