@@ -21,9 +21,17 @@
         <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
             
         <?php 
-        $advisory_board_args = array(
+        $team_members_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'position',
+                    'field'    => 'slug',
+                    'terms'    => array( 'advisory', 'council-of-geospatial-leaders'),
+                    'operator' => 'NOT IN',
+                )
+            ),
             'meta_query'     => array(
                 'relation' => 'OR',
                 array(
@@ -36,25 +44,17 @@
                     'compare' => 'NOT EXISTS', // Include people where 'is_alumni' is missing (NULL)
                 ),
             ),
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'position',
-                    'field'    => 'slug',
-                    'terms'    => array( 'advisory', 'council-of-geospatial-leaders'),
-                    'operator' => 'NOT IN',
-                )
-            ),
             'meta_key'       => 'last_name', // Order by last name
             'orderby'        => 'meta_value',
             'order'          => 'ASC',
         );
 
-        $advisory_boards = new WP_Query($advisory_board_args);
+        $teamMembersQuery = new WP_Query($team_members_args);
         ?>
         <div class="row  justify-content-center">
 
-        <?php if ( $advisory_boards->have_posts() ) :?>
-        <?php  while ( $advisory_boards->have_posts() ) : $advisory_boards->the_post(); ?>
+        <?php if ( $teamMembersQuery->have_posts() ) :?>
+        <?php  while ( $teamMembersQuery->have_posts() ) : $teamMembersQuery->the_post(); ?>
 
             <div class="col-6 col-sm-4 col-md-2 col-lg-2">
                 <div class="card people-card ">

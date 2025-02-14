@@ -26,7 +26,17 @@
         $executive_committee_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
-            'post__in' => array(80,103)
+            'post__in' => array(80,103),
+            'meta_query'     => array(
+                array(
+                    'key'     => 'is_alumni', // Exclude alumni
+                    'value'   => '1', 
+                    'compare' => '!=', // Exclude where is_alumni is true
+                ),
+            ),
+            'meta_key'       => 'last_name', // Order by last name
+            'orderby'        => 'meta_value',
+            'order'          => 'ASC',
         );
 
         $executive_committees = new WP_Query($executive_committee_args);
@@ -55,25 +65,35 @@
         </div>
 
         <?php 
-        $advisory_board_args = array(
+        $ai_team_members_args = array(
             'posts_per_page'=> -1,
             'post_type'		=> 'people',
             'post__not_in' => array(80,103),
+            'meta_query'     => array(
+                array(
+                    'key'     => 'is_alumni', // Exclude alumni
+                    'value'   => '1', 
+                    'compare' => '!=', // Exclude where is_alumni is true
+                ),
+            ),
             'tax_query' => array(
                 array(
                     'taxonomy' => 'focus_area',
                     'field'    => 'slug',
                     'terms'    => 'ai',
                 ),
-            )
+            ),
+            'meta_key'       => 'last_name', // Order by last name
+            'orderby'        => 'meta_value',
+            'order'          => 'ASC',
         );
 
-        $advisory_boards = new WP_Query($advisory_board_args);
+        $ai_team_members = new WP_Query($ai_team_members_args);
         ?>
         <div class="row  justify-content-center">
 
-        <?php if ( $advisory_boards->have_posts() ) :?>
-        <?php  while ( $advisory_boards->have_posts() ) : $advisory_boards->the_post(); ?>
+        <?php if ( $ai_team_members->have_posts() ) :?>
+        <?php  while ( $ai_team_members->have_posts() ) : $ai_team_members->the_post(); ?>
 
             <div class="col-6 col-sm-4 col-md-2 col-lg-2">
                 <div class="card people-card ">
