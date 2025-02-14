@@ -47,7 +47,7 @@
                 <?php while ($alumni_query->have_posts()) : $alumni_query->the_post(); ?>
                     <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                         <div class="card people-card">
-                        <?php if (the_field("profile_url")): ?>
+                        <?php if (get_field("profile_url")): ?>
                             <a href="<?php the_field("profile_url"); ?>" class="stretched-link" target="_new">
                                 <div class="card-img-top box-shadow" style="background-image: url('<?php the_field('photo'); ?>');"></div>
                             </a>
