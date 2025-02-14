@@ -34,7 +34,8 @@
                         'value' => '1', // '1' means true
                     ),
                 ),
-                'orderby'        => 'title', // Order by name (post title)
+                'meta_key'       => 'last_name', // Order by last name
+                'orderby'        => 'meta_value',
                 'order'          => 'ASC',
             );
 
