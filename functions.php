@@ -3,25 +3,8 @@
 // Include the WPForms Expiration Settings functionality.
 include_once get_template_directory() . '/includes/wpform-expiration-settings.php';
 
-// function redirect_news_events_to_external_url() {
-    
-//     if ( is_singular('news_events') ) {
-        
-//         // Get the external URL from the ACF field 'external_link'
-//         $external_url = get_field("external_link");
-
-//         // Check if the external URL is set and not empty
-//         if ( $external_url ) {
-//             // Debugging: Log that we are about to redirect
-//             error_log('Redirecting to: ' . $external_url);
-
-//             // Redirect to the external URL
-//             wp_redirect( esc_url_raw( $external_url ), 301 );
-//             exit; // Ensure that the script stops after the redirect
-//         }
-//     }
-// }
-// add_action( 'template_redirect', 'redirect_news_events_to_external_url', 0 );
+// Include functions for people 
+include_once get_template_directory() . '/includes/people-functions.php';
 
 function redirect_platform_page() {
     // Check if the current page slug is 'platform'
@@ -269,67 +252,3 @@ add_action( 'rest_api_init', function () {
     ) );
 } );
 
-/**
- * Updates existing 'people' posts by extracting first and last names from titles.
- * This function will only run once using a WordPress option flag.
- */
-function update_existing_people_names() {
-    // Check if the function has already been executed
-    if (get_option('people_names_updated') === 'yes') {
-        return; // Exit if already run
-    }
-
-    $people_args = array(
-        'posts_per_page' => -1, // Retrieve all 'people' posts
-        'post_type'      => 'people',
-    );
-
-    $people_query = new WP_Query($people_args);
-
-    if ($people_query->have_posts()) {
-        while ($people_query->have_posts()) {
-            $people_query->the_post();
-            $post_id = get_the_ID();
-            $full_name = trim(get_the_title($post_id));
-
-            // Check if first_name or last_name were already set manually
-            $manual_first_name = get_post_meta($post_id, 'first_name', true);
-            $manual_last_name = get_post_meta($post_id, 'last_name', true);
-
-            // Skip this post if both fields are manually set
-            if (!empty($manual_first_name) && !empty($manual_last_name)) {
-                continue;
-            }
-
-            // Split the full name into words
-            $name_parts = explode(' ', $full_name);
-
-            if (count($name_parts) > 1) {
-                $last_name = array_pop($name_parts); // Extract last word as last name
-                $first_name = implode(' ', $name_parts); // Remaining words as first name
-            } else {
-                $first_name = $full_name;
-                $last_name = '';
-            }
-
-            // Only update if not manually set
-            if (empty($manual_first_name)) {
-                update_post_meta($post_id, 'first_name', $first_name);
-            }
-            if (empty($manual_last_name)) {
-                update_post_meta($post_id, 'last_name', $last_name);
-            }
-        }
-        wp_reset_postdata();
-
-        // Set the option so the function doesn't run again
-        update_option('people_names_updated', 'yes');
-
-        echo "Updated first_name and last_name for all people.";
-    } else {
-        echo "No people found.";
-    }
-}
-
-// Manually run this function once
-update_existing_people_names();
