@@ -2,8 +2,8 @@
 /**
  * Plugin Name: i-guide-10-items-plugin
  * Plugin URI:  https://example.com
- * Description: Creates a single "10 Items" options page with 10 separate CMB2 fields.
- * Version:     1.2
+ * Description: Creates a top-level "10 Items" menu with options and a custom post type for content.
+ * Version:     1.4
  * Author:      Nattapon Jaroenchai
  * Author URI:  https://example.com
  * Text Domain: i-guide-10-items-plugin
@@ -14,6 +14,36 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// Centralized items and content types
+function iguide10_get_items() {
+    return array(
+        'iguide_platform'                     => 'I-GUIDE Platform',
+        'spatial_ai_challenge'                => 'Spatial AI Challenge',
+        'virtual_consulting_offices'          => 'Virtual Consulting Offices (VCOs)',
+        'iguide_summer_schools'               => 'I-GUIDE Summer Schools',
+        'convergence_curriculum'              => 'Convergence Curriculum',
+        'aging_dam_infrastructure'            => 'Aging Dam Infrastructure',
+        'geospatial_knowledge_hypercube'      => 'Geospatial Knowledge Hypercube',
+        'extreme_events_resilience'           => 'Extreme Events & Disaster Resilience',
+        'robust_geospatial_data_science'      => 'Robust Geospatial Data Science',
+        'telecoupling_cross_scale_sustainability' => 'Telecoupling and Cross-scale Understanding of Sustainability',
+    );
+}
+
+function iguide10_get_content_types() {
+    return array(
+        'platform_content' => 'Platform Content',
+        'vco'              => 'VCO',
+        'webinar'          => 'Webinar',
+        'publication'      => 'Publication',
+        'iguide_team_meeting' => 'I-GUIDE Team Meeting',
+        'resource'         => 'Resource',
+        'in_the_news'      => 'In the News',
+        'presentation'     => 'Presentation',
+        'other'            => 'Other',
+    );
+}
+
 /**
  * 1. Load CMB2 if not already loaded
  */
@@ -22,247 +52,359 @@ if ( ! defined( 'CMB2_LOADED' ) ) {
 }
 
 /**
- * 2. Register Settings to Ensure Data Saves
+ * 2. Create the top-level menu "10 Items"
+ */
+add_action( 'admin_menu', 'iguide10_add_main_menu' );
+function iguide10_add_main_menu() {
+    add_menu_page(
+        __( '10 Items', 'i-guide-10-items-plugin' ),
+        __( '10 Items', 'i-guide-10-items-plugin' ),
+        'manage_options',
+        'iguide10_main_menu',
+        'iguide10_main_menu_callback',
+        'dashicons-images-alt2',
+        4
+    );
+}
+
+function iguide10_main_menu_callback() {
+    wp_safe_redirect( admin_url( 'admin.php?page=iguide10_options' ) );
+    exit;
+}
+
+/**
+ * 3. Register Settings for "Items Description" Page
  */
 add_action( 'admin_init', 'iguide10_register_settings' );
 function iguide10_register_settings() {
     register_setting( 'iguide10_options', 'iguide10_options' );
 }
 
-/**
- * 3. Enqueue Font Awesome for Icons
- */
-add_action( 'wp_enqueue_scripts', function() {
-    wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' );
-});
-
-/**
- * 4. Create the "10 Items" Options Page with One Save Button
- */
 add_action( 'cmb2_admin_init', 'iguide10_register_options_page' );
 function iguide10_register_options_page() {
     $cmb_options = new_cmb2_box( array(
         'id'           => 'iguide10_options_page',
-        'title'        => __( '10 Items', 'i-guide-10-items-plugin' ),
-        'object_types' => array( 'options-page' ), 
-        'option_key'   => 'iguide10_options', 
-        'menu_title'   => __( '10 Items', 'i-guide-10-items-plugin' ),
-        'position'     => 4,
+        'title'        => __( 'Items Description', 'i-guide-10-items-plugin' ),
+        'object_types' => array( 'options-page' ),
+        'option_key'   => 'iguide10_options',
+        'parent_slug'  => 'iguide10_main_menu',
+        'capability'   => 'manage_options',
+        'menu_title'   => __( 'Items Description', 'i-guide-10-items-plugin' ),
     ) );
 
     $cmb_options->add_field( array(
         'name' => 'Description',
-        'desc' => 'Manage your 10 items from here.',
-        'id'   => 'iguide10_description',
+        'desc' => 'Manage the short descriptions for each of the 10 items.',
+        'id'   => 'iguide10_description_title',
         'type' => 'title',
     ) );
 
-    $boxes = iguide10_get_boxes();
-
-    foreach ( $boxes as $box ) {
+    $items = iguide10_get_items();
+    foreach ( $items as $key => $title ) {
         $cmb_options->add_field( array(
-            'name'    => $box['title'],
-            'id'      => $box['field_id'],
+            'name'    => $title,
+            'id'      => $key,
             'type'    => 'wysiwyg',
-            'options' => array(
-                'media_buttons' => true,
-                'teeny'         => false,
-            ),
+            'options' => array( 'media_buttons' => true, 'teeny' => false ),
         ) );
     }
 }
 
 /**
- * 5. Define the 10 Meta Box Configurations
+ * 4. Register "Items Contents" Custom Post Type
  */
-function iguide10_get_boxes() {
-    return array(
-        array( 'title' => 'Aging Dam Infrastructure', 'field_id' => 'aging_dam_infrastructure' ),
-        array( 'title' => 'Convergence Curriculum', 'field_id' => 'convergence_curriculum' ),
-        array( 'title' => 'Extreme Events & Disaster Resilience', 'field_id' => 'extreme_events_resilience' ),
-        array( 'title' => 'Robust Geospatial Data Science', 'field_id' => 'robust_geospatial_data_science' ),
-        array( 'title' => 'Geospatial Knowledge Hypercube', 'field_id' => 'geospatial_knowledge_hypercube' ),
-        array( 'title' => 'I-GUIDE Platform', 'field_id' => 'iguide_platform' ),
-        array( 'title' => 'Spatial AI Challenge', 'field_id' => 'spatial_ai_challenge' ),
-        array( 'title' => 'I-GUIDE Summer Schools', 'field_id' => 'iguide_summer_schools' ),
-        array( 'title' => 'Telecoupling and Cross-scale Understanding of Sustainability', 'field_id' => 'telecoupling_cross_scale_sustainability' ),
-        array( 'title' => 'Virtual Consulting Offices (VCOs)', 'field_id' => 'virtual_consulting_offices' ),
-    );
+add_action( 'init', 'iguide10_register_custom_post_type' );
+function iguide10_register_custom_post_type() {
+    register_post_type( 'iguide10_content', array(
+        'labels'        => array( 'name' => 'Items Contents', 'singular_name' => 'Item Content' ),
+        'public'        => true,
+        'has_archive'   => false,
+        'rewrite'       => array( 'slug' => 'item-content' ),
+        'show_in_menu'  => 'iguide10_main_menu',
+        'supports'      => array( 'title' ),
+        'menu_position' => null,
+        'menu_icon'     => 'dashicons-list-view',
+    ) );
 }
 
 /**
- * 6. Display the Carousel Using a Shortcode
+ * 5. Add Meta Fields to "Items Contents"
  */
-add_shortcode( 'iguide10_carousel', 'iguide10_display_carousel' );
+add_action( 'cmb2_admin_init', 'iguide10_register_content_metabox' );
+function iguide10_register_content_metabox() {
+    $cmb = new_cmb2_box( array(
+        'id'           => 'iguide10_content_metabox',
+        'title'        => 'Item Content Details',
+        'object_types' => array( 'iguide10_content' ),
+    ) );
+
+    $cmb->add_field( array( 'name' => 'Text for Display', 'id' => 'iguide10_text_for_display', 'type' => 'text' ) );
+
+    $cmb->add_field( array( 'name' => 'Content URL', 'id' => 'iguide10_content_url', 'type' => 'text_url' ) );
+
+    $cmb->add_field( array( 'name' => 'Display Content?', 'id' => 'iguide10_display_content', 'type' => 'checkbox', 'default' => 'on' ) );
+
+    $cmb->add_field( array(
+        'name'    => 'Content Type',
+        'id'      => 'iguide10_content_type',
+        'type'    => 'multicheck',
+        'options' => iguide10_get_content_types(),
+    ) );
+
+    $cmb->add_field( array(
+        'name'    => 'Belongs to Item',
+        'id'      => 'iguide10_content_belongs_to',
+        'type'    => 'multicheck',
+        'options' => iguide10_get_items(),
+    ) );
+}
+
+/**
+ * 6. Add Custom Columns to Admin List Page
+ */
+add_filter( 'manage_iguide10_content_posts_columns', function ( $columns ) {
+    unset( $columns['date'] );
+    $columns['iguide10_content_type'] = 'Content Type';
+    $columns['iguide10_belongs_to']    = 'Belongs to Item';
+    $columns['iguide10_display']       = 'Display Content?';
+    return $columns;
+} );
+
+/**
+ * Populate custom columns with data.
+ */
+add_action( 'manage_iguide10_content_posts_custom_column', 'iguide10_render_content_columns', 10, 2 );
+function iguide10_render_content_columns( $column, $post_id ) {
+    if ( $column === 'iguide10_content_type' ) {
+        $content_types = get_post_meta( $post_id, 'iguide10_content_type', true );
+        $content_type_names = array_map( function( $type ) {
+            $types = iguide10_get_content_types();
+            return $types[$type] ?? $type;
+        }, $content_types );
+        echo is_array( $content_type_names ) ? implode( ', ', $content_type_names ) : '—';
+    }
+
+    if ( $column === 'iguide10_belongs_to' ) {
+        $belongs_to = get_post_meta( $post_id, 'iguide10_content_belongs_to', true );
+        $item_names = array_map( function( $item ) {
+            $items = iguide10_get_items();
+            return $items[$item] ?? $item;
+        }, $belongs_to );
+        echo is_array( $item_names ) ? implode( ', ', $item_names ) : '—';
+    }
+
+    if ( $column === 'iguide10_display' ) {
+        $display = get_post_meta( $post_id, 'iguide10_display_content', true );
+        echo $display === 'on' ? '<strong style="color:green;">Yes</strong>' : '<strong style="color:red;">No</strong>';
+    }
+}
+
+/**
+ * Enqueue Font Awesome for the carousel.
+ */
+function iguide10_enqueue_font_awesome() {
+    wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' );
+}
+add_action( 'wp_enqueue_scripts', 'iguide10_enqueue_font_awesome' );
+
+/**
+ * Shortcode: [iguide10_carousel]
+ * Description: Displays the "Happening in I-GUIDE" carousel with items and associated content.
+ */
+add_shortcode('iguide10_carousel', 'iguide10_display_carousel');
 
 function iguide10_display_carousel() {
-    $options = get_option( 'iguide10_options', array() );
-
-    // Define items with Font Awesome icons
-    $items = array(
-        'aging_dam_infrastructure'       => array( 'title' => 'Aging Dam Infrastructure', 'icon' => 'fa-solid fa-industry' ),
-        'convergence_curriculum'          => array( 'title' => 'Convergence Curriculum', 'icon' => 'fa-solid fa-graduation-cap' ),
-        'extreme_events_resilience'       => array( 'title' => 'Extreme Events & Disaster Resilience', 'icon' => 'fa-solid fa-exclamation-triangle' ),
-        'robust_geospatial_data_science'  => array( 'title' => 'Robust Geospatial Data Science', 'icon' => 'fa-solid fa-flask' ),
-        'geospatial_knowledge_hypercube'  => array( 'title' => 'Geospatial Knowledge Hypercube', 'icon' => 'fa-solid fa-globe' ),
-        'iguide_platform'                 => array( 'title' => 'I-GUIDE Platform', 'icon' => 'fa-solid fa-laptop-code' ),
-        'spatial_ai_challenge'            => array( 'title' => 'Spatial AI Challenge', 'icon' => 'fa-solid fa-brain' ),
-        'iguide_summer_schools'           => array( 'title' => 'I-GUIDE Summer Schools', 'icon' => 'fa-solid fa-school' ),
-        'telecoupling_cross_scale_sustainability' => array( 'title' => 'Telecoupling and Cross-scale Understanding of Sustainability', 'icon' => 'fa-solid fa-leaf' ),
-        'virtual_consulting_offices'      => array( 'title' => 'Virtual Consulting Offices (VCOs)', 'icon' => 'fa-solid fa-headset' ),
+    $options = get_option('iguide10_options', []);
+    $items = iguide10_get_items();
+    $content_types = iguide10_get_content_types();
+    
+    // Assign specific colors for content types
+    $content_type_colors = array(
+        '#0F5C98', // rgb(15, 92, 152)
+        '#2FA9A3', // rgb(47, 169, 163)
+        '#63853A', // rgb(99, 133, 58)
+        '#9ECDA2', // rgb(158, 205, 162)
+        '#F18149', // rgb(241, 129, 73)
+        '#E7B52F', // rgb(231, 181, 47)
     );
 
+    // Assign relevant icons for each item
+    $item_icons = array(
+        'aging_dam_infrastructure'            => 'fa-solid fa-water',
+        'convergence_curriculum'              => 'fa-solid fa-book',
+        'extreme_events_resilience'           => 'fa-solid fa-exclamation-triangle',
+        'robust_geospatial_data_science'      => 'fa-solid fa-globe',
+        'geospatial_knowledge_hypercube'      => 'fa-solid fa-cube',
+        'iguide_platform'                     => 'fa-solid fa-desktop',
+        'spatial_ai_challenge'                => 'fa-solid fa-robot',
+        'iguide_summer_schools'               => 'fa-solid fa-school',
+        'telecoupling_cross_scale_sustainability' => 'fa-solid fa-recycle',
+        'virtual_consulting_offices'          => 'fa-solid fa-comments',
+    );
+    
+    // Get content items
+    $args = array(
+        'post_type'      => 'iguide10_content',
+        'posts_per_page' => -1,
+        'meta_query'     => array(
+            array(
+                'key'     => 'iguide10_display_content',
+                'value'   => 'on',
+                'compare' => '='
+            )
+        )
+    );
+    $query = new WP_Query($args);
+    $content_items = [];
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $content_type = get_post_meta(get_the_ID(), 'iguide10_content_type', true);
+        $belongs_to = get_post_meta(get_the_ID(), 'iguide10_content_belongs_to', true);
+        
+        if (is_array($belongs_to)) {
+            foreach ($belongs_to as $belong) {
+                if (!isset($content_items[$belong])) {
+                    $content_items[$belong] = [];
+                }
+                foreach ($content_type as $type) {
+                    if (!isset($content_items[$belong][$type])) {
+                        $content_items[$belong][$type] = [];
+                    }
+                    $url = get_post_meta(get_the_ID(), 'iguide10_content_url', true);
+                    $text = esc_html(get_post_meta(get_the_ID(), 'iguide10_text_for_display', true) ?: get_the_title());
+                    $content_items[$belong][$type][] = $url ? '<a href="' . esc_url($url) . '" target="_blank">' . $text . '</a>' : $text;
+                }
+            }
+        }
+    }
+    wp_reset_postdata();
 
     ob_start();
     ?>
     <div id="iguide-carousel">
         <div id="iguide-left-panel">
             <ul>
-                <?php foreach ( $items as $key => $item ) : ?>
-                    <li data-key="<?php echo esc_attr( $key ); ?>" class="iguide-item">
-                        <span class="iguide-icon"><i class="<?php echo esc_attr( $item['icon'] ); ?>"></i></span>
-                        <span class="iguide-title"><?php echo esc_html( $item['title'] ); ?></span>
+                <?php 
+                $color_count = count($content_type_colors);
+                $index = 0;
+                foreach ($items as $key => $title): 
+                    $color = $content_type_colors[$index % $color_count];
+                    $index++;
+                ?>
+                    <li class="iguide-item <?php echo $key === array_key_first($items) ? 'active' : ''; ?>" data-key="<?php echo esc_attr($key); ?>" style="--item-color: <?php echo esc_attr($color); ?>;">
+                        <span class="iguide-icon"><i class="<?php echo esc_attr($item_icons[$key]); ?>"></i></span>
+                        <span class="iguide-title"> <?php echo esc_html($title); ?></span>
                     </li>
                 <?php endforeach; ?>
             </ul>
         </div>
         <div id="iguide-content">
-            <div id="iguide-display">
-                <div id="iguide-large-icon"></div>
-                <h2 id="iguide-title"></h2>
-                <p id="iguide-description"></p>
-            </div>
+            <h2 id="iguide-title"></h2>
+            <p id="iguide-description"></p>
+            <div id="iguide-links"></div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const items = <?php echo json_encode($items); ?>;
+            const contentItems = <?php echo json_encode($content_items); ?>;
             const descriptions = <?php echo json_encode($options); ?>;
+            const contentTypes = <?php echo json_encode($content_types); ?>;
+            const contentTypeColors = <?php echo json_encode($content_type_colors); ?>;
             const listItems = document.querySelectorAll(".iguide-item");
-            const iconDisplay = document.getElementById("iguide-large-icon");
             const titleDisplay = document.getElementById("iguide-title");
             const descriptionDisplay = document.getElementById("iguide-description");
+            const linksDisplay = document.getElementById("iguide-links");
 
-            let currentIndex = 0;
-            let autoPlayInterval;
-            let userInteraction = false;
-            const autoPlayDelay = 5000; // Auto-play delay (4 seconds)
-
-            function updateContent(index) {
-                const keys = Object.keys(items);
-                const key = keys[index];
-
-                if (items[key]) {
-                    iconDisplay.innerHTML = `<i class="${items[key].icon}"></i>`;
-                    titleDisplay.innerHTML = items[key].title;
-                    descriptionDisplay.innerHTML = descriptions[key] || "No description available.";
-
-                    document.querySelectorAll(".iguide-item").forEach(el => el.classList.remove("active"));
-                    listItems[index].classList.add("active");
+            function updateContent(key) {
+                titleDisplay.innerText = items[key];
+                descriptionDisplay.innerHTML = descriptions[key] || "";
+                linksDisplay.innerHTML = "";
+                
+                if (contentItems[key]) {
+                    let colorIndex = 0;
+                    for (const type in contentItems[key]) {
+                        if (contentItems[key][type].length > 0) {
+                            let typeHTML = `<p><strong style="color:${contentTypeColors[colorIndex % contentTypeColors.length]};">${contentTypes[type]}:</strong> ` + contentItems[key][type].join(", ") + `</p>`;
+                            linksDisplay.innerHTML += typeHTML;
+                            colorIndex++;
+                        }
+                    }
                 }
             }
-
-            function startAutoPlay() {
-                clearInterval(autoPlayInterval); // Ensure no duplicate intervals
-                autoPlayInterval = setInterval(() => {
-                    if (!userInteraction) {
-                        currentIndex = (currentIndex + 1) % listItems.length;
-                        updateContent(currentIndex);
-                    }
-                }, autoPlayDelay);
-            }
-
-            function resetAutoPlay() {
-                userInteraction = true;
-                clearInterval(autoPlayInterval); // Clear existing interval
-                setTimeout(() => {
-                    userInteraction = false;
-                    startAutoPlay(); // Restart auto-play after 5 seconds of inactivity
-                }, 5000);
-            }
-
+            
             listItems.forEach((item, index) => {
                 item.addEventListener("click", function() {
-                    currentIndex = index;
-                    updateContent(index);
-                    resetAutoPlay(); // Reset and restart auto-play after delay
+                    document.querySelectorAll(".iguide-item").forEach(el => el.classList.remove("active"));
+                    item.classList.add("active");
+                    updateContent(item.dataset.key);
+                    currentIndex = index; // Update currentIndex to the clicked item
+                    clearInterval(autoplayInterval); // Clear the existing interval
+                    setTimeout(() => {
+                        clearInterval(autoplayInterval); // Clear any existing interval before setting a new one
+                        autoplayInterval = setInterval(autoplayCarousel, 5000); // Restart autoplay after 4 seconds
+                    }, 4000);
                 });
             });
+            
+            updateContent(Object.keys(items)[0]);
 
-            // Initialize with the first item
-            if (listItems.length > 0) {
-                updateContent(0);
-                startAutoPlay();
+            // Autoplay functionality
+            let currentIndex = 0;
+            const totalItems = listItems.length;
+
+            function autoplayCarousel() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                listItems[currentIndex].click();
             }
+
+            let autoplayInterval = setInterval(autoplayCarousel, 5000); // Change slide every 5 seconds
         });
     </script>
 
     <style>
         #iguide-carousel {
             display: flex;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
-            width: 100%;
-            margin: auto;
+            padding: 20px 0px;
         }
-
         #iguide-left-panel {
-            width: 25%;
+            width: 30%;
             border-right: 2px solid #ddd;
         }
-
         #iguide-left-panel ul {
             list-style: none;
             padding: 0;
         }
-
         .iguide-item {
             display: flex;
             align-items: center;
             padding: 10px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
+            background-color: white; /* White background for inactive items */
         }
-
-        .iguide-item:hover {
-            background: #f3f3f3;
-        }
-
         .iguide-item.active {
             font-weight: bold;
-            color: #008000;
+            color: black;
+            background-color: var(--item-color); /* Normal hue for active items */
         }
-
         .iguide-icon {
-            font-size: 24px;
             margin-right: 10px;
         }
-
         #iguide-content {
             flex: 1;
-            text-align: center;
-            padding: 20px;
+            padding: 0 20px;
         }
-
-        #iguide-large-icon {
-            font-size: 80px;
-            margin-bottom: 10px;
-        }
-
         #iguide-title {
             font-size: 24px;
             font-weight: bold;
-            color: #008000;
         }
-
-        #iguide-description {
-            font-size: 16px;
+        #iguide-links p {
+            margin: 5px 0;
         }
     </style>
     <?php
     return ob_get_clean();
 }
+?>
