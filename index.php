@@ -11,29 +11,19 @@
     </div>
 
     <div class="tw-container tw-flex tw-flex-col tw-gap-5 lg:tw-gap-10 tw-px-10 lg:tw-grid md:tw-grid-cols-2 md:tw-grid-row-[min-content_min-content] tw-pt-10">
-        <div class="tw-text-center lg:tw-text-left tw-w-full md:tw-col-start-2">
-            <h1 class="tw-text-3xl md:tw-text-6xl lg:tw-text-7xl xl:tw-text-8xl">
-                <span class="tw-text-ig-brown lg:tw-hidden">We are </span><span class="tw-text-ig-blue tw-font-black">I</span><span class="tw-text-ig-brown tw-font-black">-</span><span class="tw-text-ig-teal tw-font-black">G</span><span class="tw-text-ig-olive tw-font-black">U</span><span class="tw-text-ig-light-green tw-font-black">I</span><span class="tw-text-ig-orange tw-font-black">D</span><span class="tw-text-ig-mustard tw-font-black">E</span>
-            </h1>
+        <div class="tw-w-full tw-flex tw-justify-center tw-drop-shadow-xl md:tw-row-start-1 md:tw-row-span-2">
+            <div class="tw-text-center lg:tw-text-left tw-w-full">
+                <h1 class="tw-text-3xl md:tw-text-6xl lg:tw-text-7xl xl:tw-text-8xl">
+                    <span class="tw-text-ig-brown lg:tw-hidden">We are </span><span class="tw-text-ig-blue tw-font-black">I</span><span class="tw-text-ig-brown tw-font-black">-</span><span class="tw-text-ig-teal tw-font-black">G</span><span class="tw-text-ig-olive tw-font-black">U</span><span class="tw-text-ig-light-green tw-font-black">I</span><span class="tw-text-ig-orange tw-font-black">D</span><span class="tw-text-ig-mustard tw-font-black">E</span>
+                </h1>
+            </div>
         </div>
         <div class="md:tw-col-start-2 md:tw-row-start-2">
             <p class="tw-text-md md:tw-text-lg lg:tw-text-2xl tw-font-light tw-tracking-wide tw-mt-1 tw-text-center lg:tw-text-left"><strong>Vision:</strong> <br class="tw-hidden md:tw-block lg:tw-hidden"> Drive digital discovery and innovation <br class="tw-hidden md:tw-block lg:tw-hidden"> by harnessing the geospatial data revolution </p> 
             <p class="tw-text-md md:tw-text-lg lg:tw-text-2xl tw-font-light tw-tracking-wide tw-mt-1 tw-text-center lg:tw-text-left tw-pt-4"><strong>Mission:</strong> <br class="tw-hidden md:tw-block lg:tw-hidden"> Advance convergence and geospatial sciences<br class="tw-hidden md:tw-block lg:tw-hidden"> for holistic sustainability solutions</p>
         </div>
-
-        <div class="tw-w-full tw-flex tw-justify-center tw-drop-shadow-xl md:tw-row-start-1 md:tw-row-span-2">
-            <div class="tw-bg-gray-300 tw-w-full tw-aspect-video lg:tw-aspect-auto tw-overflow-hidden tw-rounded-lg ">
-                <iframe id="kmsembed-1_ebqgma2n" width="100%" height="100%"
-                    src="https://mediaspace.illinois.edu/embed/secure/iframe/entryId/1_ebqgma2n/uiConfId/26883701"
-                    class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen
-                    allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade"
-                    sandbox="allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation"
-                    frameborder="0" title="Kaltura Player"></iframe>
-            </div>
-        </div>
     </div>
 
-    
     <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">
         <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(2deg); height:1px !important;"></div>
     </div>
@@ -67,7 +57,6 @@
                 </div>
             </div>
         </div>
-
 
     <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">
         <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(-2deg); height:1px !important;"></div>
