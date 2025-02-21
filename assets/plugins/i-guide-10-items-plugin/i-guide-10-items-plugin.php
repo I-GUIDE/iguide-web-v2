@@ -35,7 +35,7 @@ function iguide10_get_content_types() {
         'platform_content' => 'Platform Content',
         'vco'              => 'VCO',
         'webinar'          => 'Webinar',
-        'publication'      => 'Publication',
+        'publication'      => 'Recent Publications',
         'iguide_team_meeting' => 'I-GUIDE Team Meeting',
         'resource'         => 'Resource',
         'in_the_news'      => 'In the News',
@@ -212,6 +212,7 @@ add_action( 'wp_enqueue_scripts', 'iguide10_enqueue_font_awesome' );
  * Description: Displays the "Happening in I-GUIDE" carousel with items and associated content.
  */
 add_shortcode('iguide10_carousel', 'iguide10_display_carousel');
+add_shortcode('iguide-10-items-w-link-icon', 'iguide10_display_carousel_with_link_icon');
 
 function iguide10_display_carousel() {
     $options = get_option('iguide10_options', []);
@@ -327,7 +328,18 @@ function iguide10_display_carousel() {
                     let colorIndex = 0;
                     for (const type in contentItems[key]) {
                         if (contentItems[key][type].length > 0) {
-                            let typeHTML = `<p><strong style="color:${contentTypeColors[colorIndex % contentTypeColors.length]};">${contentTypes[type]}:</strong> ` + contentItems[key][type].join(", ") + `</p>`;
+                            let typeHTML = ``;
+                            if (contentItems[key][type].length === 1) {
+                                typeHTML += `<p><strong style="color:${contentTypeColors[colorIndex % contentTypeColors.length]};">${contentTypes[type]}:</strong>`;
+                                typeHTML += ` ${contentItems[key][type][0]}</p>`;
+                            } else {
+                                typeHTML += `<p><strong style="color:${contentTypeColors[colorIndex % contentTypeColors.length]};">${contentTypes[type]}:</strong>`;
+                                typeHTML += `<ul>`;
+                                contentItems[key][type].forEach(content => {
+                                    typeHTML += `<li>${content}</li>`;
+                                });
+                                typeHTML += `</ul></p>`;
+                            }
                             linksDisplay.innerHTML += typeHTML;
                             colorIndex++;
                         }
@@ -401,7 +413,221 @@ function iguide10_display_carousel() {
             font-weight: bold;
         }
         #iguide-links p {
-            margin: 5px 0;
+            margin: 5px 0 0;
+        }
+        #iguide-links ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+    </style>
+    <?php
+    return ob_get_clean();
+}
+
+function iguide10_display_carousel_with_link_icon() {
+    $options = get_option('iguide10_options', []);
+    $items = iguide10_get_items();
+    $content_types = iguide10_get_content_types();
+    
+    // Assign specific colors for content types
+    $content_type_colors = array(
+        '#0F5C98', // rgb(15, 92, 152)
+        '#2FA9A3', // rgb(47, 169, 163)
+        '#63853A', // rgb(99, 133, 58)
+        '#9ECDA2', // rgb(158, 205, 162)
+        '#F18149', // rgb(241, 129, 73)
+        '#E7B52F', // rgb(231, 181, 47)
+    );
+
+    // Assign relevant icons for each item
+    $item_icons = array(
+        'aging_dam_infrastructure'            => 'fa-solid fa-water',
+        'convergence_curriculum'              => 'fa-solid fa-book',
+        'extreme_events_resilience'           => 'fa-solid fa-exclamation-triangle',
+        'robust_geospatial_data_science'      => 'fa-solid fa-globe',
+        'geospatial_knowledge_hypercube'      => 'fa-solid fa-cube',
+        'iguide_platform'                     => 'fa-solid fa-desktop',
+        'spatial_ai_challenge'                => 'fa-solid fa-robot',
+        'iguide_summer_schools'               => 'fa-solid fa-school',
+        'telecoupling_cross_scale_sustainability' => 'fa-solid fa-recycle',
+        'virtual_consulting_offices'          => 'fa-solid fa-comments',
+    );
+    
+    // Get content items
+    $args = array(
+        'post_type'      => 'iguide10_content',
+        'posts_per_page' => -1,
+        'meta_query'     => array(
+            array(
+                'key'     => 'iguide10_display_content',
+                'value'   => 'on',
+                'compare' => '='
+            )
+        )
+    );
+    $query = new WP_Query($args);
+    $content_items = [];
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $content_type = get_post_meta(get_the_ID(), 'iguide10_content_type', true);
+        $belongs_to = get_post_meta(get_the_ID(), 'iguide10_content_belongs_to', true);
+        
+        if (is_array($belongs_to)) {
+            foreach ($belongs_to as $belong) {
+                if (!isset($content_items[$belong])) {
+                    $content_items[$belong] = [];
+                }
+                foreach ($content_type as $type) {
+                    if (!isset($content_items[$belong][$type])) {
+                        $content_items[$belong][$type] = [];
+                    }
+                    $url = get_post_meta(get_the_ID(), 'iguide10_content_url', true);
+                    $text = esc_html(get_post_meta(get_the_ID(), 'iguide10_text_for_display', true) ?: get_the_title());
+                    $content_items[$belong][$type][] = $url ? $text . ' <a href="' . esc_url($url) . '" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>' : $text;
+                }
+            }
+        }
+    }
+    wp_reset_postdata();
+
+    ob_start();
+    ?>
+    <div id="iguide-carousel">
+        <div id="iguide-left-panel">
+            <ul>
+                <?php 
+                $color_count = count($content_type_colors);
+                $index = 0;
+                foreach ($items as $key => $title): 
+                    $color = $content_type_colors[$index % $color_count];
+                    $index++;
+                ?>
+                    <li class="iguide-item <?php echo $key === array_key_first($items) ? 'active' : ''; ?>" data-key="<?php echo esc_attr($key); ?>" style="--item-color: <?php echo esc_attr($color); ?>;">
+                        <span class="iguide-icon"><i class="<?php echo esc_attr($item_icons[$key]); ?>"></i></span>
+                        <span class="iguide-title"> <?php echo esc_html($title); ?></span>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div id="iguide-content">
+            <h2 id="iguide-title"></h2>
+            <p id="iguide-description"></p>
+            <div id="iguide-links"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const items = <?php echo json_encode($items); ?>;
+            const contentItems = <?php echo json_encode($content_items); ?>;
+            const descriptions = <?php echo json_encode($options); ?>;
+            const contentTypes = <?php echo json_encode($content_types); ?>;
+            const contentTypeColors = <?php echo json_encode($content_type_colors); ?>;
+            const listItems = document.querySelectorAll(".iguide-item");
+            const titleDisplay = document.getElementById("iguide-title");
+            const descriptionDisplay = document.getElementById("iguide-description");
+            const linksDisplay = document.getElementById("iguide-links");
+
+            function updateContent(key) {
+                titleDisplay.innerText = items[key];
+                descriptionDisplay.innerHTML = descriptions[key] || "";
+                linksDisplay.innerHTML = "";
+                
+                if (contentItems[key]) {
+                    let colorIndex = 0;
+                    for (const type in contentItems[key]) {
+                        if (contentItems[key][type].length > 0) {
+                            let typeHTML = ``;
+                            if (contentItems[key][type].length === 1) {
+                                typeHTML += `<p><strong style="color:${contentTypeColors[colorIndex % contentTypeColors.length]};">${contentTypes[type]}:</strong>`;
+                                typeHTML += ` ${contentItems[key][type][0]}</p>`;
+                            } else {
+                                typeHTML += `<p><strong style="color:${contentTypeColors[colorIndex % contentTypeColors.length]};">${contentTypes[type]}:</strong>`;
+                                typeHTML += `<ul>`;
+                                contentItems[key][type].forEach(content => {
+                                    typeHTML += `<li>${content}</li>`;
+                                });
+                                typeHTML += `</ul></p>`;
+                            }
+                            linksDisplay.innerHTML += typeHTML;
+                            colorIndex++;
+                        }
+                    }
+                }
+            }
+            
+            listItems.forEach((item, index) => {
+                item.addEventListener("click", function() {
+                    document.querySelectorAll(".iguide-item").forEach(el => el.classList.remove("active"));
+                    item.classList.add("active");
+                    updateContent(item.dataset.key);
+                    currentIndex = index; // Update currentIndex to the clicked item
+                    clearInterval(autoplayInterval); // Clear the existing interval
+                    setTimeout(() => {
+                        clearInterval(autoplayInterval); // Clear any existing interval before setting a new one
+                        autoplayInterval = setInterval(autoplayCarousel, 5000); // Restart autoplay after 4 seconds
+                    }, 4000);
+                });
+            });
+            
+            updateContent(Object.keys(items)[0]);
+
+            // Autoplay functionality
+            let currentIndex = 0;
+            const totalItems = listItems.length;
+
+            function autoplayCarousel() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                listItems[currentIndex].click();
+            }
+
+            let autoplayInterval = setInterval(autoplayCarousel, 5000); // Change slide every 5 seconds
+        });
+    </script>
+
+    <style>
+        #iguide-carousel {
+            display: flex;
+            padding: 20px 0px;
+        }
+        #iguide-left-panel {
+            width: 30%;
+            border-right: 2px solid #ddd;
+        }
+        #iguide-left-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+        .iguide-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            background-color: white; /* White background for inactive items */
+        }
+        .iguide-item.active {
+            font-weight: bold;
+            color: black;
+            background-color: var(--item-color); /* Normal hue for active items */
+        }
+        .iguide-icon {
+            margin-right: 10px;
+        }
+        #iguide-content {
+            flex: 1;
+            padding: 0 20px;
+        }
+        #iguide-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #iguide-links p {
+            margin: 5px 0 0;
+        }
+        #iguide-links ul {
+            list-style: disc;
+            padding-left: 20px;
         }
     </style>
     <?php
