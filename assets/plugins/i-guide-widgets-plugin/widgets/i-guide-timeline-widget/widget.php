@@ -13,6 +13,12 @@ class I_Guide_Timeline_Widget extends SiteOrigin_Widget {
             ),
             array(),
             array(
+                'title' => array(
+                    'type'  => 'text',
+                    'label' => __('Timeline Title', 'i-guide-timeline-text-domain'),
+                    'default' => 'Spatial AI Challenge 2024 Timeline',
+                    'description' => __('Enter the title for the timeline.', 'i-guide-timeline-text-domain'),
+                ),
                 'events' => array(
                     'type'  => 'repeater',
                     'label' => __('Timeline Events', 'i-guide-timeline-text-domain'),

@@ -3,8 +3,8 @@
  * Plugin Name: I-GUIDE Widgets Plugin
  * Plugin URI:  http://example.com
  * Description: A SiteOrigin widget plugin for I-GUIDE, including multiple widgets.
- * Version:     1.2
- * Author:      Your Name
+ * Version:     1.25
+ * Author:      Nattapon Jaroenchai
  * Author URI:  http://example.com
  * License:     GPL2
  */

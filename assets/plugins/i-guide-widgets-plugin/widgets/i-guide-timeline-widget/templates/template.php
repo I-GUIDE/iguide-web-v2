@@ -1,6 +1,7 @@
 <?php
 // Ensure events exist
 $events = isset($instance['events']) && is_array($instance['events']) ? $instance['events'] : [];
+$timeline_title = isset($instance['title']) && !empty($instance['title']) ? esc_html($instance['title']) : 'Spatial AI Challenge 2024 Timeline';
 
 if (empty($events)) {
     echo "<p style='color: red;'>Warning: No events found!</p>";
@@ -8,8 +9,8 @@ if (empty($events)) {
 }
 ?>
 
-<!-- Timeline Title -->
-<h1 style="text-align:center;">Spatial AI Challenge 2024 Timeline</h1>
+<!-- Timeline Title (User Configurable) -->
+<h1 id="timeline-title" style="text-align:center;"><?php echo $timeline_title; ?></h1>
 
 <!-- Timeline Container -->
 <div class="timeline" id="timeline"></div>
@@ -100,79 +101,84 @@ if (empty($events)) {
 
 <!-- Timeline JavaScript -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        console.log("Debug: JavaScript Loaded");
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Debug: JavaScript Loaded");
 
-        function normalizeDate(date) {
-            return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-        }
+    function normalizeDate(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
 
-        // ✅ Convert PHP events array to JavaScript
-        const events = <?php echo json_encode($events, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+    function getPacificTimeNow() {
+        const now = new Date();
+        return new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+    }
 
-        console.log("Debug: Events Received", events);
+    // ✅ Convert PHP events array to JavaScript
+    const events = <?php echo json_encode($events, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 
-        if (!events || events.length === 0) {
-            console.warn("No timeline events found.");
-            return;
-        }
+    console.log("Debug: Events Received", events);
 
-        // ✅ Get today's date
-        const serverTime = new Date();
-        const normalizedToday = normalizeDate(serverTime);
+    if (!events || events.length === 0) {
+        console.warn("No timeline events found.");
+        return;
+    }
 
-        // ✅ Add "Today" event if missing
-        const todayExists = events.some(event => {
-            const eventDate = new Date(event.date);
-            return normalizeDate(eventDate).getTime() === normalizedToday.getTime();
-        });
+    // ✅ Get today's date in PT
+    const pacificTimeNow = getPacificTimeNow();
+    const normalizedToday = normalizeDate(pacificTimeNow);
 
-        if (!todayExists) {
-            const todayStr = serverTime.toISOString().split('T')[0];
-            events.push({ date: todayStr, title: 'Today', description: 'Current day' });
-        }
+    // ✅ Add "Today" event if missing
+    const todayExists = events.some(event => event.title === "Today");
 
-        // ✅ Sort events by date
-        events.sort((a, b) => new Date(a.date) - new Date(b.date));
+    if (!todayExists) {
+        const todayStr = pacificTimeNow.toISOString().split('T')[0]; // YYYY-MM-DD
+        events.push({ date: todayStr, title: 'Today', description: 'Current day' });
+    }
 
-        // ✅ Find the timeline container
-        const timelineContainer = document.getElementById("timeline");
+    // ✅ Sort events by date
+    events.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        if (!timelineContainer) {
-            console.error("Timeline container not found.");
-            return;
-        }
+    // ✅ Find the timeline container
+    const timelineContainer = document.getElementById("timeline");
 
-        timelineContainer.innerHTML = ""; // Clear previous content
+    if (!timelineContainer) {
+        console.error("Timeline container not found.");
+        return;
+    }
 
-        // ✅ Render timeline items
-        events.forEach((event, index) => {
-            const eventDate = new Date(event.date);
-            let statusClass = "";
+    timelineContainer.innerHTML = ""; // Clear previous content
 
-            if (event.title === "Today") {
+    // ✅ Render timeline items
+    events.forEach((event, index) => {
+        const eventDateStr = event.date; // Keep the exact input date
+        const eventDate = new Date(eventDateStr);
+        let statusClass = "";
+
+        if (event.title === "Today") {
+            statusClass = "today";
+        } else {
+            const normalizedEventDate = normalizeDate(eventDate);
+            if (normalizedToday.getTime() === normalizedEventDate.getTime()) {
                 statusClass = "today";
+            } else if (normalizedToday.getTime() > normalizedEventDate.getTime()) {
+                statusClass = "completed";
             } else {
-                const normalizedEventDate = normalizeDate(eventDate);
-                if (normalizedToday.getTime() === normalizedEventDate.getTime()) {
-                    statusClass = "today";
-                } else if (normalizedToday.getTime() > normalizedEventDate.getTime()) {
-                    statusClass = "completed";
-                } else {
-                    statusClass = "upcoming";
-                }
+                statusClass = "upcoming";
             }
+        }
 
-            const side = index % 2 === 0 ? "left" : "right";
+        const side = index % 2 === 0 ? "left" : "right";
 
-            const eventDiv = document.createElement("div");
-            eventDiv.classList.add("timeline-item", side, statusClass);
-            eventDiv.innerHTML = `
-                <div class="date" style="font-size:13px;">${eventDate.toLocaleDateString()}</div>
-                <h4>${event.title}</h4>
-                <p style="font-size:13px;">${event.description}</p>
-            `;
-            timelineContainer.appendChild(eventDiv);
-        });
+        const eventDiv = document.createElement("div");
+        eventDiv.classList.add("timeline-item", side, statusClass);
+        eventDiv.innerHTML = `
+            <div class="date" style="font-size:13px;">${eventDateStr}</div>
+            <h4>${event.title}</h4>
+            <p style="font-size:13px;">${event.description}</p>
+        `;
+        timelineContainer.appendChild(eventDiv);
     });
+});
+
+
 </script>
