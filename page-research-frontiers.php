@@ -12,7 +12,7 @@ get_header();
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 20px;
         padding: 40px 20px;
-        max-width: 1200px;
+        max-width: 100%;
         margin: auto;
     }
 
@@ -39,42 +39,46 @@ get_header();
         margin-bottom: 10px;
     }
 
-    .research-frontier-content p {
+    .research-frontier-content p, .research-frontier-content ul {
         font-size: 1em;
         color: #555;
     }
+
+    .research-frontier-content h4 {
+        font-size: 1.2em;
+        margin-top: 10px;
+        color: #0073aa;
+    }
 </style>
 
-<div class="page-title tw-w-full tw-block  tw-relative tw--mt-[200px] tw-pt-[200px]" >
-        <div class="tw-container tw-mx-auto tw-px-4 tw-h-min-[200px] tw-pb-[80px] tw-pt-12">
-            <div class="tw-border-l-8 tw-pl-3 tw-border-ig-orange tw-text-white tw-font-semibold tw-text-2xl">
-                <h1><?php the_title();?></h1>
-            </div>
-            <!-- <p class="tw-text-light tw-text-sm tw-text-white tw-pt-2 tw-pl-5"><?php my_post_time_ago(); ?></p> -->
-        </div>
-        <div class="custom-shape-divider-bottom-1675786129">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
-            </svg>
+<div class="page-title tw-w-full tw-block tw-relative tw--mt-[200px] tw-pt-[200px]" >
+    <div class="tw-container tw-mx-auto tw-px-4 tw-h-min-[200px] tw-pb-[80px] tw-pt-12">
+        <div class="tw-border-l-8 tw-pl-3 tw-border-ig-orange tw-text-white tw-font-semibold tw-text-2xl">
+            <h1><?php the_title();?></h1>
         </div>
     </div>
+    <div class="custom-shape-divider-bottom-1675786129">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+            preserveAspectRatio="none">
+            <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
+        </svg>
+    </div>
+</div>
 
-    <div class="page-content tw-w-full tw-flex tw-relative tw-bg-white tw-mt-5 tw-mb-16">
-        <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
-            <?php
-                /* Start the Loop */
-                while ( have_posts() ) :
-                    the_post();
-                    the_content();
-                    // If comments are open or we have at least one comment, load up the comment template.
-                    if ( comments_open() || get_comments_number() ) {
-                        comments_template();
-                    }
-                endwhile; // End of the loop.
-            ?>
-        </div>
+<div class="page-content tw-w-full tw-flex tw-relative tw-bg-white tw-mt-5 tw-mb-16">
+    <div class="tw-container tw-mx-auto tw-px-4 tw-py-6">
+        <?php
+            /* Start the Loop */
+            while ( have_posts() ) :
+                the_post();
+                the_content();
+                if ( comments_open() || get_comments_number() ) {
+                    comments_template();
+                }
+            endwhile;
+        ?>
     </div>
+</div>
 
 <div class="research-frontiers-container">
     <?php
@@ -92,15 +96,13 @@ get_header();
     );
 
     foreach ($research_frontiers as $key => $title) :
-        $description = get_option("iguide10_options")[$key] ?? '';
-        $image_url = get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist in your theme's images folder
+        $image_url = get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
     ?>
         <div class="research-frontier-block">
             <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
             <div class="research-frontier-content">
                 <h3><?php echo esc_html($title); ?></h3>
-                <p><?php echo wp_kses_post($description); ?></p>
-                <?php echo do_shortcode("[iguide-10-items-w-link-icon key='$key']"); ?>
+                <?php echo iguide10_get_frontier_content($key); ?>
             </div>
         </div>
     <?php endforeach; ?>
