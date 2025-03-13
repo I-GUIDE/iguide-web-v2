@@ -27,7 +27,7 @@ get_header();
         top: 0;
         left: 0;
         width: 100%;
-        height: 200px;
+        height: 250px;
         background-size: cover;
         background-position: center;
         z-index: 1;
