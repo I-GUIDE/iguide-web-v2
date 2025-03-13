@@ -27,7 +27,7 @@ get_header();
         border-top-right-radius: 10px;
         position: relative;
         background-position: center center;
-        background-size: contain;
+        background-size: cover;
     }
 
     .research-frontier-image::before {
