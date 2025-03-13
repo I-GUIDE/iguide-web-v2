@@ -82,7 +82,7 @@ get_header();
     <div class="tw-container tw-mx-auto tw-px-4 tw-h-min-[200px] tw-pb-[80px] tw-pt-12">
         <div class="tw-border-l-8 tw-pl-3 tw-border-ig-orange tw-text-white tw-font-semibold tw-text-2xl">
             <h1><?php the_title();?></h1>
-            <p class="page-subtext">I-GUIDE is at the forefront of geospatial data science, pioneering cutting-edge advancements in sustainability, resilience, and technological innovation. Through interdisciplinary research, advanced cyberinfrastructure, and AI-driven solutions, we are expanding the boundaries of knowledge in geospatial analysis, education, and decision-making. The following highlights key areas where I-GUIDE is creating transformative impact.</p>
+            <p class="page-subtext">I-GUIDE is at the forefront of geospatial data-intensive sciences, driving discovery and innovation in sustainability, resilience, and geospatial data science. Powered by advanced cyberinfrastructure and AI, the I-GUIDE community is harnessing the geospatial data revolution to advance cutting-edge convergence research and education. Below are key areas where I-GUIDE is making a transformative impact.</p>
         </div>
     </div>
     <div class="custom-shape-divider-bottom-1675786129">
