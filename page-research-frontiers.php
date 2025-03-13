@@ -26,6 +26,8 @@ get_header();
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         position: relative;
+        background-position: center center;
+        background-size: contain;
     }
 
     .research-frontier-image::before {
@@ -35,7 +37,7 @@ get_header();
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 33%);
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 25%);
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
