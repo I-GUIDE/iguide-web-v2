@@ -16,14 +16,24 @@ get_header();
         margin-bottom: 20px;
     }
 
-    .research-frontier-block img {
+    .research-frontier-block::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 200px;
-        object-fit: cover;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        transition: opacity 0.3s ease;
     }
 
     .research-frontier-content {
+        position: relative;
         padding: 15px;
+        background: white;
+        z-index: 2;
     }
 
     .research-frontier-content h3 {
@@ -77,11 +87,10 @@ get_header();
             $options = get_option('iguide10_options', []);
 
             foreach ($research_frontiers as $key => $title) :
-                $image_url = get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
+                $image_url = "https://picsum.photos/200/300"; // get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
             ?>
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="research-frontier-block">
-                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
+                    <div class="research-frontier-block" style="--background-image: url('<?php echo esc_url($image_url); ?>');">
                         <div class="research-frontier-content">
                             <h3><?php echo esc_html($title); ?></h3>
                             <p><?php echo isset($options[$key]) ? esc_html($options[$key]) : ''; ?></p>
@@ -93,5 +102,16 @@ get_header();
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const blocks = document.querySelectorAll(".research-frontier-block");
+        blocks.forEach(block => {
+            const imageUrl = block.style.getPropertyValue("--background-image");
+            block.style.setProperty("--background-image", `url(${imageUrl})`);
+            block.style.backgroundImage = `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), ${imageUrl}`;
+        });
+    });
+</script>
 
 <?php get_footer(); ?>
