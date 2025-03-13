@@ -42,7 +42,7 @@ get_header();
 
     .research-frontier-content {
         position: relative;
-        padding: 15px;
+        padding: 0 15px 15px; 
         background: white;
         z-index: 2;
         flex-grow: 1;
