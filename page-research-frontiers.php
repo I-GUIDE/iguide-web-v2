@@ -7,11 +7,12 @@ get_header();
 ?>
 
 <style>
+    
     .research-frontier-block {
         position: relative;
         overflow: hidden;
         border-radius: 10px;
-        padding-top:200px;
+        padding-top:250px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         background: white;
         margin-bottom: 20px;
