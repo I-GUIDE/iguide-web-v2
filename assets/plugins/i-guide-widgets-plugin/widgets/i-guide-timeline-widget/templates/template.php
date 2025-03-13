@@ -104,13 +104,28 @@ if (empty($events)) {
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Debug: JavaScript Loaded");
 
-    function normalizeDate(date) {
-        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    function formatDateToLong(dateStr) {
+        // ✅ Manually extract year, month, and day to avoid timezone shifts
+        const [year, month, day] = dateStr.split('-').map(Number);
+        const date = new Date(year, month - 1, day); // Month is zero-based in JS
+
+        return new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }).format(date);
     }
 
-    function getPacificTimeNow() {
+    function getPacificTimeToday() {
         const now = new Date();
-        return new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+        const pacificTimeNow = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+        return pacificTimeNow.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+    }
+
+    function normalizeDateString(dateStr) {
+        // Convert YYYY-MM-DD to a comparable JavaScript Date (ignoring time zones)
+        const [year, month, day] = dateStr.split('-').map(Number);
+        return new Date(year, month - 1, day); // JS months are 0-based
     }
 
     // ✅ Convert PHP events array to JavaScript
@@ -123,20 +138,20 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // ✅ Get today's date in PT
-    const pacificTimeNow = getPacificTimeNow();
-    const normalizedToday = normalizeDate(pacificTimeNow);
+    // ✅ Get today's date in PT (YYYY-MM-DD)
+    const todayDateStr = getPacificTimeToday();
+    const todayDate = normalizeDateString(todayDateStr); // Convert to JS Date
 
-    // ✅ Add "Today" event if missing
+    // ✅ Check if "Today" is already in the events
     const todayExists = events.some(event => event.title === "Today");
 
+    // ✅ If "Today" is missing, add it
     if (!todayExists) {
-        const todayStr = pacificTimeNow.toISOString().split('T')[0]; // YYYY-MM-DD
-        events.push({ date: todayStr, title: 'Today', description: 'Current day' });
+        events.push({ date: todayDateStr, title: 'Today', description: 'Current day' });
     }
 
     // ✅ Sort events by date
-    events.sort((a, b) => new Date(a.date) - new Date(b.date));
+    events.sort((a, b) => normalizeDateString(a.date) - normalizeDateString(b.date));
 
     // ✅ Find the timeline container
     const timelineContainer = document.getElementById("timeline");
@@ -148,23 +163,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     timelineContainer.innerHTML = ""; // Clear previous content
 
-    // ✅ Render timeline items
+    // ✅ Render timeline items with classification
     events.forEach((event, index) => {
-        const eventDateStr = event.date; // Keep the exact input date
-        const eventDate = new Date(eventDateStr);
+        const eventDateStr = event.date.trim(); // Keep the exact input date
+        const eventDate = normalizeDateString(eventDateStr); // Convert to comparable JS Date
+        const formattedDate = formatDateToLong(eventDateStr); // Convert for display
         let statusClass = "";
 
+        // ✅ Assign event status (completed, upcoming, today)
         if (event.title === "Today") {
             statusClass = "today";
+        } else if (eventDate < todayDate) {
+            statusClass = "completed";
+        } else if (eventDate > todayDate) {
+            statusClass = "upcoming";
         } else {
-            const normalizedEventDate = normalizeDate(eventDate);
-            if (normalizedToday.getTime() === normalizedEventDate.getTime()) {
-                statusClass = "today";
-            } else if (normalizedToday.getTime() > normalizedEventDate.getTime()) {
-                statusClass = "completed";
-            } else {
-                statusClass = "upcoming";
-            }
+            statusClass = "today";
         }
 
         const side = index % 2 === 0 ? "left" : "right";
@@ -172,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const eventDiv = document.createElement("div");
         eventDiv.classList.add("timeline-item", side, statusClass);
         eventDiv.innerHTML = `
-            <div class="date" style="font-size:13px;">${eventDateStr}</div>
+            <div class="date" style="font-size:13px;">${formattedDate}</div>
             <h4>${event.title}</h4>
             <p style="font-size:13px;">${event.description}</p>
         `;
