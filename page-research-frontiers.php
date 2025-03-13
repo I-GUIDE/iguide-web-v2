@@ -63,13 +63,19 @@ get_header();
     .research-frontier-column {
         padding: 10px;
     }
+    .page-subtext {
+        margin-top: 15px;
+        font-size: 15px;
+        font-weight: 100;
+        line-height: 1.5rem;
+    }
 </style>
 
 <div class="page-title tw-w-full tw-block tw-relative tw--mt-[200px] tw-pt-[200px]" >
     <div class="tw-container tw-mx-auto tw-px-4 tw-h-min-[200px] tw-pb-[80px] tw-pt-12">
         <div class="tw-border-l-8 tw-pl-3 tw-border-ig-orange tw-text-white tw-font-semibold tw-text-2xl">
             <h1><?php the_title();?></h1>
-            <p style="font-size:15px; font-weight:normal;">I-GUIDE is at the forefront of geospatial data science, tackling some of the most pressing challenges in sustainability, resilience, and technological innovation. Through interdisciplinary research, advanced cyberinfrastructure, and AI-driven solutions, we explore new frontiers in geospatial analysis, education, and decision-making. Below are key areas where I-GUIDE is making an impact.
+            <p class="page-subtext">I-GUIDE is at the forefront of geospatial data science, tackling some of the most pressing challenges in sustainability, resilience, and technological innovation. Through interdisciplinary research, advanced cyberinfrastructure, and AI-driven solutions, we explore new frontiers in geospatial analysis, education, and decision-making. Below are key areas where I-GUIDE is making an impact.
 </p>
         </div>
     </div>
