@@ -32,7 +32,7 @@ get_header();
         background-position: center;
         z-index: 1;
         transition: opacity 0.3s ease;
-        background: linear-gradient(0deg, rgba(255,255,255,1) 9%, rgba(255,255,255,0) 33%);
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%);
     }
 
     .research-frontier-content {
