@@ -634,19 +634,19 @@ function iguide10_display_carousel_with_link_icon() {
     return ob_get_clean();
 }
 
-function iguide10_get_frontier_content($key) {
-    $options = get_option('iguide10_options', []);
+function iguide10_get_content_for_item($belongs_to) {
     $items = iguide10_get_items();
     $content_types = iguide10_get_content_types();
+    $content_type_colors = array(
+        '#0F5C98', // rgb(15, 92, 152)
+        '#2FA9A3', // rgb(47, 169, 163)
+        '#63853A', // rgb(99, 133, 58)
+        '#9ECDA2', // rgb(158, 205, 162)
+        '#F18149', // rgb(241, 129, 73)
+        '#E7B52F', // rgb(231, 181, 47)
+    );
 
-    if (!isset($items[$key])) {
-        return '<p>No content available for this frontier.</p>';
-    }
-
-    // Retrieve the description
-    $description = $options[$key] ?? '';
-
-    // Get related content items
+    // Get content items
     $args = array(
         'post_type'      => 'iguide10_content',
         'posts_per_page' => -1,
@@ -655,54 +655,47 @@ function iguide10_get_frontier_content($key) {
                 'key'     => 'iguide10_display_content',
                 'value'   => 'on',
                 'compare' => '='
-            ),
-            array(
-                'key'     => 'iguide10_content_belongs_to',
-                'value'   => $key,
-                'compare' => 'LIKE'
             )
         )
     );
-
     $query = new WP_Query($args);
     $content_items = [];
 
     while ($query->have_posts()) {
         $query->the_post();
         $content_type = get_post_meta(get_the_ID(), 'iguide10_content_type', true);
-        $url = get_post_meta(get_the_ID(), 'iguide10_content_url', true);
-        $text = esc_html(get_post_meta(get_the_ID(), 'iguide10_text_for_display', true) ?: get_the_title());
-
-        if (!empty($content_type) && is_array($content_type)) {
+        $belongs_to_items = get_post_meta(get_the_ID(), 'iguide10_content_belongs_to', true);
+        
+        if (is_array($belongs_to_items) && in_array($belongs_to, $belongs_to_items)) {
             foreach ($content_type as $type) {
                 if (!isset($content_items[$type])) {
                     $content_items[$type] = [];
                 }
-                $content_items[$type][] = $url
-                    ? $text . ' <a href="' . esc_url($url) . '" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>'
-                    : $text;
+                $url = get_post_meta(get_the_ID(), 'iguide10_content_url', true);
+                $text = esc_html(get_post_meta(get_the_ID(), 'iguide10_text_for_display', true) ?: get_the_title());
+                $content_items[$type][] = $url ? '<a href="' . esc_url($url) . '" target="_blank">' . $text . '</a>' : $text;
             }
         }
     }
     wp_reset_postdata();
 
-    // Build the output
-    $output = '<p>' . wp_kses_post($description) . '</p>';
-
-    if (!empty($content_items)) {
+    ob_start();
+    if (isset($content_items) && !empty($content_items)) {
+        $color_index = 0;
         foreach ($content_items as $type => $contents) {
-            $type_name = $content_types[$type] ?? ucfirst($type);
-            $output .= '<h4>' . esc_html($type_name) . '</h4>';
-            $output .= '<ul>';
-            foreach ($contents as $content) {
-                $output .= '<li>' . $content . '</li>';
+            $color = $content_type_colors[$color_index % count($content_type_colors)];
+            echo '<p><strong style="color:' . esc_attr($color) . ';">' . esc_html($content_types[$type]) . ':</strong>';
+            if (count($contents) === 1) {
+                echo ' ' . $contents[0] . '</p>';
+            } else {
+                echo '<ul>';
+                foreach ($contents as $content) {
+                    echo '<li>' . $content . '</li>';
+                }
+                echo '</ul></p>';
             }
-            $output .= '</ul>';
+            $color_index++;
         }
     }
-
-    return $output;
+    return ob_get_clean();
 }
-
-
-?>
