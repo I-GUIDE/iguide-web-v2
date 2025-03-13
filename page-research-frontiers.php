@@ -98,7 +98,7 @@ get_header();
             $options = get_option('iguide10_options', []);
 
             foreach ($research_frontiers as $key => $title) :
-                $image_url = "https://picsum.photos/200/300"; // get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
+                $image_url = "https://picsum.photos/500/800"; // get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
             ?>
                 <div class="col-lg-6 col-md-6 col-sm-12 research-frontier-column">
                     <div class="research-frontier-block" style="--background-image: url('<?php echo esc_url($image_url); ?>');">
@@ -120,8 +120,6 @@ get_header();
         blocks.forEach(block => {
             const imageUrl = block.style.getPropertyValue("--background-image");
             block.style.setProperty("--background-image", `url(${imageUrl})`);
-            block.style.backgroundImage = `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), ${imageUrl}`;
-        });
     });
 </script>
 
