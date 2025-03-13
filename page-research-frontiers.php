@@ -11,6 +11,7 @@ get_header();
         position: relative;
         overflow: hidden;
         border-radius: 10px;
+        padding-top:200px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         background: white;
         margin-bottom: 20px;
@@ -98,7 +99,7 @@ get_header();
                 $image_url = "https://picsum.photos/200/300"; // get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
             ?>
                 <div class="col-lg-6 col-md-6 col-sm-12 research-frontier-column">
-                    <div class="research-frontier-block" style="--background-image: url('<?php echo esc_url($image_url); ?>');padding-top:100px;">
+                    <div class="research-frontier-block" style="--background-image: url('<?php echo esc_url($image_url); ?>');">
                         <div class="research-frontier-content">
                             <h3><?php echo esc_html($title); ?></h3>
                             <p><?php echo isset($options[$key]) ? wp_kses_post($options[$key]) : ''; ?></p>
