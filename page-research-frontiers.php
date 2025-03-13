@@ -55,6 +55,10 @@ get_header();
         margin-top: 10px;
         color: #0073aa;
     }
+
+    .research-frontier-column {
+        padding: 10px;
+    }
 </style>
 
 <div class="page-title tw-w-full tw-block tw-relative tw--mt-[200px] tw-pt-[200px]" >
@@ -93,7 +97,7 @@ get_header();
             foreach ($research_frontiers as $key => $title) :
                 $image_url = "https://picsum.photos/200/300"; // get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
             ?>
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-sm-12 research-frontier-column">
                     <div class="research-frontier-block" style="--background-image: url('<?php echo esc_url($image_url); ?>');padding-top:100px;">
                         <div class="research-frontier-content">
                             <h3><?php echo esc_html($title); ?></h3>
