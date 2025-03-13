@@ -14,6 +14,9 @@ get_header();
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         background: white;
         margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
     }
 
     .research-frontier-block::before {
@@ -34,6 +37,7 @@ get_header();
         padding: 15px;
         background: white;
         z-index: 2;
+        flex-grow: 1;
     }
 
     .research-frontier-content h3 {
