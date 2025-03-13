@@ -95,6 +95,8 @@ get_header();
         'telecoupling_cross_scale_sustainability' => 'Telecoupling and Cross-scale Understanding of Sustainability'
     );
 
+    $options = get_option('iguide10_options', []);
+
     foreach ($research_frontiers as $key => $title) :
         $image_url = get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
     ?>
@@ -102,7 +104,8 @@ get_header();
             <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
             <div class="research-frontier-content">
                 <h3><?php echo esc_html($title); ?></h3>
-                <?php echo iguide10_get_frontier_content($key); ?>
+                <p><?php echo isset($options[$key]) ? wp_kses_post($options[$key]) : ''; ?></p>
+                <?php echo iguide10_get_content_for_item($key); ?>
             </div>
         </div>
     <?php endforeach; ?>
