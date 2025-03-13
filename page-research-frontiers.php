@@ -93,7 +93,7 @@ get_header();
                     <div class="research-frontier-block" style="--background-image: url('<?php echo esc_url($image_url); ?>');padding-top:100px;">
                         <div class="research-frontier-content">
                             <h3><?php echo esc_html($title); ?></h3>
-                            <p><?php echo isset($options[$key]) ? esc_html($options[$key]) : ''; ?></p>
+                            <p><?php echo isset($options[$key]) ? wp_kses_post($options[$key]) : ''; ?></p>
                             <?php echo iguide10_get_content_for_item($key); ?>
                         </div>
                     </div>
