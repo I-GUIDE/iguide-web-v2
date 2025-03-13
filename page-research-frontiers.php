@@ -18,6 +18,7 @@ get_header();
         display: flex;
         flex-direction: column;
         height: 100%;
+        background-size: cover;
     }
 
     .research-frontier-block::before {
