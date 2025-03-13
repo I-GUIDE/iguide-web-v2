@@ -25,6 +25,7 @@ get_header();
         object-fit: cover;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
+        position: relative;
     }
 
     .research-frontier-image::before {
@@ -35,6 +36,8 @@ get_header();
         width: 100%;
         height: 100%;
         background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 33%);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
     .research-frontier-content {
@@ -113,7 +116,7 @@ get_header();
             ?>
                 <div class="col-lg-6 col-md-6 col-sm-12 research-frontier-column">
                     <div class="research-frontier-block">
-                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" class="research-frontier-image">
+                        <div class="research-frontier-image" style="background-image: url('<?php echo esc_url($image_url); ?>');"></div>
                         <div class="research-frontier-content">
                             <h3><?php echo esc_html($title); ?></h3>
                             <p><?php echo isset($options[$key]) ? wp_kses_post($options[$key]) : ''; ?></p>
