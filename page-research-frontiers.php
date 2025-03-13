@@ -101,7 +101,7 @@ get_header();
                 $image_url = "https://picsum.photos/500/800"; // get_template_directory_uri() . "/images/{$key}.jpg"; // Ensure these images exist
             ?>
                 <div class="col-lg-6 col-md-6 col-sm-12 research-frontier-column">
-                    <div class="research-frontier-block" style="--background-image: url('<?php echo esc_url($image_url); ?>');">
+                    <div class="research-frontier-block" style="background-image: url('<?php echo esc_url($image_url); ?>');">
                         <div class="research-frontier-content">
                             <h3><?php echo esc_html($title); ?></h3>
                             <p><?php echo isset($options[$key]) ? wp_kses_post($options[$key]) : ''; ?></p>
@@ -113,14 +113,4 @@ get_header();
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const blocks = document.querySelectorAll(".research-frontier-block");
-        blocks.forEach(block => {
-            const imageUrl = block.style.getPropertyValue("--background-image");
-            block.style.setProperty("--background-image", `url(${imageUrl})`);
-    });
-</script>
-
 <?php get_footer(); ?>
