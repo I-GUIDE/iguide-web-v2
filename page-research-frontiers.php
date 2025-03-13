@@ -7,39 +7,39 @@ get_header();
 ?>
 
 <style>
-    
     .research-frontier-block {
         position: relative;
         overflow: hidden;
         border-radius: 10px;
-        padding-top:250px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         background: white;
         margin-bottom: 20px;
         display: flex;
         flex-direction: column;
         height: 100%;
-        background-size: cover;
-        background-position: center center;
     }
 
-    .research-frontier-block::before {
+    .research-frontier-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .research-frontier-image::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 250px;
-        background-size: cover;
-        background-position: center;
-        z-index: 1;
-        transition: opacity 0.3s ease;
-        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%);
+        height: 100%;
+        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 33%);
     }
 
     .research-frontier-content {
         position: relative;
-        padding: 0 15px 15px;
+        padding: 15px;
         background: white;
         z-index: 2;
         flex-grow: 1;
@@ -64,6 +64,7 @@ get_header();
     .research-frontier-column {
         padding: 10px;
     }
+
     .page-subtext {
         margin-top: 15px;
         font-size: 15px;
@@ -111,7 +112,8 @@ get_header();
                 $image_url = get_template_directory_uri() . "/assets/images/{$key}.jpeg"; // Ensure these images exist
             ?>
                 <div class="col-lg-6 col-md-6 col-sm-12 research-frontier-column">
-                    <div class="research-frontier-block" style="background-image: url('<?php echo esc_url($image_url); ?>');">
+                    <div class="research-frontier-block">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" class="research-frontier-image">
                         <div class="research-frontier-content">
                             <h3><?php echo esc_html($title); ?></h3>
                             <p><?php echo isset($options[$key]) ? wp_kses_post($options[$key]) : ''; ?></p>
