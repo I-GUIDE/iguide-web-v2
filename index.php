@@ -95,6 +95,15 @@
         <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(2deg); height:1px !important;"></div>
     </div>
 
+        
+    <div class="tw-container tw-flex tw-flex-col ">
+        <?php echo do_shortcode("[iguide-10-items-w-link-icon]"); ?>
+    </div>
+
+    <div class="tw-w-full tw-overflow-y-visible tw-relative tw-py-20">
+        <div class="tw-w-full tw-bg-gray-200" style="transform: rotate(2deg); height:1px !important;"></div>
+    </div>
+
     <div class="news-section tw-container tw-w-full tw-px-10 tw-my-10 tw-pb-10">
         <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold">NEWS AND UPDATES</h1>
         <div class="news-grid tw-grid md:tw-grid-cols-3 lg:tw-grid-cols-4 md:tw-grid-rows-[max-content_min-content] md:tw-grid-flow-row tw-gap-3 md:tw-gap-5 lg:tw-gap-7  tw-mt-5">
