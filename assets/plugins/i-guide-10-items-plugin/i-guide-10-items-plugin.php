@@ -590,6 +590,7 @@ function iguide10_display_carousel_with_link_icon() {
 
     <style>
         #iguide-carousel {
+            width: 100%;
             display: flex;
             padding: 20px 0px;
         }
