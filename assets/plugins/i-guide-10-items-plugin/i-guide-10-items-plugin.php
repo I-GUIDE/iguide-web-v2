@@ -378,6 +378,7 @@ function iguide10_display_carousel() {
 
     <style>
         #iguide-carousel {
+            width: 100%;
             display: flex;
             padding: 20px 0px;
         }
@@ -405,6 +406,7 @@ function iguide10_display_carousel() {
             margin-right: 10px;
         }
         #iguide-content {
+            width: 70%;
             flex: 1;
             padding: 0 20px;
         }
