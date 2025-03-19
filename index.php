@@ -97,7 +97,8 @@
 
         
     <div class="tw-container tw-flex tw-flex-col ">
-        <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold tw-text-center">Knowledge Frontiers</h1>
+        <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold mb-5">KNOWLEDGE FRONTIERS</h1>
+        
         <?php echo do_shortcode("[iguide-10-items-w-link-icon]"); ?>
     </div>
 

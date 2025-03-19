@@ -382,6 +382,12 @@ function iguide10_display_carousel() {
             display: flex;
             padding: 20px 0px;
         }
+        #iguide-carousel a {
+            font-weight: 400;
+            --tw-text-opacity: 1;
+            color: rgb(241 129 73 / var(--tw-text-opacity));
+            text-decoration-line: underline;
+        }
         #iguide-left-panel {
             width: 30%;
             border-right: 2px solid #ddd;
@@ -593,6 +599,12 @@ function iguide10_display_carousel_with_link_icon() {
             width: 100%;
             display: flex;
             padding: 20px 0px;
+        }
+        #iguide-carousel a {
+            font-weight: 400;
+            --tw-text-opacity: 1;
+            color: rgb(241 129 73 / var(--tw-text-opacity));
+            text-decoration-line: underline;
         }
         #iguide-left-panel {
             width: 30%;
