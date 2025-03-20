@@ -301,9 +301,9 @@ function iguide10_display_carousel() {
             </ul>
         </div>
         <div id="iguide-content">
-            <h2 id="iguide-title"></h2>
-            <p id="iguide-description"></p>
-            <div id="iguide-links"></div>
+            <h2 id="iguide-title" class="mb-3"></h2>
+            <p id="iguide-description" class="tw-font-light mb-3"></p>
+            <div id="iguide-links" class="tw-font-light"></div>
         </div>
     </div>
 
@@ -519,9 +519,9 @@ function iguide10_display_carousel_with_link_icon() {
             </ul>
         </div>
         <div id="iguide-content">
-            <h2 id="iguide-title"></h2>
-            <p id="iguide-description"></p>
-            <div id="iguide-links"></div>
+            <h2 id="iguide-title" class="mb-3"></h2>
+            <p id="iguide-description" class="tw-font-light mb-3"></p>
+            <div id="iguide-links" class="tw-font-light"></div>
         </div>
     </div>
 
@@ -630,6 +630,7 @@ function iguide10_display_carousel_with_link_icon() {
             margin-right: 10px;
         }
         #iguide-content {
+            width: 70%;
             flex: 1;
             padding: 0 20px;
         }
