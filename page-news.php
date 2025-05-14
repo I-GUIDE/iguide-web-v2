@@ -58,7 +58,10 @@ get_header();
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <!-- Title -->
-                                        <h3 class="card-title"><?php the_title(); ?></h3>
+                                        <a
+                                            href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>">
+                                            <h3 class="card-title"><?php the_title(); ?></h3>
+                                        </a>
 
                                         <!-- Post Time and Category Badge -->
                                         <p class="text-muted mb-2">
@@ -81,8 +84,8 @@ get_header();
                                         <p class="card-text"><?php echo $description; ?></p>
 
                                         <!-- Link -->
-                                        <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>"
-                                            class="btn btn-sm btn-primary stretched-link">Read More</a>
+                                        <!-- <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>"
+                                    class="btn btn-sm btn-primary stretched-link">Read More</a> -->
                                     </div>
                                 </div>
                             </div>
