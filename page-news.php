@@ -82,7 +82,7 @@ get_header();
 
                                         <!-- Link -->
                                         <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>"
-                                            class="btn btn-primary stretched-link">Read More</a>
+                                            class="btn btn-sm btn-primary stretched-link">Read More</a>
                                     </div>
                                 </div>
                             </div>
