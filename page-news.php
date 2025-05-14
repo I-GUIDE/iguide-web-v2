@@ -34,7 +34,7 @@ get_header();
                     $news = new WP_Query($news_args);
                     ?>
                     <?php if ($news->have_posts()): ?>
-                    <?php while ($news->have_posts()):
+                        <?php while ($news->have_posts()):
                             $news->the_post();
                             $news_or_event = get_the_terms(get_the_ID(), 'news_cat');
                             $description = get_field('short_description');
@@ -43,51 +43,51 @@ get_header();
                             $default_img = get_template_directory_uri() . "/img/area_6.png";
                             ?>
 
-                    <!-- Bootstrap column layout for responsiveness -->
-                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                        <div class="card <?php echo $news_or_event[0]->slug; ?> h-100">
-                            <!-- Centering the Card Image -->
-                            <div class="d-flex justify-content-center align-items-center"
-                                style="height: 200px; overflow: hidden;">
-                                <img src="<?php echo ($attachment_src) ? $attachment_src[0] : $default_img; ?>"
-                                    class="card-img-top tw-object-cover rounded-0 rounded-top"
-                                    style="object-fit: cover; object-position: center; width: 100%; height: 100%;"
-                                    alt="<?php echo get_the_title(); ?>">
-                            </div>
+                            <!-- Bootstrap column layout for responsiveness -->
+                            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                                <div class="card <?php echo $news_or_event[0]->slug; ?> h-100">
+                                    <!-- Centering the Card Image -->
+                                    <div class="d-flex justify-content-center align-items-center"
+                                        style="height: 200px; overflow: hidden;">
+                                        <img src="<?php echo ($attachment_src) ? $attachment_src[0] : $default_img; ?>"
+                                            class="card-img-top tw-object-cover rounded-0 rounded-top"
+                                            style="object-fit: cover; object-position: center; width: 100%; height: 100%;"
+                                            alt="<?php echo get_the_title(); ?>">
+                                    </div>
 
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <!-- Title -->
-                                <h3 class="card-title"><?php the_title(); ?></h3>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <!-- Title -->
+                                        <h3 class="card-title"><?php the_title(); ?></h3>
 
-                                <!-- Post Time and Category Badge -->
-                                <p class="text-muted mb-2">
-                                    <?php my_post_time_ago(); ?>
-                                    <!-- Displaying Badge Based on Category -->
-                                    <?php
+                                        <!-- Post Time and Category Badge -->
+                                        <p class="text-muted mb-2">
+                                            <?php my_post_time_ago(); ?>
+                                            <!-- Displaying Badge Based on Category -->
+                                            <?php
                                             if ($news_or_event[0]->name == "News") {
                                                 echo "<span class='badge bg-primary'>" . $news_or_event[0]->name . "</span>";
                                             } else if ($news_or_event[0]->name == "Event") {
                                                 echo "<span class='badge bg-warning'>" . $news_or_event[0]->name . "</span>";
                                             } else if ($news_or_event[0]->name == "Newsletter") {
                                                 echo "<span class='badge bg-info'>" . $news_or_event[0]->name . "</span>";
-                                            } else if ($news_or_event[0]->name == "article") {
+                                            } else if ($news_or_event[0]->name == "Article") {
                                                 echo "<span class='badge bg-success'>" . $news_or_event[0]->name . "</span>";
                                             }
                                             ?>
-                                </p>
+                                        </p>
 
-                                <!-- Short Description -->
-                                <p class="card-text"><?php echo $description; ?></p>
+                                        <!-- Short Description -->
+                                        <p class="card-text"><?php echo $description; ?></p>
 
-                                <!-- Link -->
-                                <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>"
-                                    class="btn btn-primary stretched-link">Read More</a>
+                                        <!-- Link -->
+                                        <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>"
+                                            class="btn btn-primary stretched-link">Read More</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <?php endwhile; ?>
+                        <?php endwhile; ?>
                     <?php endif; ?>
                 </div>
             </div>
