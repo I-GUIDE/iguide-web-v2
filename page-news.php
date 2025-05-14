@@ -58,8 +58,8 @@ get_header();
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <!-- Title -->
-                                        <a
-                                            href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>">
+                                        <a href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>"
+                                            class="btn btn-sm btn-primary stretched-link">
                                             <h3 class="card-title"><?php the_title(); ?></h3>
                                         </a>
 
