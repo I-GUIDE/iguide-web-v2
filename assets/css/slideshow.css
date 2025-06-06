@@ -1,64 +1,87 @@
-.carousel-indicators {
-    bottom: 0%;
-    left: 0;
-    justify-content: left;
-    margin-left: 5%;
-    z-index: 1000;
-}
-
-.carousel-caption {
-    background-color: transparent;
-    padding: 20px;
-    width: 30%;
-    border-radius: 10px;
-    bottom: 15%;
-    right: 10%;
-    left: unset;
-    transform: translateY(100%);
-    transition: transform 0.6s ease-in-out;
-    text-align: right;
-}
-
-.carousel-item.active .carousel-caption {
-    transform: translateY(0);
-}
-
-.carousel-caption h1 span {
-    padding: 0 5px;
-    display: inline;
-    line-height: 3.2rem;
-    font-size: 2.5rem;
-    font-weight: normal;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.carousel-caption p span {
-    /* padding:0 3px; */
-    font-size: 1rem;
-    display: inline-block;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.3); 
-} 
-
+/* ===================================================
+   Base Layout: Carousel Container & Hero Section
+=================================================== */
 .hero-section {
     position: relative;
     overflow: hidden;
     width: 100%;
     background: #FFFFFF;
-}
-
-.carousel-item {
-    background-size: contain !important; /* Change from cover to contain */
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: auto;
-    position: relative;
+    padding-top: 0;
 }
 
 .carousel-inner {
     width: 100%;
     height: auto;
+}
+
+.carousel-item {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 700px;
+    min-height: 300px;
+    position: relative;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.carousel-item a {
+    display: block;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.slideshow-slide {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.carousel-item a:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.carousel-item a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.carousel-item a:hover::after {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* ===================================================
+   Carousel Indicators & Controls
+=================================================== */
+.carousel-indicators {
+    bottom: 0;
+    left: 0;
+    margin-left: 5%;
+    justify-content: left;
+    z-index: 27;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: black;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 100% 100%;
 }
 
 .carousel-control-prev-icon {
@@ -67,4 +90,172 @@
 
 .carousel-control-next-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+/* ===================================================
+   Caption Styles (Desktop Hover)
+=================================================== */
+.carousel-hover-caption {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    transform: translateY(10px);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 30%;
+    opacity: 0;
+    text-align: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-item a:hover .carousel-hover-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.carousel-hover-caption h1 {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: normal;
+    padding: 0 5px;
+}
+
+.carousel-hover-caption p {
+    font-size: 0.95rem;
+    display: inline-block;
+    color: white;
+}
+
+/* ===================================================
+   Shape Divider (below slideshow if used)
+=================================================== */
+.hero-section .custom-shape-divider-bottom-1676052306 {
+    z-index: 26;
+}
+
+/* ===================================================
+   Responsive Design
+=================================================== */
+
+/* XS Devices (Phones <576px) */
+@media (max-width: 575.98px) {
+    .carousel-indicators {
+        display: none;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 10%;
+    }
+
+    .hero-section .custom-shape-divider-bottom-1676052306 {
+        display: none;
+    }
+
+    .carousel-item {
+        height: 150px;
+    }
+
+    .carousel-hover-caption h1 {
+        font-size: 1.1rem;
+    }
+
+    .carousel-hover-caption p {
+        font-size: 0.75rem;
+    }
+}
+
+/* SM Devices (≥576px <768px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 10%;
+    }
+
+    .hero-section .custom-shape-divider-bottom-1676052306 {
+        display: none;
+    }
+
+    .carousel-item {
+        height: 250px;
+    }
+
+    .carousel-hover-caption h1 {
+        font-size: 1.4rem;
+    }
+
+    .carousel-hover-caption p {
+        font-size: 0.85rem;
+    }
+}
+
+/* MD Devices (≥768px <992px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .hero-section .custom-shape-divider-bottom-1676052306 {
+        display: none;
+    }
+
+    .carousel-item {
+        height: 350px;
+    }
+
+    .carousel-caption h1 {
+        font-size: 1.5rem;
+    }
+
+    .carousel-caption p {
+        font-size: 0.75rem;
+        font-weight: lighter;
+    }
+}
+
+/* LG Devices (≥992px <1200px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .hero-section .custom-shape-divider-bottom-1676052306 {
+        bottom: -20px;
+        z-index: 26;
+    }
+
+    .carousel-item {
+        height: 450px;
+    }
+
+    .carousel-hover-caption h1 {
+        font-size: 2rem;
+    }
+
+    .carousel-hover-caption p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Mobile Behavior for Hover Caption */
+@media (max-width: 990px) {
+    .carousel-hover-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 16px;
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.75);
+        opacity: 1;
+        text-align: left;
+    }
+
+    .carousel-hover-caption h1 {
+        font-size: 1.2rem;
+    }
+
+    .carousel-hover-caption p {
+        font-size: 0.9rem;
+    }
 }
