@@ -153,7 +153,7 @@ get_header('index');
         $news_count = 1;
         ?>
         <?php if ($news->have_posts()): ?>
-        <?php while ($news->have_posts()):
+            <?php while ($news->have_posts()):
                 $news->the_post();
                 $news_or_event = get_the_terms(get_the_ID(), 'news_cat');
                 $description = get_field('short_description');
@@ -161,30 +161,30 @@ get_header('index');
                 $attachment_src = wp_get_attachment_image_src($attachment_id, 'full');
                 $default_img = get_template_directory_uri() . "/img/area_6.png";
                 ?>
-        <div
-            class="<?php if ($news_count > 4)
+                <div
+                    class="<?php if ($news_count > 4)
                         echo 'tw-hidden'; ?> tw-relative tw-border lg:tw-block tw-max-w-sm tw-rounded tw-overflow-hidden tw-ease-in tw-duration-300 tw-shadow-lg hover:tw-shadow-xl">
 
-            <a class="stretched-link"
-                href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>"></a>
-            <img class="tw-object-cover tw-h-[200px] tw-w-full"
-                src="<?php echo ($attachment_src) ? $attachment_src[0] : $default_img; ?>" alt="<?php the_title(); ?>">
-            <div class="tw-px-1 lg:tw-px-2 md:tw-px-6 tw-py-4">
-                <div class="tw-font-semibold tw-text-sm md:tw-text-sm lg:tw-text-base xl:tw-text-xl tw-mb-2">
-                    <?php the_title(); ?>
+                    <a class="stretched-link"
+                        href="<?php (get_field("external_link")) ? the_field("external_link") : the_permalink(); ?>"></a>
+                    <img class="tw-object-cover tw-h-[200px] tw-w-full"
+                        src="<?php echo ($attachment_src) ? $attachment_src[0] : $default_img; ?>" alt="<?php the_title(); ?>">
+                    <div class="tw-px-1 lg:tw-px-2 md:tw-px-6 tw-py-4">
+                        <div class="tw-font-semibold tw-text-sm md:tw-text-sm lg:tw-text-base xl:tw-text-xl tw-mb-2">
+                            <?php the_title(); ?>
+                        </div>
+                        <?php if ($news_or_event[0]->slug == "event") { ?>
+                            <p class="tw-font-light tw-mb-2 tw-text-sm"><strong>Event date:</strong>
+                                <?php echo get_field('event_date'); ?></p>
+                        <?php } ?>
+                        <p class="tw-text-gray-500 tw-font-light tw-italic tw-text-xs lg:tw-text-xs ">
+                        <p class="tw-text-gray-500 tw-font-light tw-italic tw-text-xs lg:tw-text-sm ">
+                            <?php my_post_time_ago(); ?>
+                        </p>
+                    </div>
                 </div>
-                <?php if ($news_or_event[0]->slug == "event") { ?>
-                <p class="tw-font-light tw-mb-2 tw-text-sm"><strong>Event date:</strong>
-                    <?php echo get_field('event_date'); ?></p>
-                <?php } ?>
-                <p class="tw-text-gray-500 tw-font-light tw-italic tw-text-xs lg:tw-text-xs ">
-                <p class="tw-text-gray-500 tw-font-light tw-italic tw-text-xs lg:tw-text-sm ">
-                    <?php my_post_time_ago(); ?>
-                </p>
-            </div>
-        </div>
 
-        <?php $news_count++;
+                <?php $news_count++;
             endwhile; ?>
         <?php endif; ?>
 
