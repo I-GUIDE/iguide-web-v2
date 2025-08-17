@@ -1,8 +1,8 @@
 <?php
 /*
-Template Name: Summer School Participants
-Description: Displays participants of summer school filtered by focus_area taxonomy and people post type.
-*/
+ * Template Name: Summer School Participants
+ * Description: Displays participants of summer school filtered by focus_area taxonomy and people post type.
+ */
 get_header();
 ?>
 <div class="page-title tw-w-full tw-block  tw-relative tw--mt-[200px] tw-pt-[200px]">
