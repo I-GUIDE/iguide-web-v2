@@ -1,5 +1,10 @@
-<?php /* Template Name: Example Template */ ?>
 <?php
+/*
+Template Name: SummerSchoolParticipants
+Description: A template to display Summer School participants filtered by focus area.
+Template Post Type: post, page, event
+*/
+
 get_header();
 ?>
 <div class="page-title tw-w-full tw-block  tw-relative tw--mt-[200px] tw-pt-[200px]">
