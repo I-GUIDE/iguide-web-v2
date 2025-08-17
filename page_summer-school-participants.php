@@ -1,8 +1,5 @@
+<?php /* Template Name: Example Template */ ?>
 <?php
-/**
- * Template Name: SummerSchoolParticipants
- */
-
 get_header();
 ?>
 <div class="page-title tw-w-full tw-block  tw-relative tw--mt-[200px] tw-pt-[200px]">
@@ -43,8 +40,8 @@ get_header();
             );
             $query = new WP_Query($args);
             ?>
-            <div class="row justify-content-center">
-                <?php
+        <div class="row justify-content-center">
+            <?php
                 if ($query->have_posts()) {
                     while ($query->have_posts()) {
                         $query->the_post();
@@ -53,31 +50,31 @@ get_header();
                         $affiliation = get_field('affiliation');
                         $department = get_field('department_program'); // optional field
                         ?>
-                        <div class="col-6 col-sm-4 col-md-2 col-lg-2">
-                            <div class="card people-card ">
-                                <?php if ($profile_url): ?><a href="<?php echo esc_url($profile_url); ?>" class="stretched-link"
-                                        target="_new"><?php endif; ?>
-                                    <div class="card-img-top box-shadow"
-                                        style="background-image: url('<?php echo esc_url($photo); ?>');"></div>
-                                    <?php if ($profile_url): ?>
-                                    </a><?php endif; ?>
-                                <div class="card-body ">
-                                    <h5 class="card-title name "><?php the_title(); ?></h5>
-                                    <p class="card-text affiliation "><?php echo esc_html($affiliation); ?></p>
-                                    <?php if ($department): ?>
-                                        <p class="card-text department "><?php echo esc_html($department); ?></p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
+            <div class="col-6 col-sm-4 col-md-2 col-lg-2">
+                <div class="card people-card ">
+                    <?php if ($profile_url): ?><a href="<?php echo esc_url($profile_url); ?>" class="stretched-link"
+                        target="_new"><?php endif; ?>
+                        <div class="card-img-top box-shadow"
+                            style="background-image: url('<?php echo esc_url($photo); ?>');"></div>
+                        <?php if ($profile_url): ?>
+                    </a><?php endif; ?>
+                    <div class="card-body ">
+                        <h5 class="card-title name "><?php the_title(); ?></h5>
+                        <p class="card-text affiliation "><?php echo esc_html($affiliation); ?></p>
+                        <?php if ($department): ?>
+                        <p class="card-text department "><?php echo esc_html($department); ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <?php
                     }
                     wp_reset_postdata();
                 } else {
                     echo '<p>No participants found for this focus area.</p>';
                 }
                 ?>
-            </div>
+        </div>
         <?php } else {
             echo '<p>No focus area specified.</p>';
         }
