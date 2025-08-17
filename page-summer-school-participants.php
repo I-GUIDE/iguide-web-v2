@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Summer School Participants
+ * Template Name: SummerSchoolParticipants
  */
 
 get_header();
