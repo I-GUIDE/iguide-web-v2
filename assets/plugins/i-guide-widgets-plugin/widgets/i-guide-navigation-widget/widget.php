@@ -26,6 +26,11 @@ class I_Guide_Navigation_Widget extends SiteOrigin_Widget
                     'type' => 'repeater',
                     'label' => __('Navigation Buttons', 'i-guide-navigation-text-domain'),
                     'item_name' => __('Button', 'i-guide-navigation-text-domain'),
+                    'item_label' => array(
+                        'selector' => "[name*='button_text']",
+                        'update_event' => 'change',
+                        'value_method' => 'val',
+                    ),
                     'fields' => array(
                         'button_text' => array(
                             'type' => 'text',
@@ -44,6 +49,13 @@ class I_Guide_Navigation_Widget extends SiteOrigin_Widget
                             'options' => array(
                                 'primary' => __('Primary (Blue)', 'i-guide-navigation-text-domain'),
                                 'warning' => __('Warning (Yellow)', 'i-guide-navigation-text-domain'),
+                                'success' => __('Success (Green)', 'i-guide-navigation-text-domain'),
+                                'danger' => __('Danger (Red)', 'i-guide-navigation-text-domain'),
+                                'info' => __('Info (Cyan)', 'i-guide-navigation-text-domain'),
+                                'secondary' => __('Secondary (Gray)', 'i-guide-navigation-text-domain'),
+                                'light' => __('Light (White)', 'i-guide-navigation-text-domain'),
+                                'dark' => __('Dark (Black)', 'i-guide-navigation-text-domain'),
+                                'link' => __('Link (No Background)', 'i-guide-navigation-text-domain'),
                             ),
                             'description' => __('Choose the button style.', 'i-guide-navigation-text-domain'),
                         ),

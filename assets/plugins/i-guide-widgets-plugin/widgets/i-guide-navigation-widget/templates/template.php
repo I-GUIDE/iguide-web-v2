@@ -13,7 +13,7 @@ $buttons = isset($instance['buttons']) && is_array($instance['buttons']) ? $inst
             $btn_text = isset($button['button_text']) ? esc_html($button['button_text']) : '';
             $btn_url = isset($button['button_url']) ? esc_url($button['button_url']) : '#';
             $btn_style = isset($button['button_style']) ? $button['button_style'] : 'primary';
-            $btn_class = $btn_style === 'warning' ? 'btn btn-warning m-2' : 'btn btn-primary m-2';
+            $btn_class = 'btn btn-' . $btn_style . ' m-2';
             ?>
             <a href="<?php echo $btn_url; ?>" class="<?php echo $btn_class; ?>">
                 <?php echo $btn_text; ?>

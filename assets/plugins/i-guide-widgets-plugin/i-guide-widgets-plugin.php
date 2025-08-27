@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: I-GUIDE Widgets Plugin
- * Plugin URI:  http://example.com
+ * Plugin URI:  
  * Description: A SiteOrigin widget plugin for I-GUIDE, including multiple widgets.
- * Version:     1.26
+ * Version:     1.27
  * Author:      Nattapon Jaroenchai
- * Author URI:  http://example.com
+ * Author URI:  
  * License:     GPL2
  */
 
