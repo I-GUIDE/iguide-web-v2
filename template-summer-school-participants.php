@@ -1,8 +1,9 @@
 <?php
-/*
-Template Name: Summer School Participants
-Description: Displays Summer School participants filtered by category parameter in the URL.
-*/
+/**
+ * Template Name: Summer School Participants 2
+ * Description: Displays Summer School participants filtered by category parameter in the URL.
+ **/
+
 get_header();
 ?>
 <div class="page-title tw-w-full tw-block  tw-relative tw--mt-[200px] tw-pt-[200px]">
