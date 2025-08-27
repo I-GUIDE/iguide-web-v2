@@ -1,8 +1,4 @@
 <?php
-/**
- * Template Name: Research Frontiers
- */
-
 get_header();
 ?>
 
@@ -37,14 +33,14 @@ get_header();
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 25%);
+        background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 25%);
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
 
     .research-frontier-content {
         position: relative;
-        padding: 0 15px 15px; 
+        padding: 0 15px 15px;
         background: white;
         z-index: 2;
         flex-grow: 1;
@@ -55,7 +51,8 @@ get_header();
         margin-bottom: 10px;
     }
 
-    .research-frontier-content p, .research-frontier-content ul {
+    .research-frontier-content p,
+    .research-frontier-content ul {
         font-size: 1em;
         color: #555;
     }
@@ -78,16 +75,19 @@ get_header();
     }
 </style>
 
-<div class="page-title tw-w-full tw-block tw-relative tw--mt-[200px] tw-pt-[200px]" >
+<div class="page-title tw-w-full tw-block tw-relative tw--mt-[200px] tw-pt-[200px]">
     <div class="tw-container tw-mx-auto tw-px-4 tw-h-min-[200px] tw-pb-[80px] tw-pt-12">
         <div class="tw-border-l-8 tw-pl-3 tw-border-ig-orange tw-text-white tw-font-semibold tw-text-2xl">
-            <h1><?php the_title();?></h1>
-            <p class="page-subtext">I-GUIDE is at the forefront of geospatial data-intensive sciences, driving discovery and innovation in sustainability, resilience, and geospatial data science. Powered by advanced cyberinfrastructure and AI, the I-GUIDE community is harnessing the geospatial data revolution to advance cutting-edge convergence research and education. Below are key areas where I-GUIDE is making a transformative impact.</p>
+            <h1><?php the_title(); ?></h1>
+            <p class="page-subtext">I-GUIDE is at the forefront of geospatial data-intensive sciences, driving discovery
+                and innovation in sustainability, resilience, and geospatial data science. Powered by advanced
+                cyberinfrastructure and AI, the I-GUIDE community is harnessing the geospatial data revolution to
+                advance cutting-edge convergence research and education. Below are key areas where I-GUIDE is making a
+                transformative impact.</p>
         </div>
     </div>
     <div class="custom-shape-divider-bottom-1675786129">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-            preserveAspectRatio="none">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
         </svg>
     </div>
@@ -98,26 +98,27 @@ get_header();
         <div class="row">
             <?php
             $research_frontiers = array(
-                'iguide_platform'                     => 'I-GUIDE Platform',
-                'spatial_ai_challenge'                => 'Spatial AI Challenge',
-                'virtual_consulting_offices'          => 'Virtual Consulting Offices (VCOs)',
-                'iguide_summer_schools'               => 'I-GUIDE Summer Schools',
-                'convergence_curriculum'              => 'Convergence Curriculum',
-                'aging_dam_infrastructure'            => 'Aging Dam Infrastructure',
-                'geospatial_knowledge_hypercube'      => 'Geospatial Knowledge Hypercube',
-                'extreme_events_resilience'           => 'Extreme Events & Disaster Resilience',
-                'robust_geospatial_data_science'      => 'Robust Geospatial Data Science',
+                'iguide_platform' => 'I-GUIDE Platform',
+                'spatial_ai_challenge' => 'Spatial AI Challenge',
+                'virtual_consulting_offices' => 'Virtual Consulting Offices (VCOs)',
+                'iguide_summer_schools' => 'I-GUIDE Summer Schools',
+                'convergence_curriculum' => 'Convergence Curriculum',
+                'aging_dam_infrastructure' => 'Aging Dam Infrastructure',
+                'geospatial_knowledge_hypercube' => 'Geospatial Knowledge Hypercube',
+                'extreme_events_resilience' => 'Extreme Events & Disaster Resilience',
+                'robust_geospatial_data_science' => 'Robust Geospatial Data Science',
                 'telecoupling_cross_scale_sustainability' => 'Telecoupling and Cross-scale Understanding of Sustainability'
             );
 
             $options = get_option('iguide10_options', []);
 
-            foreach ($research_frontiers as $key => $title) :
+            foreach ($research_frontiers as $key => $title):
                 $image_url = get_template_directory_uri() . "/assets/images/{$key}.jpeg"; // Ensure these images exist
-            ?>
+                ?>
                 <div class="col-lg-6 col-md-6 col-sm-12 research-frontier-column">
                     <div class="research-frontier-block">
-                        <div class="research-frontier-image" style="background-image: url('<?php echo esc_url($image_url); ?>');"></div>
+                        <div class="research-frontier-image"
+                            style="background-image: url('<?php echo esc_url($image_url); ?>');"></div>
                         <div class="research-frontier-content">
                             <h3><?php echo esc_html($title); ?></h3>
                             <p><?php echo isset($options[$key]) ? wp_kses_post($options[$key]) : ''; ?></p>

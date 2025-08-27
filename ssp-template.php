@@ -1,4 +1,4 @@
-<?php /* Template Name: Example Template */ ?>
+<?php /* Template Name: Summer School Participants */ ?>
 <?php
 get_header();
 ?>
