@@ -1,7 +1,6 @@
 <?php
 /** 
  * Template Name: Summer School Participants
- * Description: A template to display Summer School participants filtered by focus area.
  **/
 
 get_header();

@@ -1,7 +1,6 @@
 <?php
 /**
  * Template Name: Summer School Participants 2
- * Description: Displays Summer School participants filtered by category parameter in the URL.
  **/
 
 get_header();
