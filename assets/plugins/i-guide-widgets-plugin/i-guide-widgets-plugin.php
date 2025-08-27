@@ -1,11 +1,10 @@
 <?php
 /**
  * Plugin Name: I-GUIDE Widgets Plugin
- * Plugin URI:  
  * Description: A SiteOrigin widget plugin for I-GUIDE, including multiple widgets.
- * Version:     1.27
+ * Version:     1.52
  * Author:      Nattapon Jaroenchai
- * Author URI:  
+ * Author URI:  https://buymeacoffee.com/nathanj
  * License:     GPL2
  */
 

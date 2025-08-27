@@ -4,10 +4,10 @@ $text = isset($instance['text']) ? $instance['text'] : '';
 $buttons = isset($instance['buttons']) && is_array($instance['buttons']) ? $instance['buttons'] : [];
 ?>
 <div class="i-guide-navigation-widget">
-    <div class="navigation-text">
+    <div class="navigation-text mt-2">
         <?php echo wpautop($text); ?>
     </div>
-    <p style="text-align:center;">
+    <p class="my-4" style="text-align:center;">
         <?php foreach ($buttons as $button): ?>
             <?php
             $btn_text = isset($button['button_text']) ? esc_html($button['button_text']) : '';
@@ -21,3 +21,4 @@ $buttons = isset($instance['buttons']) && is_array($instance['buttons']) ? $inst
         <?php endforeach; ?>
     </p>
 </div>
+<hr />
