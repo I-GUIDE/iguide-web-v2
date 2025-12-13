@@ -2,7 +2,7 @@
 /**
  * Plugin Name: VCO Plugin
  * Description: A plugin to manage VCO events with multiple speakers.
- * Version: 1.7
+ * Version: 1.8
  * Author: Nattapon Jaroenchai
  * Text Domain: vco-plugin
  */
