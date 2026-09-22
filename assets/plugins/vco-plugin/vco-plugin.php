@@ -412,3 +412,20 @@ function vco_template_loader( $template ) {
     return $template;
 }
 add_filter( 'template_include', 'vco_template_loader' );
+
+/**
+ * Check whether a VCO has an embedded YouTube video.
+ */
+function vco_has_youtube_video( $post_id ) {
+    $embedded_video = get_post_meta( $post_id, 'vco_embedded_video', true );
+    return ! empty( $embedded_video ) && preg_match( '/youtube\.com|youtube-nocookie\.com|youtu\.be/i', $embedded_video );
+}
+
+/**
+ * Output the "Recording" capsule for VCO cards with an embedded YouTube video.
+ */
+function vco_recording_badge( $post_id ) {
+    if ( vco_has_youtube_video( $post_id ) ) {
+        echo '<span class="badge rounded-pill mb-2" style="background-color: #1a2e52; font-size: 0.8em;">' . esc_html__( 'Recording Available', 'vco-plugin' ) . '</span>';
+    }
+}

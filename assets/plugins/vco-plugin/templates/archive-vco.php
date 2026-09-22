@@ -124,6 +124,7 @@ get_header();
             <div class="col-md-6 mb-4">
                 <div class="card h-100 shadow" style="border: 3px solid #e7b633;">
                     <div class="card-body" style="background-color: #fffbf0;">
+                        <?php vco_recording_badge( get_the_ID() ); ?>
                         <?php if ( $date_time ) : ?>
                         <h3 class="card-title" style="color: #e7b633;">
                             <strong>TODAY - <?php echo date_i18n( 'g:i a', $date_time ); ?></strong>
@@ -192,6 +193,7 @@ get_header();
             <div class="col-md-6 mb-4">
                 <div class="card h-100 shadow">
                     <div class="card-body">
+                        <?php vco_recording_badge( get_the_ID() ); ?>
                         <?php if ( $date_time ) : ?>
                         <h3 class="card-title" style="color: #e7b633;">
                             <?php echo date_i18n( 'F j, Y g:i a', $date_time ); ?>
@@ -258,6 +260,7 @@ get_header();
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow" style="font-size: 0.9em;">
                     <div class="card-body">
+                        <?php vco_recording_badge( get_the_ID() ); ?>
                         <?php if ( $date_time ) : ?>
                         <h3 class="card-title" style="color: #e7b633; font-size: 1em;">
                             <?php echo date_i18n( 'F j, Y g:i a', $date_time ); ?>
