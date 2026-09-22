@@ -173,9 +173,12 @@ get_header();
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <h1 class="mb-2 text-center">Upcoming Sessions</h1>
-                <h4 class="mb-4 text-center">I-GUIDE's virtual consulting office (VCO) showcases innovative research and
-                    education. The VCO addresses the ongoing needs of pertinent communities and partners. Click the
-                    cards for additional information and registration.</h4>
+                <h4 class="mb-3 text-center">I-GUIDE's virtual consulting office (VCO) showcases innovative research and
+                    education. These are opportunities to share and get feedback on your geospatial data science
+                    activities. Click the cards below for additional information and registration for each session.</h4>
+                <h4 class="mb-4 text-center">If you have a suitable research topic you would like to share with a broad
+                    geospatial community, <a href="<?php echo esc_url( home_url( '/vco-proposal/' ) ); ?>">complete this
+                    form to tell us about your work</a>.</h4>
             </div>
         </div>
 
