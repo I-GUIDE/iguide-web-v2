@@ -4,8 +4,15 @@
  * Run this directly to test plugin activation without WordPress admin
  */
 
+// Command-line only: refuse all web requests.
+if (PHP_SAPI !== 'cli') {
+    http_response_code(403);
+    exit;
+}
+
+
 // Change to the WordPress root directory
-$wp_root = dirname(dirname(dirname(__DIR__)));
+$wp_root = dirname(dirname(dirname(dirname(__DIR__))));
 require_once($wp_root . '/wp-config.php');
 require_once($wp_root . '/wp-admin/includes/plugin.php');
 

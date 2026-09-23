@@ -4,12 +4,22 @@
  * Add this to functions.php temporarily to test AJAX responses
  */
 
-// Test AJAX endpoint
+// Only load from within WordPress; block direct access.
+if (!defined('ABSPATH')) {
+    http_response_code(403);
+    exit;
+}
+
+// Test AJAX endpoint (logged-in users only; no nopriv hook)
 add_action('wp_ajax_idet_debug_test', 'idet_debug_test_callback');
-add_action('wp_ajax_nopriv_idet_debug_test', 'idet_debug_test_callback');
 
 function idet_debug_test_callback()
 {
+    // Restrict debug output to administrators
+    if (!current_user_can('manage_options')) {
+        wp_send_json_error('Forbidden', 403);
+    }
+
     // Test basic WordPress functions
     $response = array(
         'wordpress_loaded' => function_exists('wp_send_json_success'),

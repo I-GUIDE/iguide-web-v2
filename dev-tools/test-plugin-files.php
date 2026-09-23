@@ -4,6 +4,13 @@
  * Test if the plugin files can be loaded without fatal errors
  */
 
+// Command-line only: refuse all web requests.
+if (PHP_SAPI !== 'cli') {
+    http_response_code(403);
+    exit;
+}
+
+
 echo "Testing I-GUIDE Ethics Toolkit Plugin Files...\n\n";
 
 // Test 1: Check if files exist

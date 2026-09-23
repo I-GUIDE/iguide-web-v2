@@ -4,10 +4,18 @@
  * This will manually activate the plugin and create tables if needed
  */
 
+// Command-line only: refuse all web requests.
+if (PHP_SAPI !== 'cli') {
+    http_response_code(403);
+    exit;
+}
+
+
 // Include WordPress
-$wp_load_path = dirname(dirname(dirname(__DIR__))) . '/wp-load.php';
+$wp_load_path = dirname(dirname(dirname(dirname(__DIR__)))) . '/wp-load.php';
 if (file_exists($wp_load_path)) {
     require_once($wp_load_path);
+    require_once(ABSPATH . 'wp-admin/includes/plugin.php');
 } else {
     die('WordPress not found');
 }
